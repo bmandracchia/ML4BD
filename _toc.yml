@@ -3,8 +3,9 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
-- file: 00_python_primer
+title: Introduction
+parts:
+- caption: Computational Tools
+  numbered: true
+  chapters:
+  - file: chapters/00_python_primer
