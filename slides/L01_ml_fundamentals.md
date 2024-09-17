@@ -331,3 +331,13 @@ It is often well worth the effort to spend time cleaning up your training data. 
 - If some instances are clearly outliers, it may help to simply discard them or try to fix the errors manually.
 
 - If some instances are missing a few features (e.g., 5% of your customers did not specify their age), you must decide whether you want to ignore this attribute altogether, ignore these instances, fill in the missing values (e.g., with the median age), or train one model with the feature and one model without it, and so on.
+
+---
+
+### Irrelevant Features: Garbage In, Garbage Out. 
+
+Your system will only be capable of learning if the training data contains enough relevant features and not too many irrelevant ones. A critical part of the success of a Machine Learning project is coming up with a good set of features to train on. This process, called **feature engineering**, involves:
+
+- **Feature selection**: selecting the most useful features to train on among existing features.
+- **Feature extraction**: combining existing features to produce a more useful one.
+- Creating new features by gathering new data.
