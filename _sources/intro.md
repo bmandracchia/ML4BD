@@ -1,11 +1,12 @@
-# Welcome to your Jupyter Book
+#  Introduction to Machine Learning for Biomedical Data
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+This book is designed to introduce the fundamental concepts necessary for developing models that can assist in clinical decision-making by utilizing artificial intelligence techniques on various types of biomedical data. It begins with foundational machine learning approaches that rely on specific features extracted from biomedical data (feature engineering) and progresses to more contemporary methods using deep learning, which leverage "raw" biomedical signals or images to automatically learn the relevant features for predictive modeling.
 
-Check out the content pages bundled with this sample book to see more.
+The target readership includes students, researchers, clinicians, and other professionals who are interested in applying machine learning techniques to support clinical decision-making processes with biomedical data. The book aims to provide a comprehensive guide on essential concepts that enable the development of tools which can serve as supportive systems for clinical decisions.
 
+## Table of Contents
 ```{tableofcontents}
 ```
+
+## License
+The contents of this book are licensed for free consumption under the following license: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).

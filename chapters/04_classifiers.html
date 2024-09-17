@@ -1,0 +1,1930 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Classification &#8212; Introduction to Machine Learning for Biomedical Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/04_classifiers';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introduction to Machine Learning for Biomedical Data - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introduction to Machine Learning for Biomedical Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Machine Learning for Biomedical Data
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Computational Tools</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_python_primer.html">1. Python: a Primer</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="00_data_science_with_pandas.html">4. Data Science with Python and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00_jupyter_markdown.html">5. Jupyter &amp; Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD/issues/new?title=Issue%20on%20page%20%2Fchapters/04_classifiers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/04_classifiers.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist">MNIST</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-dataset">Train &amp; test dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-a-binary-classifier">Training a Binary Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-step">Gradient descent step</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gd-regression-example">GD regression example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-with-various-learning-rate">Gradient Descent with various learning rate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-measures">Performance Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-accuracy-using-cross-validation">Measuring Accuracy Using Cross-Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-and-recall">Precision and Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-f-1-score">The <span class="math notranslate nohighlight">\(F_1\)</span> score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-recall-trade-off">Precision/Recall Trade-off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-roc-curve">The ROC Curve</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiclass-classification">Multiclass Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-all-ova-strategy">One-versus-all (OvA) strategy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-one-ovo-strategy">One-versus-one (OvO) strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilabel-classification">Multilabel Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multioutput-classification">Multioutput Classification</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;legend&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">IMAGES_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;images&quot;</span> <span class="o">/</span> <span class="s2">&quot;Lesson04&quot;</span>
+<span class="n">IMAGES_PATH</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">save_fig</span><span class="p">(</span><span class="n">fig_id</span><span class="p">,</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fig_extension</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">300</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">IMAGES_PATH</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fig_id</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">fig_extension</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="n">tight_layout</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fig_extension</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Classification is the task of predicting categorical outcomes/labels</p>
+<p>Categorical variables can be binary, multinominal, or ordinal</p>
+<p><img alt="Alt text" src="chapters/image-1.png" /></p>
+<section id="mnist">
+<h2>MNIST<a class="headerlink" href="#mnist" title="Link to this heading">#</a></h2>
+<p>We will be using the MNIST dataset, which is a set of 70,000 small
+images of handwritten digits, where each image is labeled with the digit it represents.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The following code fetches the MNIST dataset</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># The following code fetches the MNIST dataset</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Datasets loaded by Scikit-Learn generally have a similar dictionary structure including:</p>
+<ul class="simple">
+<li><p>A DESCR key describing the dataset</p></li>
+<li><p>A data key containing an array with one row per instance and one column per
+feature</p></li>
+<li><p>A target key containing an array with the labels</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">mnist</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>**Author**: Yann LeCun, Corinna Cortes, Christopher J.C. Burges  
+**Source**: [MNIST Website](http://yann.lecun.com/exdb/mnist/) - Date unknown  
+**Please cite**:  
+
+The MNIST database of handwritten digits with 784 features, raw data available at: http://yann.lecun.com/exdb/mnist/. It can be split in a training set of the first 60,000 examples, and a test set of 10,000 examples  
+
+It is a subset of a larger set available from NIST. The digits have been size-normalized and centered in a fixed-size image. It is a good database for people who want to try learning techniques and pattern recognition methods on real-world data while spending minimal efforts on preprocessing and formatting. The original black and white (bilevel) images from NIST were size normalized to fit in a 20x20 pixel box while preserving their aspect ratio. The resulting images contain grey levels as a result of the anti-aliasing technique used by the normalization algorithm. the images were centered in a 28x28 image by computing the center of mass of the pixels, and translating the image so as to position this point at the center of the 28x28 field.  
+
+With some classification methods (particularly template-based methods, such as SVM and K-nearest neighbors), the error rate improves when the digits are centered by bounding box rather than center of mass. If you do this kind of pre-processing, you should report it in your publications. The MNIST database was constructed from NIST&#39;s NIST originally designated SD-3 as their training set and SD-1 as their test set. However, SD-3 is much cleaner and easier to recognize than SD-1. The reason for this can be found on the fact that SD-3 was collected among Census Bureau employees, while SD-1 was collected among high-school students. Drawing sensible conclusions from learning experiments requires that the result be independent of the choice of training set and test among the complete set of samples. Therefore it was necessary to build a new database by mixing NIST&#39;s datasets.  
+
+The MNIST training set is composed of 30,000 patterns from SD-3 and 30,000 patterns from SD-1. Our test set was composed of 5,000 patterns from SD-3 and 5,000 patterns from SD-1. The 60,000 pattern training set contained examples from approximately 250 writers. We made sure that the sets of writers of the training set and test set were disjoint. SD-1 contains 58,527 digit images written by 500 different writers. In contrast to SD-3, where blocks of data from each writer appeared in sequence, the data in SD-1 is scrambled. Writer identities for SD-1 is available and we used this information to unscramble the writers. We then split SD-1 in two: characters written by the first 250 writers went into our new training set. The remaining 250 writers were placed in our test set. Thus we had two sets with nearly 30,000 examples each. The new training set was completed with enough examples from SD-3, starting at pattern # 0, to make a full set of 60,000 training patterns. Similarly, the new test set was completed with SD-3 examples starting at pattern # 35,000 to make a full set with 60,000 test patterns. Only a subset of 10,000 test images (5,000 from SD-1 and 5,000 from SD-3) is available on this site. The full 60,000 sample training set is available.
+
+Downloaded from openml.org.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnist</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;data&#39;, &#39;target&#39;, &#39;frame&#39;, &#39;categories&#39;, &#39;feature_names&#39;, &#39;target_names&#39;, &#39;DESCR&#39;, &#39;details&#39;, &#39;url&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(70000, 784)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;5&#39;, &#39;0&#39;, &#39;4&#39;, ..., &#39;4&#39;, &#39;5&#39;, &#39;6&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(70000,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>784
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_digit</span><span class="p">(</span><span class="n">image_data</span><span class="p">):</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="n">some_digit</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plot_digit</span><span class="p">(</span><span class="n">some_digit</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;some_digit_plot&quot;</span><span class="p">)</span>  <span class="c1"># extra code</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8905a770ca6897760329526bff81c2b1053b451e50429d8e396990cc76887389.png" src="../_images/8905a770ca6897760329526bff81c2b1053b451e50429d8e396990cc76887389.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;5&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">image_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">100</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot_digit</span><span class="p">(</span><span class="n">image_data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;more_digits_plot&quot;</span><span class="p">,</span> <span class="n">tight_layout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b283a3ff6abe069de7f39b95609ff726f974dacaea5fe51c783869b127b4d6a8.png" src="../_images/b283a3ff6abe069de7f39b95609ff726f974dacaea5fe51c783869b127b4d6a8.png" />
+</div>
+</div>
+<section id="train-test-dataset">
+<h3>Train &amp; test dataset<a class="headerlink" href="#train-test-dataset" title="Link to this heading">#</a></h3>
+<p>We should always create a test set and set it aside before inspecting the data
+closely.</p>
+<p>The MNIST dataset is actually already split into a training set (the first 60,000
+images) and a test set (the last 10,000 images).
+The training set is already shuffled for us, which is good as this guarantees that all
+cross-validation folds will be similar (you don’t want one fold to be missing some digits).
+Moreover, some learning algorithms are sensitive to the order of the training instances,
+and they perform poorly if they get many similar instances in a row.
+Shuffling the dataset ensures that this won’t happen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">60000</span><span class="p">:],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">60000</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="training-a-binary-classifier">
+<h2>Training a Binary Classifier<a class="headerlink" href="#training-a-binary-classifier" title="Link to this heading">#</a></h2>
+<p>As an example of a binary classifier, we will try to identify one digit: the number 5.
+So, we distinguish between just two classes, 5 and not-5.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let’s create the target vectors for this classification task</span>
+<span class="n">y_train_5</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="s1">&#39;5&#39;</span><span class="p">)</span>  <span class="c1"># True for all 5s, False for all other digits</span>
+<span class="n">y_test_5</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="s1">&#39;5&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we have to pick a classifier and train it.</p>
+<p>A good place to start is with a <strong>Stochastic Gradient Descent</strong> (SGD) classifier, using Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">SGDClassifier</span></code> class.
+This classifier has the advantage of being capable of handling very large datasets efficiently.
+This is in part because SGD deals with training instances independently, one at a time
+(which also makes SGD well suited for online learning).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
+
+<span class="n">sgd_clf</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sgd_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SGDClassifier(random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">SGDClassifier</label><div class="sk-toggleable__content"><pre>SGDClassifier(random_state=42)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">some_digit</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="gradient-descent">
+<h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Link to this heading">#</a></h3>
+<p>Gradient Descent is a very generic optimization algorithm capable of finding optimal
+solutions to a wide range of problems. The general idea of Gradient Descent is to
+tweak parameters iteratively in order to minimize a cost function.</p>
+<p>Concretely, you start by filling θ with random values (this is called random initialization),
+and then you improve it gradually, taking one baby step at a time, each step
+attempting to decrease the cost function (e.g., the MSE), until the algorithm converges
+to a minimum.</p>
+<p><img alt="Alt text" src="chapters/image-2.png" /></p>
+<p>To implement Gradient Descent, you need to compute the gradient of the cost function
+with regards to each model parameter <span class="math notranslate nohighlight">\(\theta_j\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial}{\partial \mathbf{\theta_j}} \mathrm{MSE}(\theta) = \frac{2}{m} \Sigma_{t=1}^m (\mathbf{\theta}^T \mathbf{x}^{(t)} - y^{(t)}) x_j^{(t)} \]</div>
+<p>The gradient vector contains all the partial derivatives of the cost function (one for each model parameter)</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla_\theta \mathrm{MSE}(\mathbf{\theta})  =  \frac{2}{m} \mathbf{X}^T (\mathbf{X}\mathbf{\theta} - \mathbf{y})
+\]</div>
+<section id="gradient-descent-step">
+<h4>Gradient descent step<a class="headerlink" href="#gradient-descent-step" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{\theta}^{(step+1)} = \mathbf{\theta}^{(step)} - \eta \nabla_\mathbf{\theta} \mathrm{MSE}(\mathbf{\theta}^{(step)})
+\]</div>
+<p>where the hyperparameter <span class="math notranslate nohighlight">\(\eta\)</span> is called the <strong>learning rate</strong>.</p>
+<p>The <strong>learning rate</strong> hyperparameter represents the size of the steps.
+This is important because if the learning rate is too small, then the algorithm
+will have to go through many iterations to converge, which will take a long time.</p>
+<p>On the other hand, if the learning rate is too high, you might jump across the valley
+and end up on the other side, possibly even higher up than you were before. This
+might make the algorithm diverge.</p>
+<p><img alt="Alt text" src="chapters/image-3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># to make this code example reproducible</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># number of instances</span>
+<span class="n">X</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># column vector</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># column vector</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gd-regression-example">
+<h4>GD regression example<a class="headerlink" href="#gd-regression-example" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;generated_data_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/13c88960b872286a65023a2dd2ee3ef6dfc57a608bebafaacf30963fc51760fb.png" src="../_images/13c88960b872286a65023a2dd2ee3ef6dfc57a608bebafaacf30963fc51760fb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">add_dummy_feature</span>
+
+<span class="n">X_b</span> <span class="o">=</span> <span class="n">add_dummy_feature</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># add x0 = 1 to each instance</span>
+<span class="c1"># theta_best = np.linalg.inv(X_b.T @ X_b) @ X_b.T @ y</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">X_new_b</span> <span class="o">=</span> <span class="n">add_dummy_feature</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>  <span class="c1"># add x0 = 1 to each instance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eta</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># learning rate</span>
+<span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_b</span><span class="p">)</span>  <span class="c1"># number of instances</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># randomly initialized model parameters</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+    <span class="n">gradients</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">m</span> <span class="o">*</span> <span class="n">X_b</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">X_b</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">gradients</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
+<span class="n">y_predict</span> <span class="o">=</span> <span class="n">X_new_b</span> <span class="o">@</span> <span class="n">theta</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_predict</span><span class="p">,</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predictions&quot;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;gradient_descent_fixed_lr_plot&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3f327f8892c092395ca985e38cf0826928a582216970808fabe4bc9c61b33bb8.png" src="../_images/3f327f8892c092395ca985e38cf0826928a582216970808fabe4bc9c61b33bb8.png" />
+</div>
+</div>
+<p>The trained model parameters:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.21509616],
+       [2.77011339]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gradient-descent-with-various-learning-rate">
+<h4>Gradient Descent with various learning rate<a class="headerlink" href="#gradient-descent-with-various-learning-rate" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extra code – generates and saves Figure 4–8</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+
+<span class="k">def</span> <span class="nf">plot_gradient_descent</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_b</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
+    <span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">n_shown</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">theta_path</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="n">n_shown</span><span class="p">:</span>
+            <span class="n">y_predict</span> <span class="o">=</span> <span class="n">X_new_b</span> <span class="o">@</span> <span class="n">theta</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">OrRd</span><span class="p">(</span><span class="n">epoch</span> <span class="o">/</span> <span class="n">n_shown</span> <span class="o">+</span> <span class="mf">0.15</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_predict</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">m</span> <span class="o">*</span> <span class="n">X_b</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">X_b</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">gradients</span>
+        <span class="n">theta_path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">fr</span><span class="s2">&quot;$\eta = </span><span class="si">{</span><span class="n">eta</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">theta_path</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># random initialization</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
+<span class="n">plot_gradient_descent</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+<span class="n">theta_path_bgd</span> <span class="o">=</span> <span class="n">plot_gradient_descent</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+<span class="n">plot_gradient_descent</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;gradient_descent_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c099162fa4988a21ddd9a34385961f540e97745a9848a355ad3b4d4c8326476.png" src="../_images/4c099162fa4988a21ddd9a34385961f540e97745a9848a355ad3b4d4c8326476.png" />
+</div>
+</div>
+</section>
+<section id="stochastic-gradient-descent">
+<h4>Stochastic Gradient Descent<a class="headerlink" href="#stochastic-gradient-descent" title="Link to this heading">#</a></h4>
+<p>The main problem with (Batch) Gradient Descent is the fact that it uses the whole
+training set to compute the gradients at every step, which makes it very slow when
+the training set is large.</p>
+<p>Instead, <strong>Stochastic Gradient Descent</strong> just picks a random instance in the training set at every step and computes the gradients based only on that single instance.</p>
+<p>Obviously this makes the algorithm much faster since it has very little data to manipulate at every iteration. It also makes it possible to train on huge training sets, since only one instance needs to be in memory at each iteration</p>
+<p>Randomness is <em>good</em> to escape from local optima, but <em>bad</em> because it means
+that the algorithm can never settle at the minimum.</p>
+<p>One solution is to gradually reduce the learning rate. The steps start out large (which helps make
+quick progress and escape local minima), then get smaller and smaller, allowing the
+algorithm to settle at the global minimum.
+The function that determines the learning rate at each iteration is called the <strong>learning schedule</strong>.</p>
+<p>If the learning rate is reduced too quickly, you may get stuck in a local minimum, or even end up frozen halfway to the minimum. If the learning rate is reduced too slowly, you may jump around the minimum for a
+long time and end up with a suboptimal solution if you halt training too early.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta_path_sgd</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># extra code – we need to store the path of theta in the</span>
+                     <span class="c1">#              parameter space to plot the next figure</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span>  <span class="c1"># learning schedule hyperparameters</span>
+
+<span class="k">def</span> <span class="nf">learning_schedule</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t0</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">t1</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># random initialization</span>
+
+<span class="n">n_shown</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># just needed to generate the figure below</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># not needed, just formatting</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+
+        <span class="c1"># these 4 lines are used to generate the figure</span>
+        <span class="k">if</span> <span class="n">epoch</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iteration</span> <span class="o">&lt;</span> <span class="n">n_shown</span><span class="p">:</span>
+            <span class="n">y_predict</span> <span class="o">=</span> <span class="n">X_new_b</span> <span class="o">@</span> <span class="n">theta</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">OrRd</span><span class="p">(</span><span class="n">iteration</span> <span class="o">/</span> <span class="n">n_shown</span> <span class="o">+</span> <span class="mf">0.15</span><span class="p">))</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">y_predict</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+        <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">xi</span> <span class="o">=</span> <span class="n">X_b</span><span class="p">[</span><span class="n">random_index</span> <span class="p">:</span> <span class="n">random_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">yi</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">random_index</span> <span class="p">:</span> <span class="n">random_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">gradients</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">xi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">xi</span> <span class="o">@</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">yi</span><span class="p">)</span>  <span class="c1"># for SGD, do not divide by m</span>
+        <span class="n">eta</span> <span class="o">=</span> <span class="n">learning_schedule</span><span class="p">(</span><span class="n">epoch</span> <span class="o">*</span> <span class="n">m</span> <span class="o">+</span> <span class="n">iteration</span><span class="p">)</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span> <span class="n">gradients</span>
+        <span class="n">theta_path_sgd</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>  <span class="c1"># extra code to generate the figure</span>
+
+<span class="c1"># extra code – this section beautifies and saves the figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$x_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$y$&quot;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;sgd_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7154526ffa737735b1beb3d368bce756fbb8a2a4a5563a3b938127eea7da1830.png" src="../_images/7154526ffa737735b1beb3d368bce756fbb8a2a4a5563a3b938127eea7da1830.png" />
+</div>
+</div>
+<p>While the Batch Gradient Descent code iterated 1,000 times through the whole training
+set, this code goes through the training set only 50 times and reaches a fairly good
+solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4.21076011],
+       [2.74856079]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that since instances are picked randomly, some instances may be picked several
+times per epoch while others may not be picked at all.</p>
+<blockquote>
+<div><p>When using Stochastic Gradient Descent, the training instances must be <strong>independent and identically distributed</strong> (IID), to ensure that the parameters get pulled towards the global optimum, on average. A simple way to ensure this is to shuffle the instances during training.</p>
+</div></blockquote>
+<p>To perform Linear Regression using SGD with Scikit-Learn, you can use the <code class="docutils literal notranslate"><span class="pre">SGDRegressor</span></code> class, which defaults to optimizing the squared error cost function.</p>
+<p>The following code runs for maximum 1000 epochs (max_iter=1000) or until the loss drops
+#by less than 1e-3 during one epoch (tol=1e-3), starting with a learning rate of 0.1
+#(eta0=0.1), using the default learning schedule (<span class="math notranslate nohighlight">\(\eta \propto 1/t \)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDRegressor</span>
+
+<span class="n">sgd_reg</span> <span class="o">=</span> <span class="n">SGDRegressor</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eta0</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+                       <span class="n">n_iter_no_change</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sgd_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>  <span class="c1"># y.ravel() because fit() expects 1D targets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>SGDRegressor(n_iter_no_change=100, penalty=None, random_state=42, tol=1e-05)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">SGDRegressor</label><div class="sk-toggleable__content"><pre>SGDRegressor(n_iter_no_change=100, penalty=None, random_state=42, tol=1e-05)</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">sgd_reg</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([4.21278812]), array([2.77270267]))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="performance-measures">
+<h2>Performance Measures<a class="headerlink" href="#performance-measures" title="Link to this heading">#</a></h2>
+<p>Evaluating a classifier is often significantly trickier than evaluating a regressor.</p>
+<section id="measuring-accuracy-using-cross-validation">
+<h3>Measuring Accuracy Using Cross-Validation<a class="headerlink" href="#measuring-accuracy-using-cross-validation" title="Link to this heading">#</a></h3>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">cross_val_score()</span></code> function to evaluate the <code class="docutils literal notranslate"><span class="pre">SGDClassifier</span></code> model using K-fold cross-validation, with 3 folds.</p>
+<p>K-fold crossvalidation means splitting the training set into K-folds (in this case, 3), then making
+predictions and evaluating them on each fold using a model trained on the remaining folds</p>
+<blockquote>
+<div><p>Cross-validation allows to get not only an estimate of the performance of the model,
+but also a measure of how precise this estimate is (i.e., its standard deviation).
+But it comes at the cost of training the model several times, so it is not always possible.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">cross_val_score</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.95035, 0.96035, 0.9604 ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <em>accuracy</em> (ratio of correct predictions) is very high on all cross-validation folds!</p>
+<p>However, let’s not get too excited. Let’s compare it with the performance of a dummy classifier which always infers the most frequent class label in the observed <code class="docutils literal notranslate"><span class="pre">y</span></code> argument passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+
+<span class="n">dummy_clf</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">()</span>
+<span class="n">dummy_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">dummy_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">dummy_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.90965, 0.90965, 0.90965])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is because only about 10% of the images are 5s, so if you always guess that an image is not a 5, you will be right about 90% of the time.</p>
+<blockquote>
+<div><p>This demonstrates why accuracy is generally not the preferred performance measure for classifiers, especially when you are dealing with <em>skewed datasets</em> (i.e., when some classes are much more frequent than others).</p>
+</div></blockquote>
+</section>
+<section id="confusion-matrix">
+<h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
+<p>The general idea is to count the number of times instances of class A are classified as class B.</p>
+<p>To compute the <strong>confusion matrix</strong>, you first need to have a set of predictions, so they can be compared to the actual targets.</p>
+<p>Just like the <code class="docutils literal notranslate"><span class="pre">cross_val_score()</span></code> function, c<code class="docutils literal notranslate"><span class="pre">ross_val_predict()</span></code> performs K-fold
+cross-validation, but instead of returning the evaluation scores, it returns the predictions made on each test fold. This means that you get a clean prediction for each instance in the training set (<em>clean</em> meaning that the prediction is made by a model that never saw the data during training)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_predict</span>
+
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s get the confusion matrix using the<code class="docutils literal notranslate"> <span class="pre">confusion_matrix()</span></code> function.</p>
+<p>Just pass it the target classes (<code class="docutils literal notranslate"><span class="pre">y_train_5</span></code>) and the predicted classes (<code class="docutils literal notranslate"><span class="pre">y_train_pred</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+<span class="n">cm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[53892,   687],
+       [ 1891,  3530]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each row in a confusion matrix represents an actual class, while each column represents a predicted class.</p>
+<blockquote>
+<div><p>A perfect classifier would have only true positives and true negatives, so its confusion matrix would have nonzero values only on its main diagonal</p>
+</div></blockquote>
+<p><img alt="Alt text" src="chapters/image-4.png" /></p>
+</section>
+</section>
+<section id="precision-and-recall">
+<h2>Precision and Recall<a class="headerlink" href="#precision-and-recall" title="Link to this heading">#</a></h2>
+<p>The confusion matrix gives a lot of information, but sometimes we may prefer a more concise metric.</p>
+<p>An interesting one to look at is the accuracy of the positive predictions; this is called the <strong>precision</strong> of the classifier:</p>
+<div class="math notranslate nohighlight">
+\[ \mathrm{precision} = \frac{TP}{TP + FP} \]</div>
+<p>TP is the number of true positives, and FP is the number of false positives.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+
+<span class="n">precision_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>  <span class="c1"># == 3530 / (687 + 3530)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8370879772350012
+</pre></div>
+</div>
+</div>
+</div>
+<p>A trivial way to have perfect precision is to make one single positive prediction and
+ensure it is correct (precision = 1/1 = 100%). This would not be very useful since the
+classifier would ignore all but one positive instance. So precision is typically used
+along with another metric named <strong>recall</strong>, also called <em>sensitivity</em> or <em>true positive rate</em> (TPR).</p>
+<p>This is the ratio of positive instances that are correctly detected by the classifier:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{recall} = \frac{TP}{TP + FN} 
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>  <span class="c1"># == 3530 / (1891 + 3530)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6511713705958311
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the 5-detector does not look as good as it did when we looked at its accuracy.</p>
+<section id="the-f-1-score">
+<h3>The <span class="math notranslate nohighlight">\(F_1\)</span> score<a class="headerlink" href="#the-f-1-score" title="Link to this heading">#</a></h3>
+<p>It is often convenient to combine precision and recall into a single metric called the F1
+score, in particular if you need a simple way to compare two classifiers. The <span class="math notranslate nohighlight">\(F_1\)</span> score is
+the harmonic mean of precision and recall:</p>
+<div class="math notranslate nohighlight">
+\[
+F_1 = \frac{2}{\frac{1}{\mathrm{precision}} + \frac{1}{\mathrm{recall}}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">f1_score</span>
+
+<span class="n">f1_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7325171197343846
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <span class="math notranslate nohighlight">\(F_1\)</span> score favors classifiers that have similar precision and recall. This is not always
+what you want: in some contexts you mostly care about precision, and in other contexts
+you really care about recall.</p>
+<p>Unfortunately, we can’t have it both ways: increasing precision reduces recall, and
+vice versa. This is called the precision/recall tradeoff.</p>
+</section>
+<section id="precision-recall-trade-off">
+<h3>Precision/Recall Trade-off<a class="headerlink" href="#precision-recall-trade-off" title="Link to this heading">#</a></h3>
+<p>To understand this tradeoff, let’s look at how the SGDClassifier makes its classification
+decisions. For each instance, it computes a score based on a <strong>decision function</strong>,
+and if that score is greater than a <em>threshold</em>, it assigns the instance to the positive
+class, or else it assigns it to the negative class.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Scikit-Learn</span></code> does not let you set the threshold directly, but it does give you access to the decision scores that it uses to make predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_scores</span> <span class="o">=</span> <span class="n">sgd_clf</span><span class="o">.</span><span class="n">decision_function</span><span class="p">([</span><span class="n">some_digit</span><span class="p">])</span>
+<span class="n">y_scores</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2164.22030239])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y_some_digit_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">SGDClassifier</span></code> uses a threshold equal to 0, so the previous code returns the same
+result as the <code class="docutils literal notranslate"><span class="pre">predict()</span></code> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_some_digit_pred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that if we raise the threshold, the recall decreases</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">y_some_digit_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
+<span class="n">y_some_digit_pred</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do we decide which threshold to use?</p>
+<p>Let’s get the scores of all instances in the training set using the cross_val_predict() function
+again, but this time specifying that you want it to return decision scores instead of predictions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_scores</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_5</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                             <span class="n">method</span><span class="o">=</span><span class="s2">&quot;decision_function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, with these scores we can compute precision and recall for all possible thresholds
+using the <code class="docutils literal notranslate"><span class="pre">precision_recall_curve()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">precision_recall_curve</span>
+
+<span class="n">precisions</span><span class="p">,</span> <span class="n">recalls</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">precision_recall_curve</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can plot precision and recall as functions of the threshold value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># extra code – it&#39;s not needed, just formatting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">precisions</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Precision&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">recalls</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;g-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Recall&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;threshold&quot;</span><span class="p">)</span>
+
+<span class="c1"># extra code – this section just beautifies and saves Figure 3–5</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">thresholds</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>  <span class="c1"># first index ≥ threshold</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="s2">&quot;bo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="s2">&quot;go&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">50000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Threshold&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center right&quot;</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;precision_recall_vs_threshold_plot&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee665aa78687320c35859495e630e8506889d949ddaa8676939548a1c067ad07.png" src="../_images/ee665aa78687320c35859495e630e8506889d949ddaa8676939548a1c067ad07.png" />
+</div>
+</div>
+<p>Another way to select a good precision/recall tradeoff is to plot precision directly
+against recall.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>  <span class="c1"># extra code – for the curved arrow</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># extra code – not needed, just formatting</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">recalls</span><span class="p">,</span> <span class="n">precisions</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Precision/Recall curve&quot;</span><span class="p">)</span>
+
+<span class="c1"># extra code – just beautifies and saves Figure 3–6</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Point at threshold 3,000&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">(</span>
+    <span class="p">(</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">),</span>
+    <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=.2&quot;</span><span class="p">,</span>
+    <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;Simple, tail_width=1.5, head_width=8, head_length=10&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#444444&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.56</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="s2">&quot;Higher</span><span class="se">\n</span><span class="s2">threshold&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#333333&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Recall&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Precision&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower left&quot;</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;precision_vs_recall_plot&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/93e0cb4752e9ba48cae7a3aba0ccb41700639ebb5fd269b33f2315bcb9f78e18.png" src="../_images/93e0cb4752e9ba48cae7a3aba0ccb41700639ebb5fd269b33f2315bcb9f78e18.png" />
+</div>
+</div>
+<p>Precision really starts to fall sharply around 80% recall.</p>
+<p>We will probably want to select a precision/recall tradeoff just before that drop—for example,
+at around 60% recall.</p>
+<p>But of course the choice depends on the project.</p>
+<p>Let’s suppose you decide to aim for 90% precision.</p>
+<p>Looking up the first plot, we find that we need to use a threshold of about 8,000.</p>
+<p>To be more precise we can search for the lowest threshold that gives us at least 90% precision.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_for_90_precision</span> <span class="o">=</span> <span class="p">(</span><span class="n">precisions</span> <span class="o">&gt;=</span> <span class="mf">0.90</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+<span class="n">threshold_for_90_precision</span> <span class="o">=</span> <span class="n">thresholds</span><span class="p">[</span><span class="n">idx_for_90_precision</span><span class="p">]</span>
+<span class="n">threshold_for_90_precision</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3370.0194991439594
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train_pred_90</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_scores</span> <span class="o">&gt;=</span> <span class="n">threshold_for_90_precision</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred_90</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9000345901072293
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>A high-precision classifier is not very useful if its recall is too low</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recall_at_90_precision</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_train_pred_90</span><span class="p">)</span>
+<span class="n">recall_at_90_precision</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4799852425751706
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-roc-curve">
+<h3>The ROC Curve<a class="headerlink" href="#the-roc-curve" title="Link to this heading">#</a></h3>
+<p>The <strong>receiver operating characteristic</strong> (ROC) curve is another common tool used with
+binary classifiers.</p>
+<p>The ROC curve plots the <strong>true positive rate</strong> (TPR), i.e., <em>recall</em>, against the <strong>false positive rate</strong> (FPR), which is one minus the <strong>true negative rate</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_for_threshold_at_90</span> <span class="o">=</span> <span class="p">(</span><span class="n">thresholds</span> <span class="o">&lt;=</span> <span class="n">threshold_for_90_precision</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+<span class="n">tpr_90</span><span class="p">,</span> <span class="n">fpr_90</span> <span class="o">=</span> <span class="n">tpr</span><span class="p">[</span><span class="n">idx_for_threshold_at_90</span><span class="p">],</span> <span class="n">fpr</span><span class="p">[</span><span class="n">idx_for_threshold_at_90</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># extra code – not needed, just formatting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ROC curve&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;k:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Random classifier&#39;s ROC curve&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">fpr_90</span><span class="p">],</span> <span class="p">[</span><span class="n">tpr_90</span><span class="p">],</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Threshold for 90% precision&quot;</span><span class="p">)</span>
+
+<span class="c1"># extra code – just beautifies and saves Figure 3–7</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">(</span>
+    <span class="p">(</span><span class="mf">0.20</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">),</span>
+    <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=.4&quot;</span><span class="p">,</span>
+    <span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;Simple, tail_width=1.5, head_width=8, head_length=10&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#444444&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.12</span><span class="p">,</span> <span class="mf">0.71</span><span class="p">,</span> <span class="s2">&quot;Higher</span><span class="se">\n</span><span class="s2">threshold&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#333333&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;False Positive Rate (Fall-Out)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;True Positive Rate (Recall)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;roc_curve_plot&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7941d407c56c8d43dc1eb023b37fd8452b2404f996b69b697a2980f9460f4eb6.png" src="../_images/7941d407c56c8d43dc1eb023b37fd8452b2404f996b69b697a2980f9460f4eb6.png" />
+</div>
+</div>
+<p>The dotted line represents the ROC curve of a purely random classifier.</p>
+<blockquote>
+<div><p>A good classifier stays as far away from that line as possible (toward the top-left corner).</p>
+</div></blockquote>
+<p>One way to compare classifiers is to measure the <strong>area under the curve</strong> (AUC).</p>
+<blockquote>
+<div><p>A perfect classifier will have a ROC AUC equal to 1, whereas a purely random classifier will have a ROC AUC equal to 0.5.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+
+<span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_train_5</span><span class="p">,</span> <span class="n">y_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9604938554008616
+</pre></div>
+</div>
+</div>
+</div>
+<p>This way we can compare different methods.</p>
+<p><img alt="Alt text" src="chapters/image-6.png" /></p>
+<p><img alt="Alt text" src="chapters/image-5.png" /></p>
+</section>
+</section>
+<section id="multiclass-classification">
+<h2>Multiclass Classification<a class="headerlink" href="#multiclass-classification" title="Link to this heading">#</a></h2>
+<p>Some algorithms (such as <strong>Random Forest</strong> classifiers) are capable of handling multiple classes directly.
+Others (such as <strong>Support Vector Machine</strong> classifiers or <strong>Linear</strong> classifiers) are strictly binary classifiers.</p>
+<p>However, there are various strategies that we can use to perform multiclass classification using multiple
+binary classifiers.</p>
+<section id="one-versus-all-ova-strategy">
+<h3>One-versus-all (OvA) strategy<a class="headerlink" href="#one-versus-all-ova-strategy" title="Link to this heading">#</a></h3>
+<p>To classify the digit images into 10 classes (from 0 to 9), the  <strong>one-versus-all</strong> (OvA) strategy consists in training 10 binary classifiers, one for each digit (a 0-detector, a 1-detector, a 2-detector, and so on). Then when you want to classify an image, you get the decision score from each classifier for that image and you select the class whose classifier outputs the highest score.</p>
+</section>
+<section id="one-versus-one-ovo-strategy">
+<h3>One-versus-one (OvO) strategy<a class="headerlink" href="#one-versus-one-ovo-strategy" title="Link to this heading">#</a></h3>
+<p>Another strategy is to train a binary classifier for every pair of digits: one to distinguish
+0s and 1s, another to distinguish 0s and 2s, another for 1s and 2s, and so on.</p>
+<p>If there are N classes, we need to train <span class="math notranslate nohighlight">\( N \times (N – 1) / 2\)</span> classifiers.</p>
+<p>For the MNIST problem, this means training 45 binary classifiers!</p>
+<p>When we want to classify an image, we have to run the image
+through all 45 classifiers and see which class wins the most duels. The main advantage
+of OvO is that each classifier only needs to be trained on the part of the training
+set for the two classes that it must distinguish.</p>
+<p>Some algorithms (such as <strong>Support Vector Machine</strong> classifiers) scale poorly with the
+size of the training set, so for these algorithms <strong>OvO</strong> is preferred since it is faster to
+train many classifiers on small training sets than training few classifiers on large
+training sets. For most binary classification algorithms, however, <strong>OvA</strong> is preferred.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Scikit-Learn</span></code> detects when you try to use a binary classification algorithm
+for a multiclass classification task, and it automatically runs OvR or OvO,
+depending on the algorithm.</p>
+<blockquote>
+<div><p><strong>Warning</strong>: the following cell may take a few minutes to run:</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_clf</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">sgd_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">sgd_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">some_digit</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;3&#39;], dtype=&#39;&lt;U1&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_clf</span><span class="o">.</span><span class="n">decision_function</span><span class="p">([</span><span class="n">some_digit</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-31893., -34420.,  -9531.,   1824., -22320.,  -1386., -26189.,
+        -16148.,  -4604., -12051.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Warning:</strong> the following two cells may take a few minutes each to run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.87365, 0.85835, 0.8689 ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Simply scaling the inputs increases accuracy</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span> <span class="c1"># Standardize features by removing the mean and scaling to unit variance.</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float64&quot;</span><span class="p">))</span>
+<span class="n">cross_val_score</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.8983, 0.891 , 0.9018])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="error-analysis">
+<h1>Error Analysis<a class="headerlink" href="#error-analysis" title="Link to this heading">#</a></h1>
+<p>Once we have found a promising model, we want to find ways to improve it.</p>
+<p>One way to do this is to analyze the types of errors it makes.</p>
+<p><strong>Warning:</strong> the following cell will take a few minutes to run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>  <span class="c1"># extra code – make the text smaller</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d02f5c61e0a2675fb5d62bf1e358e95f552dd518fd9d8b83fb56faf7f92bbc83.png" src="../_images/d02f5c61e0a2675fb5d62bf1e358e95f552dd518fd9d8b83fb56faf7f92bbc83.png" />
+</div>
+</div>
+<p>This confusion matrix looks fairly good, since most images are on the main diagonal,
+which means that they were classified correctly.</p>
+<p>Let’s divide each value in the confusion matrix by the number of images in the corresponding class to compare error rates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># extra code</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span>
+                                        <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="n">values_format</span><span class="o">=</span><span class="s2">&quot;.0%&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/524d8319dbc2f299af2acc39473e61f501d508d8ecb1a833a561c9f1349a3d9c.png" src="../_images/524d8319dbc2f299af2acc39473e61f501d508d8ecb1a833a561c9f1349a3d9c.png" />
+</div>
+</div>
+<p>Now, to clearly see the kinds of errors the classifier makes, let’s fill the diagonal with zeros.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">!=</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># extra code</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span>
+                                        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                                        <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span> <span class="n">values_format</span><span class="o">=</span><span class="s2">&quot;.0%&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2a575410426f86fa881b0c55860f991cfdf0cca7eb4b4072e17dba70651f4260.png" src="../_images/2a575410426f86fa881b0c55860f991cfdf0cca7eb4b4072e17dba70651f4260.png" />
+</div>
+</div>
+<p>A few observations:</p>
+<ul class="simple">
+<li><p>The column for class 8 is quite bright, which tells that many images get misclassified as 8s.</p></li>
+<li><p>However, the row for class 8 is not that bad, so that actual 8s in general get properly
+classified as 8s.</p></li>
+<li><p>The confusion matrix is not necessarily symmetrical.</p></li>
+<li><p>3s and 5s often get confused (in both directions).</p></li>
+</ul>
+<p>Looking at this plot, it seems that our efforts should be spent on reducing the false 8s.</p>
+<ul class="simple">
+<li><p>For example, we could try to gather more training data for digits that look like 8s (but are not) so the classifier can learn to distinguish them from real 8s.</p></li>
+<li><p>Alternatively, we could engineer new features that would help the classifier—for example, writing
+an algorithm to count the number of closed loops (e.g., 8 has two, 6 has one, 5 has
+none).</p></li>
+<li><p>Or we could preprocess the images (e.g., using Scikit-Image, Pillow, or
+OpenCV) to make some patterns stand out more, such as closed loops.</p></li>
+</ul>
+<p>Analyzing individual errors can also be a good way to gain insights on what our
+classifier is doing and why it is failing, but it is more difficult and time-consuming.</p>
+<p>Let’s plot examples of 3s and 5s.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cl_a</span><span class="p">,</span> <span class="n">cl_b</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span>
+<span class="n">X_aa</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)]</span>
+<span class="n">X_ab</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">==</span> <span class="n">cl_b</span><span class="p">)]</span>
+<span class="n">X_ba</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">cl_b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)]</span>
+<span class="n">X_bb</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">cl_b</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">==</span> <span class="n">cl_b</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">pad</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">images</span><span class="p">,</span> <span class="p">(</span><span class="n">label_col</span><span class="p">,</span> <span class="n">label_row</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">X_ba</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="p">(</span><span class="n">X_bb</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                                       <span class="p">(</span><span class="n">X_aa</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="p">(</span><span class="n">X_ab</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))]:</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">image_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">images</span><span class="p">[:</span><span class="n">size</span><span class="o">*</span><span class="n">size</span><span class="p">]):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">%</span> <span class="n">size</span> <span class="o">+</span> <span class="n">label_col</span> <span class="o">*</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">//</span> <span class="n">size</span> <span class="o">+</span> <span class="n">label_row</span> <span class="o">*</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">,</span>
+                   <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">+</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cl_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">cl_b</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">+</span> <span class="n">size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">cl_b</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">cl_a</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">],</span> <span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="o">+</span> <span class="n">pad</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Predicted label&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;True label&quot;</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;error_analysis_digits_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8ae0bb203daf4a4e9e1e98473a3ce80a87286e1837e956abe4a3fafd7eb86eec.png" src="../_images/8ae0bb203daf4a4e9e1e98473a3ce80a87286e1837e956abe4a3fafd7eb86eec.png" />
+</div>
+</div>
+<p>Some of the digits that the classifier gets wrong (i.e., in the bottom-left and top-right blocks) are so badly written that even a human would have trouble classifying them</p>
+<p>However, most misclassified images seem like obvious errors to us, and it’s hard to understand why the classifier made the mistakes it did.</p>
+<p>The reason is that we used a simple <code class="docutils literal notranslate"><span class="pre">SGDClassifier</span></code>, which is a linear model.
+All it does is assign a weight per class to each pixel, and when it sees a new image it just
+sums up the weighted pixel intensities to get a score for each class. So since 3s and 5s
+differ only by a few pixels, this model will easily confuse them.</p>
+<p>The main difference between 3s and 5s is the position of the small line that joins the
+top line to the bottom arc. If you draw a 3 with the junction slightly shifted to the left,
+the classifier might classify it as a 5, and vice versa. In other words, this classifier is
+quite sensitive to image shifting and rotation. So one way to reduce the 3/5 confusion
+would be to preprocess the images to ensure that they are well centered and not too
+rotated. This will probably help reduce other errors as well.</p>
+<section id="multilabel-classification">
+<h2>Multilabel Classification<a class="headerlink" href="#multilabel-classification" title="Link to this heading">#</a></h2>
+<p>In some cases we may want our classifier to output multiple classes for each instance.</p>
+<p>For example, if we have trained a classifier to recognize three faces, for each picture we would like it to output multiple binary tags. This is called a <strong>multilabel classification system</strong>.</p>
+<p>Let’s look at a simpler example, a classifier that tell us if a digit is large (<span class="math notranslate nohighlight">\(\ge 7\)</span>) and/or odd.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="n">y_train_large</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train</span> <span class="o">&gt;=</span> <span class="s1">&#39;7&#39;</span><span class="p">)</span>
+<span class="n">y_train_odd</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int8&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y_multilabel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">y_train_large</span><span class="p">,</span> <span class="n">y_train_odd</span><span class="p">]</span>
+
+<span class="n">knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_multilabel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier()</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">some_digit</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[False,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code computes the average F1 score across all labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train_knn_pred</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span><span class="n">knn_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_multilabel</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">f1_score</span><span class="p">(</span><span class="n">y_multilabel</span><span class="p">,</span> <span class="n">y_train_knn_pred</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;macro&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.976410265560605
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multioutput-classification">
+<h2>Multioutput Classification<a class="headerlink" href="#multioutput-classification" title="Link to this heading">#</a></h2>
+<p>The last type of classification task we are going to discuss here is called <em>multioutput-multiclass
+classification</em> (or simply <strong>multioutput classification</strong>).</p>
+<p>It is simply a generalization of multilabel classification where each label can be multiclass (i.e., it can have
+more than two possible values).</p>
+<p>To illustrate this, let’s build a system that removes noise from images. It will take as
+input a noisy digit image, and it will (hopefully) output a clean digit image, represented
+as an array of pixel intensities, just like the MNIST images.</p>
+<blockquote>
+<div><p>Notice that the classifier’s output is multilabel (one label per pixel) and each label can have multiple values (pixel intensity ranges from 0 to 255).</p>
+</div></blockquote>
+<p>Let’s start by creating the training and test sets by taking the MNIST images and
+adding noise to their pixel intensities using NumPy’s <code class="docutils literal notranslate"><span class="pre">randint()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># to make this code example reproducible</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
+<span class="n">X_train_mod</span> <span class="o">=</span> <span class="n">X_train</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
+<span class="n">X_test_mod</span> <span class="o">=</span> <span class="n">X_test</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">y_train_mod</span> <span class="o">=</span> <span class="n">X_train</span>
+<span class="n">y_test_mod</span> <span class="o">=</span> <span class="n">X_test</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">);</span> <span class="n">plot_digit</span><span class="p">(</span><span class="n">X_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">);</span> <span class="n">plot_digit</span><span class="p">(</span><span class="n">y_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;noisy_digit_example_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/add7c79bfcff103fe6fa4f779173cf7ae7a42956687e620b17a8fc5c968d5eb4.png" src="../_images/add7c79bfcff103fe6fa4f779173cf7ae7a42956687e620b17a8fc5c968d5eb4.png" />
+</div>
+</div>
+<p>Now let’s train the classifier and make it clean this image.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_mod</span><span class="p">,</span> <span class="n">y_train_mod</span><span class="p">)</span>
+<span class="n">clean_digit</span> <span class="o">=</span> <span class="n">knn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">X_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">plot_digit</span><span class="p">(</span><span class="n">clean_digit</span><span class="p">)</span>
+<span class="n">save_fig</span><span class="p">(</span><span class="s2">&quot;cleaned_digit_example_plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0ca43e4d0a24410ba1eb189a708d089cc3625d76b6f1323c79038c9fb8aaa094.png" src="../_images/0ca43e4d0a24410ba1eb189a708d089cc3625d76b6f1323c79038c9fb8aaa094.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist">MNIST</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-dataset">Train &amp; test dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-a-binary-classifier">Training a Binary Classifier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient Descent</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-step">Gradient descent step</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gd-regression-example">GD regression example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-with-various-learning-rate">Gradient Descent with various learning rate</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-measures">Performance Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-accuracy-using-cross-validation">Measuring Accuracy Using Cross-Validation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-and-recall">Precision and Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-f-1-score">The <span class="math notranslate nohighlight">\(F_1\)</span> score</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-recall-trade-off">Precision/Recall Trade-off</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-roc-curve">The ROC Curve</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiclass-classification">Multiclass Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-all-ova-strategy">One-versus-all (OvA) strategy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-one-ovo-strategy">One-versus-one (OvO) strategy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilabel-classification">Multilabel Classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multioutput-classification">Multioutput Classification</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Biagio Mandracchia
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

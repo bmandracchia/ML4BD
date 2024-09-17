@@ -1,0 +1,1539 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic Feature Engineering &#8212; Introduction to Machine Learning for Biomedical Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_basic_feature_engineering';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Introduction to Machine Learning for Biomedical Data - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Introduction to Machine Learning for Biomedical Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_python_primer.html">Python: A Primer</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD/issues/new?title=Issue%20on%20page%20%2F02_basic_feature_engineering.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02_basic_feature_engineering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Feature Engineering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-counts">Dealing with Counts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantization-or-binning">Quantization or Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-width-binning">Fixed-width binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quantile-binning">Quantile binning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-transformation">Log Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-transforms-generalization-of-the-log-transform">Power Transforms: Generalization of the Log Transform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling-or-normalization">Feature Scaling or Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-scaling">Min-Max Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-scaling-standardization">Variance Scaling (Standardization)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-2-normalization"><span class="math notranslate nohighlight">\(L_2\)</span> Normalization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mobile-price-dataset">The Mobile Price dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-description">Data description</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-question-am-i-answering">What question am I answering?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-models">Comparing Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-methods">Unsupervised Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapper-methods">Wrapper methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-methods">Embedded methods</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-feature-engineering">
+<h1>Basic Feature Engineering<a class="headerlink" href="#basic-feature-engineering" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Before diving into complex data types such as text and image, let’s start with the simplest: numeric data.</p>
+<p>Numeric data is already in a format that’s easily ingestible by mathematical models. This doesn’t mean that feature engineering is no longer necessary, though. Good features should not only represent salient aspects of the data, but also conform to the assumptions of the model. Hence, transformations are often necessary. Numeric feature engineering techniques are fundamental. They can be applied whenever raw data is converted into numeric features.</p>
+<p>The first sanity check for numeric data is whether the <strong>magnitude</strong> matters. Do we just need to know whether it’s positive or negative? Or perhaps we only need to know the magnitude at a very coarse granularity? This sanity check is particularly important for automatically accrued numbers such as counts: the number of daily visits to a website, the number of reviews garnered by a restaurant, etc.</p>
+<p>Next, consider the <strong>scale</strong> of the features.</p>
+<p>What are the largest and the smallest values? Do they span several orders of magnitude?</p>
+<p>Models that are smooth functions of input features are sensitive to the scale of the input. For example, <span class="math notranslate nohighlight">\(3x + 1\)</span> is a simple linear function of the input <span class="math notranslate nohighlight">\(x\)</span>, and the scale of its output depends directly on the scale of the input. Other examples include k-means clustering, nearest neighbors methods, and anything that uses the Euclidean distance. For these models and modeling components, it is often a good idea to normalize the features so that the output stays on an expected scale.</p>
+<p>Logical functions, on the other hand, are not sensitive to input feature scale. Their output is binary no matter what the inputs are.</p>
+<p>For instance, the logical AND takes any two variables and outputs 1 if and only if both of the inputs are true. Another example of a logical function is the step function (e.g., is <span class="math notranslate nohighlight">\(x &gt; 5\)</span>?). Decision tree models consist of step functions of input features. Hence, models based on space-partitioning trees (e.g., decision trees) are not sensitive to scale.</p>
+<p>The only exception is if the scale of the input grows over time, which is the case if the feature is an accumulated count of some sort—eventually it will grow outside of the range that the tree was trained on. If this might be the case, then it might be necessary to rescale the inputs periodically.</p>
+<p>It’s also important to consider the <strong>distribution</strong> of numeric features.</p>
+<p>Distribution summarizes the probability of taking on a particular value. The distribution of input features matters to some models more than others.</p>
+<p>For instance, the training process of a linear regression model assumes that prediction errors are distributed like a Gaussian. This is usually fine, except when the prediction target spreads out over several orders of magnitude. In this case, the Gaussian error assumption likely no longer holds. One way to deal with this is to transform the output target in order to tame the magnitude of the growth. (Strictly speaking this would be target engineering, not feature engineering.)</p>
+<p>Log transforms, which are a type of <em>power transform</em>, take the distribution of the variable closer to Gaussian.</p>
+<section id="dealing-with-counts">
+<h2>Dealing with Counts<a class="headerlink" href="#dealing-with-counts" title="Link to this heading">#</a></h2>
+<p>In the age of Big Data, counts can quickly accumulate without bound.</p>
+<p>When data can be produced at high volume and velocity, it’s very likely to contain a few extreme values. It is a good idea to check the scale and determine whether to keep the data as raw numbers, convert them into binary values to indicate presence, or bin them into coarser granularity.</p>
+<section id="quantization-or-binning">
+<h3>Quantization or Binning<a class="headerlink" href="#quantization-or-binning" title="Link to this heading">#</a></h3>
+<p>Suppose our task is to use collaborative filtering to predict the rating a user might give to a business. The review count might be a useful input feature because there is usually a strong correlation between popularity and good ratings. Now the question is, should we use the raw review count or process it further?</p>
+<p>Raw counts that span several orders of magnitude are problematic for many models. In a linear model, the same linear coefficient would have to work for all possible values of the count. Large counts could also wreak havoc in unsupervised learning methods such as k-means clustering, which uses Euclidean distance as a similarity function to measure the similarity between data points. A large count in one element of the data vector would outweigh the similarity in all other elements, which could throw off the entire similarity measurement.</p>
+<p>One solution is to contain the scale by quantizing the count. In other words, we group the counts into bins, and get rid of the actual count values. Quantization maps a continuous number to a discrete one. We can think of the discretized numbers as an ordered sequence of bins that represent a measure of intensity.</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+<p>In order to quantize data, we have to decide how wide each bin should be. The solutions fall into two categories: <em>fixed-width</em> or <em>adaptive</em>. We will give an example of each type.</p>
+<section id="fixed-width-binning">
+<h4>Fixed-width binning<a class="headerlink" href="#fixed-width-binning" title="Link to this heading">#</a></h4>
+<p>With fixed-width binning, each bin contains a specific numeric range. The ranges can be custom designed or automatically segmented, and they can be linearly scaled or exponentially scaled.</p>
+</section>
+<section id="quantile-binning">
+<h4>Quantile binning<a class="headerlink" href="#quantile-binning" title="Link to this heading">#</a></h4>
+<p>Fixed-width binning is easy to compute. But if there are large gaps in the counts, then there will be many empty bins with no data. This problem can be solved by adaptively positioning the bins based on the distribution of the data. This can be done using the quantiles of the distribution.</p>
+<p>Quantiles are values that divide the data into equal portions. For example, the median divides the data in halves; half the data points are smaller and half larger than the median. The quartiles divide the data into quarters, the deciles into tenths, etc.</p>
+<p>Deciles of the review counts in the Yelp reviews dataset—both the x- and y-axes are on a log scale</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+</section>
+</section>
+<section id="log-transformation">
+<h3>Log Transformation<a class="headerlink" href="#log-transformation" title="Link to this heading">#</a></h3>
+<p>The log function is the inverse of the exponential function. In other words, the <span class="math notranslate nohighlight">\(log\)</span> function compresses the range of large numbers and expands the range of small numbers. The larger <span class="math notranslate nohighlight">\(x\)</span> is, the slower <span class="math notranslate nohighlight">\(log(x)\)</span> increments.</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+<p>Comparison of review counts before (top) and after (bottom) log transformation</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+<p>Histograms of the number of words in the article from the Online News Popularity dataset before and after log transformation.  Notice that the distribution looks much more Gaussian after log transformation, with the exception of the burst of number of articles of length zero (no content).</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+</section>
+<section id="power-transforms-generalization-of-the-log-transform">
+<h3>Power Transforms: Generalization of the Log Transform<a class="headerlink" href="#power-transforms-generalization-of-the-log-transform" title="Link to this heading">#</a></h3>
+<p>The log transform is a specific example of a family of transformations known as power transforms.
+In statistical terms, these are variance-stabilizing transformations. Power transforms change the distribution of the variable so that the variance is no longer dependent on the mean.</p>
+<p>A simple generalization of both the square root transform and the log transform is known as the <strong>Box-Cox transform</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+X ^ {( \lambda ) } = \left \{
+\begin{array}{l}
+{ {
+\frac{X  ^  \lambda  - 1 } \lambda 
+ } \  \textrm{ for  }  \lambda \neq0, } \\
+ { { \mathop{\rm log} } X \  \textrm{ for  }  \lambda = 0. } 
+\end{array}
+ \right .
+\end{split}\]</div>
+<p>The formula  <span class="math notranslate nohighlight">\(  { {( x  ^  \lambda  - 1 ) } / \lambda } \)</span>
+is chosen so that  <span class="math notranslate nohighlight">\(  x ^ {( \lambda ) } \)</span>
+is continuous as  <span class="math notranslate nohighlight">\(  \lambda \)</span>
+tends to zero and monotone increasing with respect to  <span class="math notranslate nohighlight">\(  x \)</span>
+for any  <span class="math notranslate nohighlight">\(  \lambda \)</span>.</p>
+<p>The power parameter  <span class="math notranslate nohighlight">\(  \lambda \)</span> is estimated by a graphical technique or by the <em>Maximum-likelihood method</em>.</p>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+</section>
+</section>
+<section id="feature-scaling-or-normalization">
+<h2>Feature Scaling or Normalization<a class="headerlink" href="#feature-scaling-or-normalization" title="Link to this heading">#</a></h2>
+<p>Some features are bounded in value while other numeric features, such as counts, may increase without bound.</p>
+<p>Models that are smooth functions of the input, such as linear regression, logistic regression, or anything that involves a matrix, are affected by the scale of the input.</p>
+<p>If your model is sensitive to the scale of input features, feature scaling could help.</p>
+<p>As the name suggests, feature scaling changes the scale of the feature. Sometimes people also call it feature normalization. Feature scaling is usually done individually to each feature.</p>
+<section id="min-max-scaling">
+<h3>Min-Max Scaling<a class="headerlink" href="#min-max-scaling" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(x\)</span> be an individual feature value (i.e., a value of the feature in some data point), and <span class="math notranslate nohighlight">\(\min(x)\)</span> and <span class="math notranslate nohighlight">\(\max(x)\)</span>, respectively, be the minimum and maximum values of this feature over the entire dataset. <em>Min-max scaling</em> squeezes (or stretches) all feature values to be within the range of [0, 1].</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde x  = \frac{x - \min(x)}{\max(x) - \min(x)}
+\]</div>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+</section>
+<section id="variance-scaling-standardization">
+<h3>Variance Scaling (Standardization)<a class="headerlink" href="#variance-scaling-standardization" title="Link to this heading">#</a></h3>
+<p>It subtracts off the mean of the feature (over all data points) and divides by the variance. Hence, it can also be called variance scaling. The resulting scaled feature has a mean of 0 and a variance of 1. If the original feature has a Gaussian distribution, then the scaled feature does too.</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde x  = \frac{x - \bar x}{\hat \sigma_x}
+\]</div>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+<blockquote>
+<div><p>WARNING: DON’T “CENTER” SPARSE DATA!</p>
+<p>Use caution when performing min-max scaling and standardization on sparse features. Both subtract a quantity from the original feature value.
+If the shift is not zero, then these two transforms can turn a sparse feature vector where most values are zero into a dense one. This in turn could create a huge computational burden for the classifier, depending on how it is implemented.</p>
+</div></blockquote>
+</section>
+<section id="l-2-normalization">
+<h3><span class="math notranslate nohighlight">\(L_2\)</span> Normalization<a class="headerlink" href="#l-2-normalization" title="Link to this heading">#</a></h3>
+<p>This technique normalizes (divides) the original feature value by what’s known as the <span class="math notranslate nohighlight">\(L_2\)</span> norm, also known as the Euclidean norm. This measures the length of the vector in coordinate space  and it’s defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde x = \frac{x}{||x||_2}
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+||x||_2 =  \sqrt{x^2_1 + x^2_2 + \dots + x^2_m}
+\]</div>
+<p><img alt="image.png" src="attachment:image.png" /></p>
+</section>
+</section>
+<section id="feature-selection">
+<h2>Feature Selection<a class="headerlink" href="#feature-selection" title="Link to this heading">#</a></h2>
+<p>Feature selection techniques prune away nonuseful features in order to reduce the complexity of the resulting model.</p>
+<blockquote>
+<div><p>Given a set of <span class="math notranslate nohighlight">\(d\)</span> features, select a subset of size <span class="math notranslate nohighlight">\(m\)</span> that leads to the smallest classification error.</p>
+</div></blockquote>
+<p>The end goal is a parsimonious model that is quicker to compute, with little or no degradation in predictive accuracy. In order to arrive at such a model, some feature selection techniques require training more than one candidate model. In other words, feature selection is not about reducing training time—in fact, some techniques increase overall training time—but about reducing model scoring time.</p>
+<p>Once <span class="math notranslate nohighlight">\(m\)</span> has been decided (rule of thumb <span class="math notranslate nohighlight">\(N_{class}/m&gt;10\)</span>) choose the <span class="math notranslate nohighlight">\(m\)</span> most informative features keeping:</p>
+<ul class="simple">
+<li><p>Large distances between classes</p></li>
+<li><p>Small distances within class</p></li>
+</ul>
+<p><img alt="image-2.png" src="attachment:image-2.png" /></p>
+<p>Roughly speaking, feature selection techniques fall into four classes:</p>
+<ul class="simple">
+<li><p>Filtering</p></li>
+<li><p>Unsupervised methods</p></li>
+<li><p>Wrapper methods</p></li>
+<li><p>Embedded methods</p></li>
+</ul>
+</section>
+<section id="the-mobile-price-dataset">
+<h2>The Mobile Price dataset<a class="headerlink" href="#the-mobile-price-dataset" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>The data is already tidy and partitioned into training and testing csv files.</p></li>
+<li><p>There are 2000 observations in the training set and 1000 in testing.</p></li>
+<li><p>Each observation consisits of 20 phone features (columns) and one categorical label (final column) describing the phone’s price range.</p></li>
+</ol>
+<section id="data-description">
+<h3>Data description<a class="headerlink" href="#data-description" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>battery_power</p></td>
+<td><p>Total energy a battery can store in one time measured in mAh</p></td>
+</tr>
+<tr class="row-odd"><td><p>blue</p></td>
+<td><p>Has Bluetooth or not</p></td>
+</tr>
+<tr class="row-even"><td><p>clock_speed</p></td>
+<td><p>the speed at which microprocessor executes instructions</p></td>
+</tr>
+<tr class="row-odd"><td><p>dual_sim</p></td>
+<td><p>Has dual sim support or not</p></td>
+</tr>
+<tr class="row-even"><td><p>fc</p></td>
+<td><p>Front Camera megapixels</p></td>
+</tr>
+<tr class="row-odd"><td><p>four_g</p></td>
+<td><p>Has 4G or not</p></td>
+</tr>
+<tr class="row-even"><td><p>int_memory</p></td>
+<td><p>Internal Memory in Gigabytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>m_dep</p></td>
+<td><p>Mobile Depth in cm</p></td>
+</tr>
+<tr class="row-even"><td><p>mobile_wt</p></td>
+<td><p>Weight of mobile phone</p></td>
+</tr>
+<tr class="row-odd"><td><p>n_cores</p></td>
+<td><p>Number of cores of the processor</p></td>
+</tr>
+<tr class="row-even"><td><p>pc</p></td>
+<td><p>Primary Camera megapixels</p></td>
+</tr>
+<tr class="row-odd"><td><p>px_height</p></td>
+<td><p>Pixel Resolution Height</p></td>
+</tr>
+<tr class="row-even"><td><p>px_width</p></td>
+<td><p>Pixel Resolution Width</p></td>
+</tr>
+<tr class="row-odd"><td><p>ram</p></td>
+<td><p>Random Access Memory in MegaBytes</p></td>
+</tr>
+<tr class="row-even"><td><p>sc_h</p></td>
+<td><p>Screen Height of mobile in cm</p></td>
+</tr>
+<tr class="row-odd"><td><p>sc_w</p></td>
+<td><p>Screen Width of mobile in cm</p></td>
+</tr>
+<tr class="row-even"><td><p>talk_time</p></td>
+<td><p>the longest time that a single battery charge will last when you are</p></td>
+</tr>
+<tr class="row-odd"><td><p>three_g</p></td>
+<td><p>Has 3G or not</p></td>
+</tr>
+<tr class="row-even"><td><p>touch_screen</p></td>
+<td><p>Has touch screen or not</p></td>
+</tr>
+<tr class="row-odd"><td><p>wifi</p></td>
+<td><p>Has wifi or not</p></td>
+</tr>
+<tr class="row-even"><td><p>price_range</p></td>
+<td><p>This is the target variable with a value of 0(low cost), 1(medium cost), 2(high cost) and 3(very high cost).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h2>
+<p>Let’s get all the requirements sorted before we move on to the excercise. Don’t worry too much about the models we’ll be using or how to train them for now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Globals</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">1017</span>
+
+<span class="c1">#imports</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">tableone</span> <span class="kn">import</span> <span class="n">TableOne</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFECV</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1">#magic</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1017</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1">#imports</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-question-am-i-answering">
+<h2>What question am I answering?<a class="headerlink" href="#what-question-am-i-answering" title="Link to this heading">#</a></h2>
+<p>Well, we want to demonstrate the utility of feature selection. To this end, we compare predictive power in a model with and without feature selection. So, for every parsimonious model we train let’s compare its performance with that of its couterpart prodigious model (i.e. model that uses all the features).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># disable warnings generated by deprecated numpy behaviour</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loading-the-data">
+<h2>Loading the data<a class="headerlink" href="#loading-the-data" title="Link to this heading">#</a></h2>
+<p>We should have a look at how the features are distributed grouped by the labels. For this we’ll generate a table 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the data as a pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Lesson_02_data/train.csv&quot;</span><span class="p">)</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Lesson_02_data/test.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Generate table 1</span>
+<span class="n">TableOne</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+         <span class="n">pval</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">dip_test</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">normal_test</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">tukey_test</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="7" halign="left">Grouped by price_range</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Missing</th>
+      <th>Overall</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>P-Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>n</th>
+      <th></th>
+      <td></td>
+      <td>2000</td>
+      <td>500</td>
+      <td>500</td>
+      <td>500</td>
+      <td>500</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>battery_power, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>1238.5 (439.4)</td>
+      <td>1116.9 (410.8)</td>
+      <td>1228.9 (438.6)</td>
+      <td>1228.3 (452.9)</td>
+      <td>1380.0 (415.0)</td>
+      <td>&lt;0.001</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">blue, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>1010 (50.5)</td>
+      <td>257 (51.4)</td>
+      <td>255 (51.0)</td>
+      <td>257 (51.4)</td>
+      <td>241 (48.2)</td>
+      <td>0.698</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>990 (49.5)</td>
+      <td>243 (48.6)</td>
+      <td>245 (49.0)</td>
+      <td>243 (48.6)</td>
+      <td>259 (51.8)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>clock_speed, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>1.5 (0.8)</td>
+      <td>1.6 (0.8)</td>
+      <td>1.5 (0.8)</td>
+      <td>1.5 (0.8)</td>
+      <td>1.5 (0.8)</td>
+      <td>0.687</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">dual_sim, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>981 (49.0)</td>
+      <td>250 (50.0)</td>
+      <td>245 (49.0)</td>
+      <td>251 (50.2)</td>
+      <td>235 (47.0)</td>
+      <td>0.732</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>1019 (50.9)</td>
+      <td>250 (50.0)</td>
+      <td>255 (51.0)</td>
+      <td>249 (49.8)</td>
+      <td>265 (53.0)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>fc, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>4.3 (4.3)</td>
+      <td>4.1 (4.2)</td>
+      <td>4.3 (4.5)</td>
+      <td>4.5 (4.3)</td>
+      <td>4.3 (4.3)</td>
+      <td>0.510</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">four_g, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>957 (47.9)</td>
+      <td>241 (48.2)</td>
+      <td>238 (47.6)</td>
+      <td>253 (50.6)</td>
+      <td>225 (45.0)</td>
+      <td>0.365</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>1043 (52.1)</td>
+      <td>259 (51.8)</td>
+      <td>262 (52.4)</td>
+      <td>247 (49.4)</td>
+      <td>275 (55.0)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>int_memory, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>32.0 (18.1)</td>
+      <td>31.2 (18.1)</td>
+      <td>32.1 (18.0)</td>
+      <td>30.9 (18.4)</td>
+      <td>34.0 (17.9)</td>
+      <td>0.033</td>
+    </tr>
+    <tr>
+      <th>m_dep, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>0.5 (0.3)</td>
+      <td>0.5 (0.3)</td>
+      <td>0.5 (0.3)</td>
+      <td>0.5 (0.3)</td>
+      <td>0.5 (0.3)</td>
+      <td>0.212</td>
+    </tr>
+    <tr>
+      <th>mobile_wt, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>140.2 (35.4)</td>
+      <td>140.6 (36.4)</td>
+      <td>140.5 (35.7)</td>
+      <td>143.6 (34.3)</td>
+      <td>136.3 (34.9)</td>
+      <td>0.013</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="top">n_cores, n (%)</th>
+      <th>1</th>
+      <td>0</td>
+      <td>242 (12.1)</td>
+      <td>49 (9.8)</td>
+      <td>76 (15.2)</td>
+      <td>52 (10.4)</td>
+      <td>65 (13.0)</td>
+      <td>0.488</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td></td>
+      <td>247 (12.3)</td>
+      <td>69 (13.8)</td>
+      <td>59 (11.8)</td>
+      <td>57 (11.4)</td>
+      <td>62 (12.4)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td></td>
+      <td>246 (12.3)</td>
+      <td>62 (12.4)</td>
+      <td>69 (13.8)</td>
+      <td>56 (11.2)</td>
+      <td>59 (11.8)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td></td>
+      <td>274 (13.7)</td>
+      <td>67 (13.4)</td>
+      <td>76 (15.2)</td>
+      <td>73 (14.6)</td>
+      <td>58 (11.6)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td></td>
+      <td>246 (12.3)</td>
+      <td>59 (11.8)</td>
+      <td>51 (10.2)</td>
+      <td>66 (13.2)</td>
+      <td>70 (14.0)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td></td>
+      <td>230 (11.5)</td>
+      <td>61 (12.2)</td>
+      <td>54 (10.8)</td>
+      <td>57 (11.4)</td>
+      <td>58 (11.6)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td></td>
+      <td>259 (13.0)</td>
+      <td>66 (13.2)</td>
+      <td>55 (11.0)</td>
+      <td>69 (13.8)</td>
+      <td>69 (13.8)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td></td>
+      <td>256 (12.8)</td>
+      <td>67 (13.4)</td>
+      <td>60 (12.0)</td>
+      <td>70 (14.0)</td>
+      <td>59 (11.8)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>pc, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>9.9 (6.1)</td>
+      <td>9.6 (6.1)</td>
+      <td>9.9 (6.1)</td>
+      <td>10.0 (6.0)</td>
+      <td>10.2 (6.1)</td>
+      <td>0.480</td>
+    </tr>
+    <tr>
+      <th>px_height, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>645.1 (443.8)</td>
+      <td>536.4 (372.8)</td>
+      <td>666.9 (441.4)</td>
+      <td>632.3 (445.8)</td>
+      <td>744.8 (483.7)</td>
+      <td>&lt;0.001</td>
+    </tr>
+    <tr>
+      <th>px_width, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>1251.5 (432.2)</td>
+      <td>1150.3 (413.0)</td>
+      <td>1251.9 (433.6)</td>
+      <td>1234.0 (427.8)</td>
+      <td>1369.8 (426.8)</td>
+      <td>&lt;0.001</td>
+    </tr>
+    <tr>
+      <th>ram, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>2124.2 (1084.7)</td>
+      <td>785.3 (362.8)</td>
+      <td>1679.5 (465.9)</td>
+      <td>2582.8 (496.2)</td>
+      <td>3449.2 (393.0)</td>
+      <td>&lt;0.001</td>
+    </tr>
+    <tr>
+      <th>sc_h, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>12.3 (4.2)</td>
+      <td>12.3 (4.2)</td>
+      <td>12.2 (4.2)</td>
+      <td>12.0 (4.2)</td>
+      <td>12.7 (4.2)</td>
+      <td>0.083</td>
+    </tr>
+    <tr>
+      <th>sc_w, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>5.8 (4.4)</td>
+      <td>5.7 (4.2)</td>
+      <td>5.5 (4.2)</td>
+      <td>5.7 (4.3)</td>
+      <td>6.1 (4.7)</td>
+      <td>0.171</td>
+    </tr>
+    <tr>
+      <th>talk_time, mean (SD)</th>
+      <th></th>
+      <td>0</td>
+      <td>11.0 (5.5)</td>
+      <td>10.6 (5.4)</td>
+      <td>11.4 (5.6)</td>
+      <td>11.0 (5.4)</td>
+      <td>11.1 (5.4)</td>
+      <td>0.181</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">three_g, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>477 (23.8)</td>
+      <td>127 (25.4)</td>
+      <td>122 (24.4)</td>
+      <td>113 (22.6)</td>
+      <td>115 (23.0)</td>
+      <td>0.712</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>1523 (76.1)</td>
+      <td>373 (74.6)</td>
+      <td>378 (75.6)</td>
+      <td>387 (77.4)</td>
+      <td>385 (77.0)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">touch_screen, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>994 (49.7)</td>
+      <td>238 (47.6)</td>
+      <td>239 (47.8)</td>
+      <td>265 (53.0)</td>
+      <td>252 (50.4)</td>
+      <td>0.275</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>1006 (50.3)</td>
+      <td>262 (52.4)</td>
+      <td>261 (52.2)</td>
+      <td>235 (47.0)</td>
+      <td>248 (49.6)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">wifi, n (%)</th>
+      <th>0</th>
+      <td>0</td>
+      <td>986 (49.3)</td>
+      <td>252 (50.4)</td>
+      <td>248 (49.6)</td>
+      <td>248 (49.6)</td>
+      <td>238 (47.6)</td>
+      <td>0.836</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>1014 (50.7)</td>
+      <td>248 (49.6)</td>
+      <td>252 (50.4)</td>
+      <td>252 (50.4)</td>
+      <td>262 (52.4)</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div><br />[1] Hartigan's Dip Test reports possible
+                                  multimodal distributions for: clock_speed, fc, int_memory, m_dep, mobile_wt, pc, sc_h, sc_w, talk_time.<br />[2] Normality test reports non-normal
+                                  distributions for: battery_power, clock_speed, fc, int_memory, m_dep, mobile_wt, pc, px_height, px_width, ram, sc_h, sc_w, talk_time.<br /></div></div>
+</div>
+</section>
+<section id="comparing-models">
+<h2>Comparing Models<a class="headerlink" href="#comparing-models" title="Link to this heading">#</a></h2>
+<p>Let’s define a function that will calculate the prodigious and parsimonious model performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#define function that compares selected features to full model</span>
+<span class="k">def</span> <span class="nf">compare_models</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">selfeat</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;compare parsimonious and full linear model&quot;&quot;&quot;</span>
+    
+    <span class="c1"># get predictors and labels</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#independent columns</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">]</span>    <span class="c1">#target column i.e price range</span>
+
+    <span class="c1">#get selected feature indecies</span>
+    <span class="n">isel</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span> <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">selfeat</span> <span class="k">if</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+    
+    <span class="c1">#70-30 split</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+ 
+
+    <span class="c1">#define the prodigious and parsimonious logistic models</span>
+    <span class="n">prodmodel</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">parsmodel</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+
+    <span class="c1">#Fit the models</span>
+    <span class="n">prodmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">parsmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">selfeat</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span> 
+
+    <span class="c1">#Report errors</span>
+    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Prodigious Model Score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">prodmodel</span>.score(X_test, y_test))
+    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Parsimonious Model Score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">parsmodel</span>.score(X_test[selfeat], y_test))
+
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering">
+<h2>Filtering<a class="headerlink" href="#filtering" title="Link to this heading">#</a></h2>
+<p>Filtering techniques preprocess features to remove ones that are unlikely to be useful for the model. For example, one could compute the correlation or mutual information between each feature and the response variable, and filter out the features that fall below a threshold. Filtering techniques are much cheaper than the wrapper techniques described next, but they do not take into account the model being employed. Hence, they may not be able to select the right features for the model. It is best to do prefiltering conservatively, so as not to inadvertently eliminate useful features before they even make it to the model training step.</p>
+<blockquote>
+<div><p>The Table 1 conveniently has calculated the association of each feature with the outcome. Let’s select only those features that are significatly (p&lt;.05) associated.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selfeat</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;battery_power&#39;</span><span class="p">,</span> <span class="s1">&#39;int_memory&#39;</span><span class="p">,</span> <span class="s1">&#39;mobile_wt&#39;</span><span class="p">,</span> <span class="s1">&#39;px_height&#39;</span><span class="p">,</span> <span class="s1">&#39;px_width&#39;</span><span class="p">,</span> <span class="s1">&#39;ram&#39;</span><span class="p">,</span> <span class="s1">&#39;sc_h&#39;</span><span class="p">]</span>
+<span class="n">compare_models</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">selfeat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.92&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>By keeping only 7 features the parsimonious model has the same score as the full model that uses all 20 features.</p>
+</div></blockquote>
+</section>
+<section id="unsupervised-methods">
+<h2>Unsupervised Methods<a class="headerlink" href="#unsupervised-methods" title="Link to this heading">#</a></h2>
+<p><strong>Remove highly correlated features</strong>: to remove the correlated features, we can make use of the corr() method of the pandas dataframe.</p>
+<blockquote>
+<div><p>The <strong>corr() method</strong> returns a correlation matrix containing correlation between all the columns of the dataframe. A useful way to visualize the correlations is with a heatmap. We’ll use the seaborn library for this.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create a correlation matrix for the columns in the dataset</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1">#plot heat map</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e7705af0849db025a43f6a8b6b3519fcec886470a3e9358d2292d51778aadbe0.png" src="_images/e7705af0849db025a43f6a8b6b3519fcec886470a3e9358d2292d51778aadbe0.png" />
+</div>
+</div>
+<p>We can loop through all the columns in the correlation_matrix and keep track of the features with a correlation value &gt; 0.5. This 0.5 cut-off is quite strict and chosen for demonstration purposes. A more reasonable value is 80-90%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#init an empty set that will contain the names of the correlated features</span>
+<span class="n">correlated_features</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="c1">#loop over lower triangle of pairs of features</span>
+<span class="c1">#     do not consider the last feature which is the label </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">correlation_matrix</span> <span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="c1">#accumulate the names of the second correlated feature</span>
+            <span class="n">colname</span> <span class="o">=</span> <span class="n">correlation_matrix</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">correlated_features</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">colname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#display the correlated features</span>
+<span class="n">display</span><span class="p">(</span><span class="n">correlated_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;fc&#39;, &#39;four_g&#39;, &#39;px_height&#39;, &#39;sc_h&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>These features are correlated to at least one other feature and can be considered redundant. Let’s not include them in our parsimonious set and see how it effects model performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add label to the correlated features which we will drop</span>
+<span class="n">correlated_features</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">)</span>
+<span class="n">selfeat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">correlated_features</span><span class="p">)</span>
+<span class="n">compare_models</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">selfeat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.90&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>In this case the parsimonious model scores (goodness of fit) lower than the full model.</p>
+</div></blockquote>
+</section>
+<section id="wrapper-methods">
+<h2>Wrapper methods<a class="headerlink" href="#wrapper-methods" title="Link to this heading">#</a></h2>
+<p>These techniques are expensive, but they allow you to try out subsets of features, which means you won’t accidentally prune away features that are uninformative by themselves but useful when taken in combination. The wrapper method treats the model as a black box that provides a quality score of a proposed subset for features. There is a separate method that iteratively refines the subset.</p>
+<blockquote>
+<div><p><strong>Recursive feature elimination (RFE)</strong> is a stepwise feature selection process implemented in sklearn. Recall, the model used for feature selection does not have to be the same as the predictive model. Here we will use a tree based model for RFE.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get predictors and labels</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">]</span>
+
+<span class="c1"># use tree based model for RFE</span>
+<span class="n">rfe</span> <span class="o">=</span> <span class="n">RFECV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+
+<span class="c1"># fit RFE</span>
+<span class="n">rfe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># summarize all features</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Column: </span><span class="si">%d</span><span class="s1">, Selected </span><span class="si">%s</span><span class="s1">, Rank: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rfe</span><span class="o">.</span><span class="n">ranking_</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 0, Selected True, Rank: 1.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 1, Selected False, Rank: 14.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 2, Selected False, Rank: 7.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 3, Selected False, Rank: 11.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 4, Selected False, Rank: 12.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 5, Selected False, Rank: 15.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 6, Selected False, Rank: 3.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 7, Selected False, Rank: 10.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 8, Selected False, Rank: 2.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 9, Selected False, Rank: 5.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 10, Selected False, Rank: 9.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 11, Selected True, Rank: 1.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 12, Selected True, Rank: 1.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 13, Selected True, Rank: 1.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 14, Selected False, Rank: 6.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 15, Selected False, Rank: 4.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 16, Selected False, Rank: 8.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 17, Selected False, Rank: 13.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 18, Selected False, Rank: 16.000&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 19, Selected False, Rank: 17.000&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see which features were selected by their column index. They correspond to features ‘battery_power’, ‘px_height’, ‘px_width’, and ‘ram’ . Let’s compare the parsimonious linear model with the full model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#get the column indecies</span>
+<span class="n">selcol</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+<span class="c1">#get the column names</span>
+<span class="n">selfeat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">selcol</span><span class="p">]</span>
+<span class="c1">#compare models</span>
+<span class="n">compare_models</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">selfeat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.91&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="embedded-methods">
+<h2>Embedded methods<a class="headerlink" href="#embedded-methods" title="Link to this heading">#</a></h2>
+<p>These methods perform feature selection as part of the model training process. For example, a decision tree inherently performs feature selection because it selects one feature on which to split the tree at each training step. Another example is the <span class="math notranslate nohighlight">\(L_1\)</span> regularizer, which can be added to the training objective of any linear model.
+The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encourages models that use a few features as opposed to a lot of features, so it’s also known as a sparsity constraint on the model. Embedded methods incorporate feature selection as part of the model training process. They are not as powerful as wrapper methods, but they are nowhere near as expensive. Compared to filtering, embedded methods select features that are specific to the model. In this sense, embedded methods strike a balance between computational expense and quality of results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
+
+<span class="c1"># get predictors and labels</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">])</span>
+
+<span class="c1">#train lasso (least absolute shrinkage and selection operator) model with 5-fold cross validataion</span>
+<span class="n">lasso</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#display the model score</span>
+<span class="n">lasso</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1">#plot feature importance based on coeficients</span>
+<span class="n">importance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">importance</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature importances via coefficients&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cb3a08de951d7b02dc1f4e5f45aae649b7afc95c078719fe938532f6f49af1b0.png" src="_images/cb3a08de951d7b02dc1f4e5f45aae649b7afc95c078719fe938532f6f49af1b0.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Again we see battery power, px_height, px_width, and ram are the most important features that influence price.</p>
+</div></blockquote>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-counts">Dealing with Counts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quantization-or-binning">Quantization or Binning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed-width-binning">Fixed-width binning</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#quantile-binning">Quantile binning</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-transformation">Log Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#power-transforms-generalization-of-the-log-transform">Power Transforms: Generalization of the Log Transform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling-or-normalization">Feature Scaling or Normalization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-max-scaling">Min-Max Scaling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-scaling-standardization">Variance Scaling (Standardization)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#l-2-normalization"><span class="math notranslate nohighlight">\(L_2\)</span> Normalization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mobile-price-dataset">The Mobile Price dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-description">Data description</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-question-am-i-answering">What question am I answering?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-data">Loading the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-models">Comparing Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-methods">Unsupervised Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapper-methods">Wrapper methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedded-methods">Embedded methods</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Biagio Mandracchia
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
