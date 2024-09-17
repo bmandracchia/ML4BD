@@ -4,9 +4,9 @@ This book is designed to introduce the fundamental concepts necessary for develo
 
 The target readership includes students, researchers, clinicians, and other professionals who are interested in applying machine learning techniques to support clinical decision-making processes with biomedical data. The book aims to provide a comprehensive guide on essential concepts that enable the development of tools which can serve as supportive systems for clinical decisions.
 
-## License
-The contents of this book are licensed for free consumption under the following license: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
-
 ## Table of Contents
 ```{tableofcontents}
 ```
+
+## License
+The contents of this book are licensed for free consumption under the following license: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
