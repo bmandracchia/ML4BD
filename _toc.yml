@@ -10,3 +10,9 @@ parts:
   - file: chapters/00_python_primer
   - file: chapters/00_data_science_with_pandas
   - file: chapters/00_jupyter_markdown
+- caption: Feature Engineering
+  numbered: false
+  chapters:
+  - file: chapters/01_machine_learning_fundamentals
+  # - file: chapters/02_basic_feature_engineering
+  # - file: chapters/03_categorical_variables
