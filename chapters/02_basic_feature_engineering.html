@@ -1431,8 +1431,8 @@ L2 normalization preserves the relative distances between points and ensures tha
     <span class="n">parsmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">selfeat</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span> 
 
     <span class="c1">#Report errors</span>
-    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Prodigious Model Score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">prodmodel</span>.score(X_test, y_test))
-    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Parsimonious Model Score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">parsmodel</span>.score(X_test[selfeat], y_test))
+    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Prodigious Model Score: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">prodmodel</span>.score(X_test, y_test))
+    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Parsimonious Model Score: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">parsmodel</span>.score(X_test[selfeat], y_test))
 
     <span class="k">return</span>
 </pre></div>
@@ -1453,23 +1453,23 @@ L2 normalization preserves the relative distances between points and ensures tha
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.914&#39;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.92&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.915&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <blockquote>
-<div><p>By keeping only 7 features the parsimonious model has the same score as the full model that uses all 20 features.</p>
+<div><p>By keeping only 7 features the parsimonious model has the essentially the same score as the full model that uses all 20 features.</p>
 </div></blockquote>
 </section>
 <section id="id2">
 <h3>Unsupervised Methods<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p><strong>Remove highly correlated features</strong>: to remove the correlated features, we can make use of the corr() method of the pandas dataframe.</p>
 <blockquote>
-<div><p>The <strong>corr() method</strong> returns a correlation matrix containing correlation between all the columns of the dataframe. A useful way to visualize the correlations is with a heatmap. We’ll use the seaborn library for this.</p>
+<div><p>The <strong>corr() method</strong> returns a correlation matrix containing correlation between all the columns of the dataframe. A useful way to visualize the correlations is with a heatmap.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1550,10 +1550,10 @@ L2 normalization preserves the relative distances between points and ensures tha
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.914&#39;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.90&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.904&#39;
 </pre></div>
 </div>
 </div>
@@ -1753,10 +1753,10 @@ L2 normalization preserves the relative distances between points and ensures tha
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.91&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Prodigious Model Score: 0.914&#39;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.91&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Parsimonious Model Score: 0.914&#39;
 </pre></div>
 </div>
 </div>
@@ -1764,8 +1764,8 @@ L2 normalization preserves the relative distances between points and ensures tha
 </section>
 <section id="id4">
 <h3>Embedded methods<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>These methods perform feature selection as part of the model training process. For example, a decision tree inherently performs feature selection because it selects one feature on which to split the tree at each training step. Another example is the <span class="math notranslate nohighlight">\(L_1\)</span> regularizer, which can be added to the training objective of any linear model.
-The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encourages models that use a few features as opposed to a lot of features, so it’s also known as a sparsity constraint on the model. Embedded methods incorporate feature selection as part of the model training process. They are not as powerful as wrapper methods, but they are nowhere near as expensive. Compared to filtering, embedded methods select features that are specific to the model. In this sense, embedded methods strike a balance between computational expense and quality of results.</p>
+<p>These methods perform feature selection as part of the model training process. For example, a decision tree inherently performs feature selection because it selects one feature on which to split the tree at each training step. Another example is the <span class="math notranslate nohighlight">\(L_1\)</span> regularizer, which can be added to the training objective of any linear model. The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encourages models that use a few features as opposed to a lot of features, so it’s also known as a sparsity constraint on the model.</p>
+<p>Embedded methods are not as powerful as wrapper methods, but they are nowhere near as expensive. Compared to filtering, embedded methods select features that are specific to the model. In this sense, embedded methods strike a balance between computational expense and quality of results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
