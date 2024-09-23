@@ -14,5 +14,5 @@ parts:
   numbered: false
   chapters:
   - file: chapters/01_machine_learning_fundamentals
-  # - file: chapters/02_basic_feature_engineering
+  - file: chapters/02_basic_feature_engineering
   # - file: chapters/03_categorical_variables
