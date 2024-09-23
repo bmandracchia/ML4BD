@@ -1473,14 +1473,39 @@ L2 normalization preserves the relative distances between points and ensures tha
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create a correlation matrix for the columns in the dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a correlation matrix for the columns in the dataset</span>
 <span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
-<span class="c1">#plot heat map</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
-<span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
+<span class="c1"># Set up the matplotlib figure with improved size and aspect ratio</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># Use seaborn&#39;s heatmap with improved aesthetics</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> 
+                <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># Annotate cells with correlation coefficients</span>
+                <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span>           <span class="c1"># Format the annotations to 2 decimal places</span>
+                <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>      <span class="c1"># Use a diverging colormap</span>
+                <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>             <span class="c1"># Set the midpoint of the colormap at 0</span>
+                <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># Make each cell square-shaped</span>
+                <span class="n">linewidths</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>         <span class="c1"># Add gridlines between cells</span>
+                <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>    <span class="c1"># Gridline color</span>
+                <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shrink&#39;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">},</span>  <span class="c1"># Shrink the color bar for better fitting</span>
+                <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>    <span class="c1"># Annotation text size</span>
+
+<span class="c1"># Improve title and labels for clarity</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Correlation Matrix Heatmap&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># Rotate and align the x-tick labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>  <span class="c1"># Keep y-tick labels horizontal</span>
+
+<span class="c1"># Add tight layout for better spacing</span>
+<span class="c1"># plt.tight_layout()</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ba3f5af03167f3de0682b1e8f10488ebac8d6a9802bc1247ac45b5841f0a11a8.png" src="../_images/ba3f5af03167f3de0682b1e8f10488ebac8d6a9802bc1247ac45b5841f0a11a8.png" />
 </div>
 </div>
 <p>We can loop through all the columns in the correlation_matrix and keep track of the features with a correlation value &gt; 0.5. This 0.5 cut-off is quite strict and chosen for demonstration purposes. A more reasonable value is 80-90%.</p>
@@ -1545,84 +1570,175 @@ L2 normalization preserves the relative distances between points and ensures tha
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get predictors and labels</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">]</span>
 
-<span class="c1"># use tree based model for RFE</span>
-<span class="n">rfe</span> <span class="o">=</span> <span class="n">RFECV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+<span class="c1"># Use a tree-based model for RFE</span>
+<span class="n">rfe</span> <span class="o">=</span> <span class="n">RFECV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># fit RFE</span>
+<span class="c1"># Fit RFE</span>
 <span class="n">rfe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="c1"># summarize all features</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-    <span class="n">display</span><span class="p">(</span><span class="s1">&#39;Column: </span><span class="si">%d</span><span class="s1">, Selected </span><span class="si">%s</span><span class="s1">, Rank: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rfe</span><span class="o">.</span><span class="n">ranking_</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+<span class="c1"># Create a DataFrame to summarize feature selection results</span>
+<span class="n">summary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="s1">&#39;Selected&#39;</span><span class="p">:</span> <span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">,</span>
+    <span class="s1">&#39;Rank&#39;</span><span class="p">:</span> <span class="n">rfe</span><span class="o">.</span><span class="n">ranking_</span>
+<span class="p">})</span>
+
+<span class="c1"># Display the results as a table</span>
+<span class="n">display</span><span class="p">(</span><span class="n">summary_df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 0, Selected True, Rank: 1.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 1, Selected False, Rank: 14.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 2, Selected False, Rank: 7.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 3, Selected False, Rank: 11.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 4, Selected False, Rank: 12.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 5, Selected False, Rank: 15.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 6, Selected False, Rank: 3.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 7, Selected False, Rank: 10.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 8, Selected False, Rank: 2.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 9, Selected False, Rank: 5.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 10, Selected False, Rank: 9.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 11, Selected True, Rank: 1.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 12, Selected True, Rank: 1.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 13, Selected True, Rank: 1.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 14, Selected False, Rank: 6.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 15, Selected False, Rank: 4.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 16, Selected False, Rank: 8.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 17, Selected False, Rank: 13.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 18, Selected False, Rank: 16.000&#39;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Column: 19, Selected False, Rank: 17.000&#39;
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Selected</th>
+      <th>Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>battery_power</td>
+      <td>True</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>blue</td>
+      <td>False</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>clock_speed</td>
+      <td>False</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>dual_sim</td>
+      <td>False</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>fc</td>
+      <td>False</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>four_g</td>
+      <td>False</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>int_memory</td>
+      <td>False</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>m_dep</td>
+      <td>False</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>mobile_wt</td>
+      <td>False</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>n_cores</td>
+      <td>False</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>pc</td>
+      <td>False</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>px_height</td>
+      <td>True</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>px_width</td>
+      <td>True</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>ram</td>
+      <td>True</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sc_h</td>
+      <td>False</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>sc_w</td>
+      <td>False</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>talk_time</td>
+      <td>False</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>three_g</td>
+      <td>False</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>touch_screen</td>
+      <td>False</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>wifi</td>
+      <td>False</td>
+      <td>17</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>We can see which features were selected by their column index. They correspond to features ‘battery_power’, ‘px_height’, ‘px_width’, and ‘ram’ . Let’s compare the parsimonious linear model with the full model.</p>
 <div class="cell docutils container">
@@ -1654,28 +1770,45 @@ The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encour
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
 
-<span class="c1"># get predictors and labels</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> 
+<span class="c1"># Get predictors and labels</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">])</span>
 
-<span class="c1">#train lasso (least absolute shrinkage and selection operator) model with 5-fold cross validataion</span>
+<span class="c1"># Train Lasso model with 5-fold cross-validation</span>
 <span class="n">lasso</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="c1">#display the model score</span>
-<span class="n">lasso</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="c1"># Display the model score</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model Score: </span><span class="si">{</span><span class="n">lasso</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1">#plot feature importance based on coeficients</span>
+<span class="c1"># Get feature importance based on coefficients</span>
 <span class="n">importance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 <span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">importance</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature importances via coefficients&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set up the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">feature_names</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">importance</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adding labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature Importances via Lasso Coefficients&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Features&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Magnitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Improve the appearance of the x-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Tight layout for better spacing</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Show plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f7e57f39a7d880ff86bdd1f915e8b9d220ae93cfb8f8b81f1ffd10d0161568a8.png" src="../_images/f7e57f39a7d880ff86bdd1f915e8b9d220ae93cfb8f8b81f1ffd10d0161568a8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Score: 0.92
+</pre></div>
+</div>
+<img alt="../_images/68e99d03a7dfd6fc02ee0d72fe404e47f7db265edc9344964884398d64bfff90.png" src="../_images/68e99d03a7dfd6fc02ee0d72fe404e47f7db265edc9344964884398d64bfff90.png" />
 </div>
 </div>
 <blockquote>
