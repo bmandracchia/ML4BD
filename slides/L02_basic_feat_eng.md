@@ -148,3 +148,14 @@ Once $m$ has been decided (rule of thumb $N_{class}/m>10$) choose the $m$ most i
 
 ![](attachment:image-2.png)
 
+
+---
+## Feature Selection
+
+Roughly speaking, feature selection techniques fall into four classes:
+
+- **Filtering**
+- **Unsupervised methods**
+- **Wrapper methods**
+- **Embedded methods**
+
