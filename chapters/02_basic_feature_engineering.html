@@ -977,20 +977,6 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">tableone</span> <span class="kn">import</span> <span class="n">TableOne</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;tableone&#39;
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="what-question-am-i-answering">
@@ -1012,8 +998,8 @@ L2 normalization preserves the relative distances between points and ensures tha
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the data as a pandas dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Lesson_02_data/train.csv&quot;</span><span class="p">)</span>
-<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Lesson_02_data/test.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;datasets/ch02_data/train.csv&quot;</span><span class="p">)</span>
+<span class="n">df_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;datasets/ch02_data/test.csv&quot;</span><span class="p">)</span>
 
 <span class="c1"># Generate table 1</span>
 <span class="n">TableOne</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
@@ -1084,7 +1070,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">blue, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>1010 (50.5)</td>
       <td>257 (51.4)</td>
       <td>255 (51.0)</td>
@@ -1116,7 +1102,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">dual_sim, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>981 (49.0)</td>
       <td>250 (50.0)</td>
       <td>245 (49.0)</td>
@@ -1148,7 +1134,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">four_g, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>957 (47.9)</td>
       <td>241 (48.2)</td>
       <td>238 (47.6)</td>
@@ -1202,7 +1188,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="8" valign="top">n_cores, n (%)</th>
       <th>1</th>
-      <td>0</td>
+      <td></td>
       <td>242 (12.1)</td>
       <td>49 (9.8)</td>
       <td>76 (15.2)</td>
@@ -1360,7 +1346,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">three_g, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>477 (23.8)</td>
       <td>127 (25.4)</td>
       <td>122 (24.4)</td>
@@ -1381,7 +1367,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">touch_screen, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>994 (49.7)</td>
       <td>238 (47.6)</td>
       <td>239 (47.8)</td>
@@ -1402,7 +1388,7 @@ L2 normalization preserves the relative distances between points and ensures tha
     <tr>
       <th rowspan="2" valign="top">wifi, n (%)</th>
       <th>0</th>
-      <td>0</td>
+      <td></td>
       <td>986 (49.3)</td>
       <td>252 (50.4)</td>
       <td>248 (49.6)</td>
@@ -1423,8 +1409,8 @@ L2 normalization preserves the relative distances between points and ensures tha
   </tbody>
 </table>
 </div><br />[1] Hartigan's Dip Test reports possible
-                                  multimodal distributions for: clock_speed, fc, int_memory, m_dep, mobile_wt, pc, sc_h, sc_w, talk_time.<br />[2] Normality test reports non-normal
-                                  distributions for: battery_power, clock_speed, fc, int_memory, m_dep, mobile_wt, pc, px_height, px_width, ram, sc_h, sc_w, talk_time.<br /></div></div>
+                                    multimodal distributions for: clock_speed, fc, int_memory, m_dep, mobile_wt, pc, sc_h, sc_w, talk_time.<br />[2] Normality test reports non-normal
+                                    distributions for: battery_power, clock_speed, fc, int_memory, m_dep, mobile_wt, pc, px_height, px_width, ram, sc_h, sc_w, talk_time.<br /></div></div>
 </div>
 </section>
 <section id="comparing-models">
@@ -1507,9 +1493,6 @@ L2 normalization preserves the relative distances between points and ensures tha
 <span class="n">g</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/e7705af0849db025a43f6a8b6b3519fcec886470a3e9358d2292d51778aadbe0.png" src="../_images/e7705af0849db025a43f6a8b6b3519fcec886470a3e9358d2292d51778aadbe0.png" />
 </div>
 </div>
 <p>We can loop through all the columns in the correlation_matrix and keep track of the features with a correlation value &gt; 0.5. This 0.5 cut-off is quite strict and chosen for demonstration purposes. A more reasonable value is 80-90%.</p>
@@ -1704,7 +1687,7 @@ The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encour
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cb3a08de951d7b02dc1f4e5f45aae649b7afc95c078719fe938532f6f49af1b0.png" src="../_images/cb3a08de951d7b02dc1f4e5f45aae649b7afc95c078719fe938532f6f49af1b0.png" />
+<img alt="../_images/f7e57f39a7d880ff86bdd1f915e8b9d220ae93cfb8f8b81f1ffd10d0161568a8.png" src="../_images/f7e57f39a7d880ff86bdd1f915e8b9d220ae93cfb8f8b81f1ffd10d0161568a8.png" />
 </div>
 </div>
 <blockquote>
