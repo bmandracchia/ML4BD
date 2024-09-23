@@ -47,37 +47,41 @@ Binning is a technique where continuous numeric values are divided into discrete
 
 ---
 
-## Fixed-width Binning
+### Fixed-width Binning
 
-With fixed-width binning, each bin represents a specific numeric range. These ranges can either be custom-designed or automatically segmented, depending on the data and the modeling needs. The bins can be linearly scaled (equal-sized intervals) or exponentially scaled (wider bins for larger values).
+- Each bin represents a specific numeric range. 
+- Ranges can either be custom or automatically segmented.
+- The bins can be linearly scaled or exponentially scaled.
 
-
-
----
-
-## Quantile Binning
-In case of uneven data distribution, we can use an adaptive technique: quantile binning. Quantile binning positions bins based on the distribution of the data, ensuring that each bin contains roughly the same number of data points. This prevents empty bins and maintains a balanced representation of the data.
-
-![](attachment:image.png)
+![bg left:30% 90%](image-12.png)
 
 ---
 
-## Log Transformation
+### Quantile Binning
+In case of uneven data distribution, we can use an adaptive technique: quantile binning. This positions bins based on the distribution of the data, ensuring that each bin contains roughly the same number of data points. 
 
-Another powerful technique for handling large ranges in counts is the logarithmic transform. The log function compresses the range of large numbers and expands smaller ones. As values grow larger, the rate of increase of their logarithm slows down, making it a useful way to tame extreme values. This can be particularly effective when raw counts span several orders of magnitude, as the log transform creates a more manageable range for the model to work with.
+This prevents empty bins and maintains a balanced representation of the data.
 
-![](attachment:image.png)
+![bg left:30% 90%](image-13.png)
 
 ---
 
-### Power Transforms: Generalization of the Log Transform
+### Log Transformation
+
+Another powerful technique for handling large ranges in counts is the logarithmic transform. The log function compresses the range of large numbers and expands smaller ones.
+
+![bg 60%](image-14.png)
+
+---
+
+### Power Transforms
 
 The log transform is a specific example of a family of transformations known as power transforms. 
 In statistical terms, these are variance-stabilizing transformations. Power transforms change the distribution of the variable so that the variance is no longer dependent on the mean.
 
 ---
 
-### Power Transforms: Generalization of the Log Transform
+### Power Transforms
 
 A simple generalization of both the square root transform and the log transform is known as the **Box-Cox transform**:
 
@@ -92,9 +96,9 @@ X ^ {( \lambda ) } = \left \{
  \right .
 $$
 
-The power parameter  $ \lambda $ is estimated by a graphical technique or by the *Maximum-likelihood method*.
+The power parameter is estimated by a graphical technique or by the *Maximum-likelihood method*.
 
-![](attachment:image.png)
+![bg right:30% 90%](image-15.png)
 
 ---
 
@@ -102,13 +106,15 @@ The power parameter  $ \lambda $ is estimated by a graphical technique or by the
 
 Feature scaling and normalization are crucial preprocessing steps in machine learning. Many algorithms, especially those based on distances or gradients, perform better when the input features are on comparable scales. Without proper scaling, features with larger ranges can disproportionately influence the model. 
 
+![bg right:30% 80%](image-16.png)
+
 ---
 
 ### Min-Max Scaling
 
 Min-max scaling transforms the features to a fixed range, usually between 0 and 1. This is particularly useful for algorithms like k-nearest neighbors (KNN) and k-means clustering, which rely on distance metrics. However, it’s sensitive to outliers because extreme values can distort the scaling.
 
-![](attachment:image.png)
+![bg right:30% 80%](image-17.png)
 
 ---
 
@@ -116,7 +122,8 @@ Min-max scaling transforms the features to a fixed range, usually between 0 and 
 
 Variance scaling (or standardization) transforms features so that they have a mean of 0 and a standard deviation of 1. This is useful for models like linear regression, logistic regression, and neural networks, where features are assumed to be normally distributed.
 
-![](attachment:image.png)
+![bg right:30% 80%](image-18.png)
+
 ---
 
 ### $L_2$ Normalization
@@ -124,33 +131,35 @@ Variance scaling (or standardization) transforms features so that they have a me
 L2 normalization divides each feature vector by its Euclidean norm, so that the resulting vectors all have a length of 1. This is particularly useful in models like SVM or KNN, where the direction of vectors is more important than their magnitude.
 L2 normalization ensures preserves the relative distances between points but ensures that no individual feature dominates due to its scale.
 
- ![](attachment:image.png)
+![bg right:30% 80%](image-19.png)
 
 ---
 
 ## Feature Selection
-
 Feature selection techniques prune away nonuseful features in order to reduce the complexity of the resulting model. 
 
 >Given a set of $d$ features, select a subset of size $m$ that leads to the smallest classification error.
 
 The end goal is a parsimonious model that is quicker to compute, with little or no degradation in predictive accuracy. 
 
->Feature selection is not about reducing training time but about reducing model scoring time.
-
 ---
 
 ## Feature Selection
+
+Feature selection is not about reducing training time but about **reducing model scoring time**.
 
 Once $m$ has been decided (rule of thumb $N_{class}/m>10$) choose the $m$ most informative features keeping:
 - Large distances between classes
 - Small distances within class
+---
 
-![](attachment:image-2.png)
+## Feature Selection
+
+![bg 80%](image-20.png)
 
 
 ---
-## Feature Selection
+### Types of Feature Selection
 
 Roughly speaking, feature selection techniques fall into four classes:
 
@@ -159,3 +168,73 @@ Roughly speaking, feature selection techniques fall into four classes:
 - **Wrapper methods**
 - **Embedded methods**
 
+---
+
+## Code Example
+
+- The data is already tidy and partitioned into training and testing csv files. 
+- There are 2000 observations in the training set and 1000 in testing.
+- Each observation consisits of 20 phone features (columns) and one categorical label (final column) describing the phone's price range.
+
+
+![bg right:30% 98%](image-21.png)
+
+---
+
+### Filtering
+
+Filtering techniques preprocess features to remove ones that are unlikely to be useful for the model. Filtering techniques are much cheaper than the wrapper techniques described next, but they do not take into account the model being employed. 
+
+We can calculate the association of each feature with the outcome and select only those features that are significatly (p<.05) associated. 
+
+```
+'Prodigious Model Score: 0.914'
+'Parsimonious Model Score: 0.915' # using only 7 features
+```
+
+---
+
+### Unsupervised Methods
+**Remove highly correlated features**: to remove the correlated features, we can make use of the `corr()` method of the pandas dataframe. 
+
+![bg right:50% 99%](image-22.png)
+
+---
+
+We can loop through all the columns in the correlation_matrix and keep track of the features with a correlation value > 0.5. This 0.5 cut-off is quite strict and chosen for demonstration purposes. 
+
+```{python}
+display(correlated_features)
+{'fc', 'four_g', 'px_height', 'sc_h'}
+```
+
+These features are correlated to at least one other feature and can be considered redundant. Let's not include them in our parsimonious set and see how it effects model performance.
+
+```
+'Prodigious Model Score: 0.914' 
+'Parsimonious Model Score: 0.904'
+```
+
+---
+
+### Wrapper methods 
+
+These techniques are expensive, but they won’t accidentally prune away features that are uninformative by themselves but useful when taken in combination.
+
+>**Recursive feature elimination (RFE)** is a stepwise feature selection process.
+
+```
+'Prodigious Model Score: 0.914'
+'Parsimonious Model Score: 0.914'
+```
+
+![bg right:30% 70%](image-23.png)
+
+---
+### Embedded methods
+
+These methods perform feature selection as part of the model training process. For example, the $L_1$ regularizer, which can be added to the training objective of any linear model. 
+
+They are not as powerful as wrapper methods, but they are nowhere near as expensive. Compared to filtering, embedded methods select features that are specific to the model. 
+
+![bg right:30% 99%](image-24.png)
