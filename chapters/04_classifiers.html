@@ -478,12 +478,14 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
-Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
 </pre></div>
 </div>
 </div>
 </div>
-<p>Boefore start working, let’s have a look at the dataset.</p>
+<p>Before start working, let’s have a look at the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span>
@@ -1177,9 +1179,9 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5e7494ae9264b7e87739fcbbb1052cf3db0b195d3fdf2b9dbc4d7a4fccfde702.png" src="../_images/5e7494ae9264b7e87739fcbbb1052cf3db0b195d3fdf2b9dbc4d7a4fccfde702.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0140, 3.0309)
-Distance from true minimum: 0.0339
+<img alt="../_images/ad85170597a0495d120e092ea0f1c5b652d00fa2fec7a799c7638ef5f809da77.png" src="../_images/ad85170597a0495d120e092ea0f1c5b652d00fa2fec7a799c7638ef5f809da77.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0059, 3.0174)
+Distance from true minimum: 0.0184
 </pre></div>
 </div>
 </div>
@@ -1253,9 +1255,9 @@ might make the algorithm diverge.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/06a4605aef12895f6ef777f490d227545bd1100338a7ecb3624cd3d39c43faa7.png" src="../_images/06a4605aef12895f6ef777f490d227545bd1100338a7ecb3624cd3d39c43faa7.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0677, 2.9682)
-Distance from true minimum: 0.0748
+<img alt="../_images/3a42d21d96e2092f6b8a09278ec168615d279b36b953ecd28a2a0329ad128488.png" src="../_images/3a42d21d96e2092f6b8a09278ec168615d279b36b953ecd28a2a0329ad128488.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0818, 2.9656)
+Distance from true minimum: 0.0887
 </pre></div>
 </div>
 </div>
@@ -2159,17 +2161,17 @@ result as the <code class="docutils literal notranslate"><span class="pre">predi
 </div>
 </div>
 </div>
-<p>We can see that if we change the threshold, the recall changes</p>
+<p>We can see that if we raise the threshold, the recall reduces</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">y_some_image_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_scores</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span>
 <span class="n">y_some_image_pred</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False])
 </pre></div>
 </div>
 </div>
@@ -2237,7 +2239,7 @@ using the <code class="docutils literal notranslate"><span class="pre">precision
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf852cde826df555a024698cf515a37ded46388221c980eecd701c1aba3c6e77.png" src="../_images/cf852cde826df555a024698cf515a37ded46388221c980eecd701c1aba3c6e77.png" />
+<img alt="../_images/b9510c23f444dfad29feb9768450b3b6a53001b51b24135cf242f06d89a4cabb.png" src="../_images/b9510c23f444dfad29feb9768450b3b6a53001b51b24135cf242f06d89a4cabb.png" />
 </div>
 </div>
 <p>Another way to select a good precision/recall tradeoff is to plot precision directly
@@ -2254,7 +2256,7 @@ against recall.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">recalls</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="p">[</span><span class="n">precisions</span><span class="p">[</span><span class="n">idx</span><span class="p">]],</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Point at threshold -20&quot;</span><span class="p">)</span>
+         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Point at threshold 10&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">patches</span><span class="o">.</span><span class="n">FancyArrowPatch</span><span class="p">(</span>
     <span class="p">(</span><span class="mf">0.79</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">),</span>
     <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;arc3,rad=.2&quot;</span><span class="p">,</span>
@@ -2271,7 +2273,7 @@ against recall.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e9b1d0932105ce82f7691787f8efb5bf3983eaf0172e37e0b993f522b0528bec.png" src="../_images/e9b1d0932105ce82f7691787f8efb5bf3983eaf0172e37e0b993f522b0528bec.png" />
+<img alt="../_images/4ef89d4748faec4bd471cb8ea4a5bda38d81f3ce937950589d841711b99bff46.png" src="../_images/4ef89d4748faec4bd471cb8ea4a5bda38d81f3ce937950589d841711b99bff46.png" />
 </div>
 </div>
 <p>Let’s suppose you decide to aim for 90% precision.</p>
