@@ -430,13 +430,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p>Classification is the task of predicting categorical outcomes/labels</p>
+<p>Categorical variables can be binary, multinominal, or ordinal</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">titlesize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
@@ -447,22 +453,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">IMAGES_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">()</span> <span class="o">/</span> <span class="s2">&quot;images&quot;</span> <span class="o">/</span> <span class="s2">&quot;classifiers&quot;</span>
-<span class="n">IMAGES_PATH</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="classification">
-<h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
-<p>Classification is the task of predicting categorical outcomes/labels</p>
-<p>Categorical variables can be binary, multinominal, or ordinal</p>
 <section id="medmnist">
 <h2>MedMNIST<a class="headerlink" href="#medmnist" title="Link to this heading">#</a></h2>
 <p>We will be using the MedMNIST dataset, which is a set of 18 Standardized Datasets for 2D and 3D Biomedical Image Classification.</p>
@@ -488,9 +478,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
+Using downloaded and verified file: ./datasets/ch4\bloodmnist.npz
 </pre></div>
 </div>
 </div>
@@ -1189,9 +1177,9 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9ed1dfb0757f6b3ef77d5f3b8db437945c07619c241e363efa6b546e40181303.png" src="../_images/9ed1dfb0757f6b3ef77d5f3b8db437945c07619c241e363efa6b546e40181303.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0273, 2.9878)
-Distance from true minimum: 0.0299
+<img alt="../_images/5e7494ae9264b7e87739fcbbb1052cf3db0b195d3fdf2b9dbc4d7a4fccfde702.png" src="../_images/5e7494ae9264b7e87739fcbbb1052cf3db0b195d3fdf2b9dbc4d7a4fccfde702.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0140, 3.0309)
+Distance from true minimum: 0.0339
 </pre></div>
 </div>
 </div>
@@ -1265,9 +1253,9 @@ might make the algorithm diverge.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5bc55bed986b7292db0cfd953fd9a923816dc8fcc667fec3227a843fb6573a10.png" src="../_images/5bc55bed986b7292db0cfd953fd9a923816dc8fcc667fec3227a843fb6573a10.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9758, 2.9333)
-Distance from true minimum: 0.0709
+<img alt="../_images/06a4605aef12895f6ef777f490d227545bd1100338a7ecb3624cd3d39c43faa7.png" src="../_images/06a4605aef12895f6ef777f490d227545bd1100338a7ecb3624cd3d39c43faa7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0677, 2.9682)
+Distance from true minimum: 0.0748
 </pre></div>
 </div>
 </div>
