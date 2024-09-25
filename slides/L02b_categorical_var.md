@@ -110,7 +110,7 @@ Effect coding can be used in experiments where the goal is to measure the effect
 ---
 ### Pros and Cons of Categorical Variable Encodings
 
-![alt text](image-53.png)
+![bg 60%](image-54.png)
 
 ---
 
