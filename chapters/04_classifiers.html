@@ -184,7 +184,6 @@
 <li class="toctree-l1"><a class="reference internal" href="02_basic_feature_engineering.html">Basic Feature Engineering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_categorical_variables.html">Categorical Variables</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Classification</a></li>
-
 </ul>
 
     </div>
@@ -380,7 +379,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medmnist">MedMNIST</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-dataset">Train &amp; test dataset</a></li>
 </ul>
@@ -411,15 +409,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-one-ovo-strategy">One-versus-one (OvO) strategy</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilabel-classification">Multilabel Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multioutput-classification">Multioutput Classification</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -1179,9 +1172,9 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ad85170597a0495d120e092ea0f1c5b652d00fa2fec7a799c7638ef5f809da77.png" src="../_images/ad85170597a0495d120e092ea0f1c5b652d00fa2fec7a799c7638ef5f809da77.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0059, 3.0174)
-Distance from true minimum: 0.0184
+<img alt="../_images/aac44058668b3d3137e43f1de30fd344b8c6bdd1e0add070af548546fcf479af.png" src="../_images/aac44058668b3d3137e43f1de30fd344b8c6bdd1e0add070af548546fcf479af.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0109, 3.0038)
+Distance from true minimum: 0.0115
 </pre></div>
 </div>
 </div>
@@ -1255,9 +1248,9 @@ might make the algorithm diverge.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3a42d21d96e2092f6b8a09278ec168615d279b36b953ecd28a2a0329ad128488.png" src="../_images/3a42d21d96e2092f6b8a09278ec168615d279b36b953ecd28a2a0329ad128488.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0818, 2.9656)
-Distance from true minimum: 0.0887
+<img alt="../_images/4444f661134ec60f50c10975981a82ab6853d92e26b50c16054183cb9d326f59.png" src="../_images/4444f661134ec60f50c10975981a82ab6853d92e26b50c16054183cb9d326f59.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9667, 2.9841)
+Distance from true minimum: 0.0369
 </pre></div>
 </div>
 </div>
@@ -2893,9 +2886,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="error-analysis">
-<h1>Error Analysis<a class="headerlink" href="#error-analysis" title="Link to this heading">#</a></h1>
+<section id="error-analysis">
+<h2>Error Analysis<a class="headerlink" href="#error-analysis" title="Link to this heading">#</a></h2>
 <p>Once we have found a promising model, we want to find ways to improve it.</p>
 <p>One way to do this is to analyze the types of errors it makes.</p>
 <p><strong>Warning:</strong> the following cell will take a few minutes to run:</p>
@@ -3020,6 +3012,7 @@ classifier is doing and why it is failing, but it is more difficult and time-con
 <p>The reason is that we used a simple <code class="docutils literal notranslate"><span class="pre">SGDClassifier</span></code>, which is a linear model.
 All it does is assign a weight per class to each pixel, and when it sees a new image it just
 sums up the weighted pixel intensities to get a score for each class. So, this model easily confuses imags that differ only by a few pixels.</p>
+</section>
 <section id="multilabel-classification">
 <h2>Multilabel Classification<a class="headerlink" href="#multilabel-classification" title="Link to this heading">#</a></h2>
 <p>In some cases we may want our classifier to output multiple classes for each instance.</p>
@@ -3616,7 +3609,6 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medmnist">MedMNIST</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-dataset">Train &amp; test dataset</a></li>
 </ul>
@@ -3647,15 +3639,10 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-versus-one-ovo-strategy">One-versus-one (OvO) strategy</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis">Error Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multilabel-classification">Multilabel Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multioutput-classification">Multioutput Classification</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
