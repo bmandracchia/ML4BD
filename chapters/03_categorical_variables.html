@@ -185,7 +185,6 @@
 <li class="toctree-l1"><a class="reference internal" href="02_basic_feature_engineering.html">Basic Feature Engineering</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Categorical Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_classifiers.html">Classification</a></li>
-
 </ul>
 
     </div>
@@ -1813,7 +1812,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;LinearRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
 </div>
-<p>With dummy coding, the bias coefficient represents the mean value of the response variable y for the reference category, which in the example is the Hospital <em>City Clinic</em>.
+<p>With dummy coding, the bias coefficient represents the mean value of the response variable <code class="docutils literal notranslate"><span class="pre">y</span></code> for the reference category, which in the example is the Hospital <em>City Clinic</em>.
 The coefficient for the ith feature is equal to the difference between the mean response value for the ith category and the mean of the reference category.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2010,6 +2009,41 @@ Intercept: 5344.444444444444
 <p>Dummy coding, unlike one-hot encoding, is not redundant and produces unique, interpretable models. However, it struggles with missing data because the all-zeros vector is reserved for the reference category. Additionally, it encodes the impact of each category relative to a chosen reference, which may seem counterintuitive in some cases.</p>
 <p>Effect coding addresses the issue of relative encoding by assigning a different code to the reference category. However, it introduces a dense vector of all –1’s, which increases computational and storage costs. As a result, popular machine learning libraries like Pandas and scikit-learn favor dummy and one-hot encoding over effect coding for practical reasons.</p>
 <p>All three methods face challenges when dealing with categorical variables with a large number of categories, requiring alternative strategies for such cases.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method</strong></p></th>
+<th class="head"><p><strong>Redundancy</strong></p></th>
+<th class="head"><p><strong>Handling Missing Data</strong></p></th>
+<th class="head"><p><strong>Interpretability</strong></p></th>
+<th class="head"><p><strong>Relative Encoding</strong></p></th>
+<th class="head"><p><strong>Practical Use</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>One-hot encoding</strong></p></td>
+<td><p>Redundant (creates extra features)</p></td>
+<td><p>Good (all-zeros vector can represent missing data)</p></td>
+<td><p>Clear, separate representation for each category</p></td>
+<td><p>No relative encoding</p></td>
+<td><p>Widely used (e.g., scikit-learn, Pandas)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Dummy coding</strong></p></td>
+<td><p>Not redundant</p></td>
+<td><p>Struggles (all-zeros reserved for reference category)</p></td>
+<td><p>Unique, interpretable models</p></td>
+<td><p>Encodes relative to a reference category</p></td>
+<td><p>Popular but struggles with missing data</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Effect coding</strong></p></td>
+<td><p>Not redundant, dense vectors (-1’s)</p></td>
+<td><p>Not specifically suited for missing data</p></td>
+<td><p>Somewhat interpretable</p></td>
+<td><p>No, assigns distinct code for reference</p></td>
+<td><p>Less used due to higher computation/storage cost</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 </section>
 <section id="dealing-with-large-categorical-variables">
@@ -2046,12 +2080,12 @@ This results in:</p>
 <p>For each categorical feature <span class="math notranslate nohighlight">\(x\)</span>, feature hashing applies:</p>
 <div class="math notranslate nohighlight">
 \[
-\phi_i(x) = \sum_{h(x)=i} \text{sign}(h'(x))
+\phi_i(x) = \sum_{h(x)=i} \text{sign}(h(x))
 \]</div>
 <p>Where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( h(x) \)</span> is the hash function that maps the input category <span class="math notranslate nohighlight">\( x \)</span> to one of the <span class="math notranslate nohighlight">\( d \)</span> buckets (output features).</p></li>
-<li><p><span class="math notranslate nohighlight">\( \text{sign}(h'(x)) \)</span> assigns either <span class="math notranslate nohighlight">\( +1 \)</span> or <span class="math notranslate nohighlight">\( -1 \)</span> to the hashed feature to maintain parity between positive and negative feature contributions, preventing bias due to collisions (where multiple categories map to the same bucket).</p></li>
+<li><p><span class="math notranslate nohighlight">\( \text{sign}(h(x)) \)</span> assigns either <span class="math notranslate nohighlight">\( +1 \)</span> or <span class="math notranslate nohighlight">\( -1 \)</span> to the hashed feature to maintain parity between positive and negative feature contributions, preventing bias due to collisions (where multiple categories map to the same bucket).</p></li>
 </ul>
 <p>Consider a genomic dataset with thousands of different <strong>genetic markers</strong>. Traditional encoding methods like one-hot encoding would create thousands of binary features for each marker, which is inefficient and computationally expensive. Feature hashing allows us to reduce these markers into a fixed-size feature vector.</p>
 <div class="cell docutils container">
