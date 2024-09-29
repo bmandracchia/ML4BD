@@ -490,12 +490,18 @@ document.write(`
 </div>
 </div>
 <p>Before start working, let’s have a look at the dataset.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dataset</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset BloodMNIST of size 28 (bloodmnist)
     Number of datapoints: 11959
@@ -511,13 +517,19 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">labels</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
 </pre></div>
@@ -556,7 +568,12 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">some_img</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
 
@@ -566,6 +583,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/d1774a7b2002a4a0ec0a017395f6b31ef6ba36e9738b7758f90a1716a9a389da.png" src="../_images/d1774a7b2002a4a0ec0a017395f6b31ef6ba36e9738b7758f90a1716a9a389da.png" />
 </div>
@@ -583,7 +601,12 @@ document.write(`
 </div>
 </div>
 <p>Let’s have a better view:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">image_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]):</span>
@@ -597,6 +620,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/f82178f92823437359958875d3956637b46164dc197f7c1e3136600a014e28e0.png" src="../_images/f82178f92823437359958875d3956637b46164dc197f7c1e3136600a014e28e0.png" />
 </div>
@@ -661,21 +685,33 @@ So, we distinguish between just two classes, neutrophil and not-neutrophil (6 an
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s update the example image</span>
 <span class="n">some_img</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X_train shape: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;y_train shape: </span><span class="si">{</span><span class="n">y_train_binary</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train shape: (11959, 2352)
 y_train shape: (11959, 1)
@@ -683,7 +719,12 @@ y_train shape: (11959, 1)
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDClassifier</span>
 
@@ -692,6 +733,7 @@ y_train shape: (11959, 1)
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
@@ -1117,7 +1159,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p><strong>Stochastic Gradient Descent</strong> (SGD) is a variation of Gradient Descent. Instead of using the entire dataset to compute the gradient at each step, SGD uses a single randomly selected sample. This makes it faster and able to handle large datasets, but the path to the minimum is noisier.</p>
 <p>The algorithm initializes the parameters (<span class="math notranslate nohighlight">\(\theta\)</span>) randomly and then improves them gradually.
 At each step it attempts to decrease the cost function (e.g., the MSE), calculates the gradient of the loss function with respect to <span class="math notranslate nohighlight">\(\theta\)</span>, and updates <span class="math notranslate nohighlight">\(\theta\)</span> by taking a small step in the direction of the negative gradient until the algorithm converges to a minimum.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
@@ -1182,10 +1229,11 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/de5569421bd8d1cd2cf7c0610b4920db76781d88ff76143fca9f0d49e67cce29.png" src="../_images/de5569421bd8d1cd2cf7c0610b4920db76781d88ff76143fca9f0d49e67cce29.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9874, 3.0088)
-Distance from true minimum: 0.0154
+<img alt="../_images/82e08eee625a83c77df05d13b338a00e36bcfe3830fbfad0a09a59e3bce347ed.png" src="../_images/82e08eee625a83c77df05d13b338a00e36bcfe3830fbfad0a09a59e3bce347ed.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0160, 3.0112)
+Distance from true minimum: 0.0195
 </pre></div>
 </div>
 </div>
@@ -1212,7 +1260,12 @@ will have to go through many iterations to converge, which will take a long time
 <p>On the other hand, if the learning rate is too high, you might jump across the valley
 and end up on the other side, possibly even higher up than you were before. This
 might make the algorithm diverge.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -1258,10 +1311,11 @@ might make the algorithm diverge.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/11378e98bf349aacb6916f72784cb5bb295530fe49fb177c4f07be59bf7663b6.png" src="../_images/11378e98bf349aacb6916f72784cb5bb295530fe49fb177c4f07be59bf7663b6.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9587, 2.9537)
-Distance from true minimum: 0.0620
+<img alt="../_images/120ce20e1b272a41224a0484b43154e7f2e4d065d10dd4d44b3278c07053718b.png" src="../_images/120ce20e1b272a41224a0484b43154e7f2e4d065d10dd4d44b3278c07053718b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0363, 3.0130)
+Distance from true minimum: 0.0386
 </pre></div>
 </div>
 </div>
@@ -1269,7 +1323,12 @@ Distance from true minimum: 0.0620
 </section>
 <section id="gd-regression-example">
 <h4>GD regression example<a class="headerlink" href="#gd-regression-example" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -1280,8 +1339,14 @@ Distance from true minimum: 0.0620
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
@@ -1293,6 +1358,7 @@ Distance from true minimum: 0.0620
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/145d3d8e22e1b71e589accf147b90120195040663dc4f104b72d9bc163b80939.png" src="../_images/145d3d8e22e1b71e589accf147b90120195040663dc4f104b72d9bc163b80939.png" />
 </div>
@@ -1325,7 +1391,12 @@ Distance from true minimum: 0.0620
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;b.&quot;</span><span class="p">)</span>
@@ -1342,6 +1413,7 @@ Distance from true minimum: 0.0620
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/9916734a79d1d0ef087891afab7d4423ce120e211316ebef9a98084ca9b76fcf.png" src="../_images/9916734a79d1d0ef087891afab7d4423ce120e211316ebef9a98084ca9b76fcf.png" />
 </div>
@@ -1363,7 +1435,12 @@ Distance from true minimum: 0.0620
 </section>
 <section id="gradient-descent-with-various-learning-rates">
 <h4>Gradient Descent with various learning rates<a class="headerlink" href="#gradient-descent-with-various-learning-rates" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 
@@ -1405,6 +1482,7 @@ Distance from true minimum: 0.0620
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/32d9e80dcbe6dd5d59459f7ed21b7a9d2de62af38cd2facb8bd22ba2537ca638.png" src="../_images/32d9e80dcbe6dd5d59459f7ed21b7a9d2de62af38cd2facb8bd22ba2537ca638.png" />
 </div>
@@ -1425,14 +1503,25 @@ algorithm to settle at the global minimum.
 The function that determines the learning rate at each iteration is called the <strong>learning schedule</strong>.</p>
 <p>If the learning rate is reduced too quickly, you may get stuck in a local minimum, or even end up frozen halfway to the minimum. If the learning rate is reduced too slowly, you may jump around the minimum for a
 long time and end up with a suboptimal solution if you halt training too early.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta_path_sgd</span> <span class="o">=</span> <span class="p">[]</span> 
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">t0</span><span class="p">,</span> <span class="n">t1</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span>  <span class="c1"># learning schedule hyperparameters</span>
@@ -1474,6 +1563,7 @@ long time and end up with a suboptimal solution if you halt training too early.<
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/abc81edd4194112feeb58ec230c1851b17574f8a203f77e4685daa3d16735d81.png" src="../_images/abc81edd4194112feeb58ec230c1851b17574f8a203f77e4685daa3d16735d81.png" />
 </div>
@@ -1503,7 +1593,12 @@ times per epoch while others may not be picked at all.</p>
 <p>The following code runs for maximum 1000 epochs (max_iter=1000) or until the loss drops
 #by less than 1e-3 during one epoch (tol=1e-3), starting with a learning rate of 0.1
 #(eta0=0.1), using the default learning schedule (<span class="math notranslate nohighlight">\(\eta \propto 1/t \)</span>).</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">SGDRegressor</span>
 
@@ -1513,6 +1608,7 @@ times per epoch while others may not be picked at all.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
@@ -1996,12 +2092,18 @@ But it comes at the cost of training the model several times, so it is not alway
 <blockquote>
 <div><p>This demonstrates why accuracy is generally not the preferred performance measure for classifiers, especially when you are dealing with <em>skewed datasets</em> (i.e., when some classes are much more frequent than others).</p>
 </div></blockquote>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">y_train_binary</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Count&#39;&gt;
 </pre></div>
@@ -2233,7 +2335,12 @@ using the <code class="docutils literal notranslate"><span class="pre">precision
 </div>
 </div>
 <p>Finally, we can plot precision and recall as functions of the threshold value.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># extra code – it&#39;s not needed, just formatting</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">precisions</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;b--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Precision&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -2252,13 +2359,19 @@ using the <code class="docutils literal notranslate"><span class="pre">precision
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/b9510c23f444dfad29feb9768450b3b6a53001b51b24135cf242f06d89a4cabb.png" src="../_images/b9510c23f444dfad29feb9768450b3b6a53001b51b24135cf242f06d89a4cabb.png" />
 </div>
 </div>
 <p>Another way to select a good precision/recall tradeoff is to plot precision directly
 against recall.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>  <span class="c1"># extra code – for the curved arrow</span>
 
@@ -2286,6 +2399,7 @@ against recall.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/4ef89d4748faec4bd471cb8ea4a5bda38d81f3ce937950589d841711b99bff46.png" src="../_images/4ef89d4748faec4bd471cb8ea4a5bda38d81f3ce937950589d841711b99bff46.png" />
 </div>
@@ -2348,7 +2462,12 @@ against recall.</p>
 <p>The <strong>receiver operating characteristic</strong> (ROC) curve is another common tool used with
 binary classifiers.</p>
 <p>The ROC curve plots the <strong>true positive rate</strong> (TPR), i.e., <em>recall</em>, against the <strong>false positive rate</strong> (FPR), which is one minus the <strong>true negative rate</strong>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
 
@@ -2356,8 +2475,14 @@ binary classifiers.</p>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">idx_for_threshold_at_90</span> <span class="o">=</span> <span class="p">(</span><span class="n">thresholds</span> <span class="o">&lt;=</span> <span class="n">threshold_for_90_precision</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
 <span class="n">tpr_90</span><span class="p">,</span> <span class="n">fpr_90</span> <span class="o">=</span> <span class="n">tpr</span><span class="p">[</span><span class="n">idx_for_threshold_at_90</span><span class="p">],</span> <span class="n">fpr</span><span class="p">[</span><span class="n">idx_for_threshold_at_90</span><span class="p">]</span>
@@ -2383,6 +2508,7 @@ binary classifiers.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/12f7195819915717b59c5f35514f2799411a4404f5380645bbbea6ddcf9bbf8b.png" src="../_images/12f7195819915717b59c5f35514f2799411a4404f5380645bbbea6ddcf9bbf8b.png" />
 </div>
@@ -2442,13 +2568,19 @@ depending on the algorithm.</p>
 <blockquote>
 <div><p><strong>Warning</strong>: the following cell may take a few minutes to run:</p>
 </div></blockquote>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgd_clf</span> <span class="o">=</span> <span class="n">SGDClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">sgd_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style>#sk-container-id-3 {
   /* Definition of color scheme common for light and dark mode */
@@ -2912,7 +3044,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>Once we have found a promising model, we want to find ways to improve it.</p>
 <p>One way to do this is to analyze the types of errors it makes.</p>
 <p><strong>Warning:</strong> the following cell will take a few minutes to run:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
 
@@ -2923,6 +3060,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/3b898e730406d26ac72b410b44c275af044d84b707c799b66225899fb4efcf4e.png" src="../_images/3b898e730406d26ac72b410b44c275af044d84b707c799b66225899fb4efcf4e.png" />
 </div>
@@ -2930,7 +3068,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>This confusion matrix looks fairly good, since most images are on the main diagonal,
 which means that they were classified correctly.</p>
 <p>Let’s divide each value in the confusion matrix by the number of images in the corresponding class to compare error rates.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># extra code</span>
 <span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span>
@@ -2939,27 +3082,45 @@ which means that they were classified correctly.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/b83be786e1b09f3c3763518ae63af5f5aa69c666381256be3a37883059252f2a.png" src="../_images/b83be786e1b09f3c3763518ae63af5f5aa69c666381256be3a37883059252f2a.png" />
 </div>
 </div>
 <p>Now, to clearly see the kinds of errors the classifier makes, let’s fill the diagonal with zeros.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">!=</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">y_train_pred</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">!=</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># extra code</span>
@@ -2970,6 +3131,7 @@ which means that they were classified correctly.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/b090dd9b2d5a9fac6305dc7c581ccb43d5ec74dc441019064226271a0a01bc74.png" src="../_images/b090dd9b2d5a9fac6305dc7c581ccb43d5ec74dc441019064226271a0a01bc74.png" />
 </div>
@@ -2992,7 +3154,12 @@ OpenCV) to make some patterns stand out more.</p></li>
 <p>Analyzing individual errors can also be a good way to gain insights on what our
 classifier is doing and why it is failing, but it is more difficult and time-consuming.</p>
 <p>Let’s plot examples of 1s and 6s.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cl_a</span><span class="p">,</span> <span class="n">cl_b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span>
 <span class="n">X_aa</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_train_pred</span> <span class="o">==</span> <span class="n">cl_a</span><span class="p">)]</span>
@@ -3002,8 +3169,14 @@ classifier is doing and why it is failing, but it is more difficult and time-con
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">pad</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -3026,6 +3199,7 @@ classifier is doing and why it is failing, but it is more difficult and time-con
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/35a57a8406ee316830a7e4a3c7ffeed55377148ca21fe66400a39e3bc2c870d3.png" src="../_images/35a57a8406ee316830a7e4a3c7ffeed55377148ca21fe66400a39e3bc2c870d3.png" />
 </div>
@@ -3039,7 +3213,12 @@ sums up the weighted pixel intensities to get a score for each class. So, this m
 <p>In some cases we may want our classifier to output multiple classes for each instance.</p>
 <p>For example, if we have trained a classifier to recognize three faces, for each picture we would like it to output multiple binary tags. This is called a <strong>multilabel classification system</strong>.</p>
 <p>Let’s look at a simpler example, a classifier that tell us if a digit is large (<span class="math notranslate nohighlight">\(\ge 7\)</span>) and/or odd. For this example, we are going to use the MNIST dataset.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
 <span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -3050,8 +3229,14 @@ sums up the weighted pixel intensities to get a score for each class. So, this m
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 
@@ -3064,6 +3249,7 @@ sums up the weighted pixel intensities to get a score for each class. So, this m
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><style>#sk-container-id-4 {
   /* Definition of color scheme common for light and dark mode */
@@ -3524,7 +3710,12 @@ as an array of pixel intensities, just like the MNIST images.</p>
 </div></blockquote>
 <p>Let’s start by creating the training and test sets by taking the MNIST images and
 adding noise to their pixel intensities using NumPy’s <code class="docutils literal notranslate"><span class="pre">randint()</span></code> function.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># to make this code example reproducible</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="mi">784</span><span class="p">))</span>
@@ -3536,8 +3727,14 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
@@ -3545,12 +3742,18 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/576c567e84f34dbcb74aac06094e0b8b9fc25a3372a50b3aab2ce7e37ec8996f.png" src="../_images/576c567e84f34dbcb74aac06094e0b8b9fc25a3372a50b3aab2ce7e37ec8996f.png" />
 </div>
 </div>
 <p>Now let’s train the classifier and make it clean this image.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
 <span class="n">knn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_mod</span><span class="p">,</span> <span class="n">y_train_mod</span><span class="p">)</span>
@@ -3558,8 +3761,14 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">131</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">X_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">y_test_mod</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
@@ -3568,6 +3777,7 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/565e2260a3987e2bc7453929773cf2e09950684b508fb5cf50639d4d21fa16b1.png" src="../_images/565e2260a3987e2bc7453929773cf2e09950684b508fb5cf50639d4d21fa16b1.png" />
 </div>
