@@ -456,7 +456,12 @@ document.write(`
 <p>Raw counts that span several orders of magnitude can be problematic for many models. For instance, in a linear model, a single coefficient would need to account for the full range of values, from very small counts to extremely large ones. This can result in poor model performance. Similarly, in unsupervised learning methods like k-means clustering, which relies on Euclidean distance for similarity, large counts in one feature could dominate the similarity calculation, overshadowing the influence of other features and skewing the results.</p>
 <p>One effective solution is to control the scale by quantizing the count values. Quantization groups continuous data into bins, mapping each value to a discrete bin. The bins can be thought of as representing different levels of intensity. By doing this, we eliminate the issues caused by extreme values while preserving the relative importance of the counts.</p>
 <p>To quantize data, we first need to decide how wide each bin should be. The two main approaches are fixed-width binning and adaptive binning, each with its own advantages.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -500,6 +505,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/f875dc569402267fe349c794009277970aa1a1bc1e6f6696bb2e09578f1650df.png" src="../_images/f875dc569402267fe349c794009277970aa1a1bc1e6f6696bb2e09578f1650df.png" />
 </div>
@@ -513,7 +519,12 @@ document.write(`
 <h4>Quantile Binning<a class="headerlink" href="#quantile-binning" title="Link to this heading">#</a></h4>
 <p>To address the issue of uneven data distribution, we can use an adaptive technique: quantile binning. Quantile binning positions bins based on the distribution of the data, ensuring that each bin contains roughly the same number of data points. This prevents empty bins and maintains a balanced representation of the data.</p>
 <p>Quantiles divide the data into equal portions. For example, the median splits the data into two halves, while quartiles divide it into quarters, and deciles divide it into tenths.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define deciles for binning</span>
 <span class="n">deciles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">review_counts</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -542,6 +553,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/a8a7610c0c148605f8e02338c41f5bf7760077c46871f840d9d076e8f036dd33.png" src="../_images/a8a7610c0c148605f8e02338c41f5bf7760077c46871f840d9d076e8f036dd33.png" />
 </div>
@@ -551,7 +563,12 @@ document.write(`
 <section id="log-transformation">
 <h3>Log Transformation<a class="headerlink" href="#log-transformation" title="Link to this heading">#</a></h3>
 <p>Another powerful technique for handling large ranges in counts is the logarithmic transform. The log function compresses the range of large numbers and expands smaller ones. As values grow larger, the rate of increase of their logarithm slows down, making it a useful way to tame extreme values. This can be particularly effective when raw counts span several orders of magnitude, as the log transform creates a more manageable range for the model to work with.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply log transformation (adding 1 to avoid log(0))</span>
 <span class="n">log_transformed_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">review_counts</span><span class="p">)</span>
@@ -582,6 +599,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/61b077002d3a845cac2725d381dbf645caa5fdca63ecd0a2a4c7ad19e06999f4.png" src="../_images/61b077002d3a845cac2725d381dbf645caa5fdca63ecd0a2a4c7ad19e06999f4.png" />
 </div>
@@ -611,7 +629,12 @@ X^{(\lambda)} = \left\{
 </ol>
 <p>The power parameter <span class="math notranslate nohighlight">\(\lambda\)</span> is crucial in determining the transformation’s behavior. It can be estimated using graphical techniques, which help to visualize how the transformation affects the distribution, allwing to choose a <span class="math notranslate nohighlight">\(\lambda\)</span> that minimizes skewness or makes the data more symmetric. Alternatively, it can be estimated more rigorously through the <strong>maximum-likelihood method</strong>, which uses maximum-likelihood estimation to identify the transformation that best fits the data to a normal distribution.</p>
 <p>Power transforms, including the Box-Cox transform, are highly useful when working with skewed data or when it’s necessary to make a variable’s distribution more symmetric and normal-like, which can improve the performance of many statistical models. However, they are not without limitations. For example, the Box-Cox transform only works on strictly positive data, though this can be handled by shifting the data to make all values positive. While simpler power transforms like the log or square root are easy to understand, arbitrary <span class="math notranslate nohighlight">\(\lambda\)</span> values in the Box-Cox transform can be harder to interpret, making the transformed data more challenging to work with. Additionally, excessive use of transformations, especially in complex models, may lead to overfitting, causing the model to fit the transformed data too closely and reducing its ability to generalize to new data.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
 
@@ -647,6 +670,7 @@ X^{(\lambda)} = \left\{
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/32dac7066fb4fc422cf74ba74da58ad7d66a1fef141774f1bd4da9409eb444b0.png" src="../_images/32dac7066fb4fc422cf74ba74da58ad7d66a1fef141774f1bd4da9409eb444b0.png" />
 </div>
@@ -665,7 +689,12 @@ Let <span class="math notranslate nohighlight">\(x\)</span> be an individual fea
 \tilde x  = \frac{x - \min(x)}{\max(x) - \min(x)}
 \]</div>
 <p>This is particularly useful for algorithms like k-nearest neighbors (KNN) and k-means clustering, which rely on distance metrics. However, it’s sensitive to outliers because extreme values can distort the scaling.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -696,6 +725,7 @@ Let <span class="math notranslate nohighlight">\(x\)</span> be an individual fea
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/40f50023ea5dcbc8ee19ee0042a8c2056b2451600d93bc6fc57d34e2ac15d45d.png" src="../_images/40f50023ea5dcbc8ee19ee0042a8c2056b2451600d93bc6fc57d34e2ac15d45d.png" />
 <img alt="../_images/411cd3b09ce0cef784984d2e5ce48deb70ffb5ffa6a3fb8ddf82738f181de2b6.png" src="../_images/411cd3b09ce0cef784984d2e5ce48deb70ffb5ffa6a3fb8ddf82738f181de2b6.png" />
@@ -710,7 +740,12 @@ Let <span class="math notranslate nohighlight">\(x\)</span> be an individual fea
 \tilde x  = \frac{x - \bar x}{\hat \sigma_x}
 \]</div>
 <p>This is useful for models like linear regression, logistic regression, and neural networks, where features are assumed to be normally distributed.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 
@@ -725,6 +760,7 @@ Let <span class="math notranslate nohighlight">\(x\)</span> be an individual fea
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/44717c19bc3eb5b90a18ce77e2b5ac287c2856c626d79bc621e74d1316e2c67c.png" src="../_images/44717c19bc3eb5b90a18ce77e2b5ac287c2856c626d79bc621e74d1316e2c67c.png" />
 </div>
@@ -751,7 +787,12 @@ This measures the length of the vector in coordinate space and it’s defined as
 \]</div>
 <p>This is particularly useful in models like SVM or KNN, where the direction of vectors is more important than their magnitude.
 L2 normalization preserves the relative distances between points and ensures that no individual feature dominates due to its scale.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Normalizer</span>
 
@@ -766,6 +807,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/0a8ea85f9e93861414dbf67a98235a88d783809dd90178a095f4008e235714f9.png" src="../_images/0a8ea85f9e93861414dbf67a98235a88d783809dd90178a095f4008e235714f9.png" />
 </div>
@@ -784,7 +826,12 @@ L2 normalization preserves the relative distances between points and ensures tha
 <li><p>Large distances between classes</p></li>
 <li><p>Small distances within class</p></li>
 </ul>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -832,6 +879,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/bc655bcfb022e057a418f7988887144cc42633e86e413f6bb117a8ef47c2b74f.png" src="../_images/bc655bcfb022e057a418f7988887144cc42633e86e413f6bb117a8ef47c2b74f.png" />
 </div>
@@ -962,7 +1010,12 @@ L2 normalization preserves the relative distances between points and ensures tha
 <section id="setup">
 <h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h3>
 <p>Let’s get all the requirements sorted before we move on to the excercise. Don’t worry too much about the models we’ll be using or how to train them for now.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Globals</span>
 <span class="n">seed</span> <span class="o">=</span> <span class="mi">1017</span>
@@ -984,13 +1037,19 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>To demonstrate the utility of feature selection, we compare predictive power in a model with and without feature selection. So, for every parsimonious model we train let’s compare its performance with that of its couterpart prodigious model (i.e. model that uses all the features).</p>
 </section>
 <section id="loading-the-data">
 <h3>Loading the data<a class="headerlink" href="#loading-the-data" title="Link to this heading">#</a></h3>
 <p>We should have a look at how the features are distributed grouped by the labels. For this we’ll generate a table 1.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the data as a pandas dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;datasets/ch02_data/train.csv&quot;</span><span class="p">)</span>
@@ -1005,6 +1064,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1478,7 +1538,12 @@ L2 normalization preserves the relative distances between points and ensures tha
 <blockquote>
 <div><p>The <strong>corr() method</strong> returns a correlation matrix containing correlation between all the columns of the dataframe. A useful way to visualize the correlations is with a heatmap.</p>
 </div></blockquote>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a correlation matrix for the columns in the dataset</span>
 <span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -1511,12 +1576,18 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/ba3f5af03167f3de0682b1e8f10488ebac8d6a9802bc1247ac45b5841f0a11a8.png" src="../_images/ba3f5af03167f3de0682b1e8f10488ebac8d6a9802bc1247ac45b5841f0a11a8.png" />
 </div>
 </div>
 <p>We can loop through all the columns in the correlation_matrix and keep track of the features with a correlation value &gt; 0.5. This 0.5 cut-off is quite strict and chosen for demonstration purposes. A more reasonable value is 80-90%.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#init an empty set that will contain the names of the correlated features</span>
 <span class="n">correlated_features</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -1532,6 +1603,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1575,7 +1647,12 @@ L2 normalization preserves the relative distances between points and ensures tha
 <blockquote>
 <div><p><strong>Recursive feature elimination (RFE)</strong> is a stepwise feature selection process implemented in sklearn. Recall, the model used for feature selection does not have to be the same as the predictive model. Here we will use a tree based model for RFE.</p>
 </div></blockquote>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price_range&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price_range&#39;</span><span class="p">]</span>
@@ -1598,6 +1675,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1773,7 +1851,12 @@ L2 normalization preserves the relative distances between points and ensures tha
 <h3>Embedded methods<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>These methods perform feature selection as part of the model training process. For example, a decision tree inherently performs feature selection because it selects one feature on which to split the tree at each training step. Another example is the <span class="math notranslate nohighlight">\(L_1\)</span> regularizer, which can be added to the training objective of any linear model. The <span class="math notranslate nohighlight">\(L_1\)</span> regularizer encourages models that use a few features as opposed to a lot of features, so it’s also known as a sparsity constraint on the model.</p>
 <p>Embedded methods are not as powerful as wrapper methods, but they are nowhere near as expensive. Compared to filtering, embedded methods select features that are specific to the model. In this sense, embedded methods strike a balance between computational expense and quality of results.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
 
@@ -1811,6 +1894,7 @@ L2 normalization preserves the relative distances between points and ensures tha
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Score: 0.92
 </pre></div>

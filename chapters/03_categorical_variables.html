@@ -419,7 +419,12 @@ document.write(`
 <p>A naive solution might involve assigning integers to each category:</p>
 <p>For example, in a dataset containing categorical information like “Gender,” “Blood Type,” or “Treatment Type,” it might seem reasonable to assign integer values. In the case of blood types {A, B, AB, O}, you might assign {A=0, B=1, AB=2, O=3}.</p>
 <p>However, this simple integer encoding creates an unintended ordinal relationship between the categories, implying that blood type O is “greater than” blood type A, when no such relationship exists. This can mislead machine learning models, particularly those that rely on distance or linearity, into making inaccurate assumptions about the data.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -434,6 +439,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -491,7 +497,12 @@ document.write(`
 <h3>One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Link to this heading">#</a></h3>
 <p>One-hot encoding solves the problem of artificial ordering by creating binary (0/1) columns for each category. Each column represents a category, and a value of 1 indicates the presence of that category, while a 0 means absence.
 For example, for blood types {A, B, AB, O}, one-hot encoding would create four new binary columns.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-Hot Encoding Example</span>
 <span class="n">df_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_blood</span><span class="p">[</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">],</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">)</span>
@@ -499,6 +510,7 @@ For example, for blood types {A, B, AB, O}, one-hot encoding would create four n
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -573,7 +585,12 @@ Let’s consider that we have data from three hospitals: “General Hospital,”
 y = w_1x_1 + \dots + w_nx_n + b
 \]</div>
 <p>(It is customary to fit an extra constant term called the intercept, so that <code class="docutils literal notranslate"><span class="pre">y</span></code> can be a nonzero value when the <code class="docutils literal notranslate"><span class="pre">x</span></code>’s are zeros.)</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -582,8 +599,14 @@ y = w_1x_1 + \dots + w_nx_n + b
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a sample dataframe with treatment cost data from three hospitals</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -595,6 +618,7 @@ y = w_1x_1 + \dots + w_nx_n + b
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -668,7 +692,12 @@ y = w_1x_1 + \dots + w_nx_n + b
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># One-hot encode the &#39;Hospital&#39; column</span>
 <span class="n">one_hot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Hospital&#39;</span><span class="p">])</span>
@@ -677,6 +706,7 @@ y = w_1x_1 + \dots + w_nx_n + b
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1194,7 +1224,12 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;LinearRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>LinearRegression()</pre></div> </div></div></div></div></div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the result</span>
 <span class="n">hospitals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;City Clinic&#39;</span><span class="p">,</span> <span class="s1">&#39;General&#39;</span><span class="p">,</span> <span class="s1">&#39;Specialized&#39;</span><span class="p">]</span>
@@ -1210,6 +1245,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/292f87591b9ce765e3e788b83eb544d9c346537b0f8dc004d68526d575ae7728.png" src="../_images/292f87591b9ce765e3e788b83eb544d9c346537b0f8dc004d68526d575ae7728.png" />
 </div>
@@ -1248,7 +1284,12 @@ Intercept: 5344.444444444444
 <p>The problem with one-hot encoding is that it allows for k degrees of freedom, while the variable itself needs only k–1.</p>
 <p>Dummy encoding is similar to one-hot encoding, but it drops one of the categories to avoid collinearity. This is particularly useful when using linear models, where collinearity can lead to issues during training. The dropped category is represented by the vector of all zeros and acts as the “baseline” against which other categories are compared. This is known as the <em>reference category</em>.</p>
 <p>Dummy encoding could be used to represent the type of treatment a patient receives (e.g., “No Treatment” is the baseline, and “Treatment A” and “Treatment B” are dummy-encoded).</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dummy Encoding Example</span>
 <span class="n">df_dummy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_blood</span><span class="p">[</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">)</span>
@@ -1256,6 +1297,7 @@ Intercept: 5344.444444444444
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1310,13 +1352,19 @@ Intercept: 5344.444444444444
 </div></div></div>
 </div>
 <p>The outcome of modeling with dummy coding is more interpretable than with one-hot encoding.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Hospital&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dummy_df</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -1833,7 +1881,12 @@ Intercept: 4883.333333333333
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the result</span>
 <span class="n">hospitals</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;General&#39;</span><span class="p">,</span> <span class="s1">&#39;Specialized&#39;</span><span class="p">]</span>
@@ -1849,6 +1902,7 @@ Intercept: 4883.333333333333
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/a029750d575575f5d2d382c0a5622d2e0b9581b0ab1c7da88264c5f10b3868a6.png" src="../_images/a029750d575575f5d2d382c0a5622d2e0b9581b0ab1c7da88264c5f10b3868a6.png" />
 </div>
@@ -1861,24 +1915,36 @@ Intercept: 4883.333333333333
 Thus, by regressing the effect-coded variables, we compare each level of a categorical variable to the overall (unweighted) mean rather than to a reference category.</p>
 <p>This encoding is particularly useful for analyzing the effect of categorical variables in linear models.</p>
 <p>Effect coding can be used in experiments where the goal is to measure the effect of various treatments compared to the average effect across all treatments.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">effect_df</span> <span class="o">=</span> <span class="n">dummy_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">effect_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Hospital_General&#39;</span><span class="p">,</span> <span class="s1">&#39;Hospital_Specialized&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span>
 <span class="n">effect_df</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\biagi\AppData\Local\Temp\ipykernel_92080\4036765120.py:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-1.0&#39; has dtype incompatible with bool, please explicitly cast to a compatible dtype first.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\biagi\AppData\Local\Temp\ipykernel_64188\4036765120.py:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-1.0&#39; has dtype incompatible with bool, please explicitly cast to a compatible dtype first.
   effect_df.loc[3:5, [&#39;Hospital_General&#39;, &#39;Hospital_Specialized&#39;]] = -1.0
-C:\Users\biagi\AppData\Local\Temp\ipykernel_92080\4036765120.py:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-1.0&#39; has dtype incompatible with bool, please explicitly cast to a compatible dtype first.
+C:\Users\biagi\AppData\Local\Temp\ipykernel_64188\4036765120.py:1: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise an error in a future version of pandas. Value &#39;-1.0&#39; has dtype incompatible with bool, please explicitly cast to a compatible dtype first.
   effect_df.loc[3:5, [&#39;Hospital_General&#39;, &#39;Hospital_Specialized&#39;]] = -1.0
 </pre></div>
 </div>
@@ -1986,7 +2052,12 @@ Intercept: 5344.444444444444
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting the result</span>
 <span class="n">hospitals</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;General&#39;</span><span class="p">,</span> <span class="s1">&#39;Specialized&#39;</span><span class="p">]</span>
@@ -2002,6 +2073,7 @@ Intercept: 5344.444444444444
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/cc46fa87d8f857b2a95a96d35be8007d08134a0dcbfa9ca9e878d88f7ad42036.png" src="../_images/cc46fa87d8f857b2a95a96d35be8007d08134a0dcbfa9ca9e878d88f7ad42036.png" />
 </div>
@@ -2092,7 +2164,12 @@ This results in:</p>
 <li><p><span class="math notranslate nohighlight">\( \text{sign}(h(x)) \)</span> assigns either <span class="math notranslate nohighlight">\( +1 \)</span> or <span class="math notranslate nohighlight">\( -1 \)</span> to the hashed feature to maintain parity between positive and negative feature contributions, preventing bias due to collisions (where multiple categories map to the same bucket).</p></li>
 </ul>
 <p>Consider a genomic dataset with thousands of different <strong>genetic markers</strong>. Traditional encoding methods like one-hot encoding would create thousands of binary features for each marker, which is inefficient and computationally expensive. Feature hashing allows us to reduce these markers into a fixed-size feature vector.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">FeatureHasher</span>
 
@@ -2112,6 +2189,7 @@ This results in:</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>
@@ -2181,7 +2259,12 @@ This results in:</p>
 <h3>Bin Counting<a class="headerlink" href="#bin-counting" title="Link to this heading">#</a></h3>
 <p>The concept of bin counting is straightforward yet powerful: instead of using the value of a categorical variable directly as a feature, we calculate the conditional probability of the target variable given that categorical value. This approach converts a large, sparse, binary representation—such as that generated by one-hot encoding—into a compact, dense, real-valued numeric representation. Specifically, bin counting captures the association statistics between the categorical value and the target, assuming all features are independent.</p>
 <p>In practice, bin counting can be particularly useful in medical datasets, where the frequency of certain procedures or diagnoses is significant. For example, when encoding the occurrence of various medical conditions in a hospital’s records, bin counting allows rare diagnoses to be weighted more heavily, reflecting their unique medical significance. This method not only reduces dimensionality but also enhances the model’s ability to handle rare events, such as uncommon diseases, effectively.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Bin Counting for Categorical Variable</span>
 <span class="n">df_blood</span><span class="p">[</span><span class="s1">&#39;Blood_Type_Count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_blood</span><span class="p">[</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df_blood</span><span class="p">[</span><span class="s1">&#39;Blood_Type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
@@ -2189,6 +2272,7 @@ This results in:</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><div>
 <style scoped>

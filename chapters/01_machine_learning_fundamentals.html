@@ -1099,7 +1099,12 @@ lines:</p>
 </div>
 </div>
 <p>Let’s plot the data for a few random countries</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                    <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">)</span>
@@ -1134,6 +1139,7 @@ lines:</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/d7da8a037e0c7128c108e98c7d11449beaa5c06d700f465defa14932b10eff8e.png" src="../_images/d7da8a037e0c7128c108e98c7d11449beaa5c06d700f465defa14932b10eff8e.png" />
 </div>
@@ -1227,7 +1233,12 @@ $<span class="math notranslate nohighlight">\(
 $<span class="math notranslate nohighlight">\(
 \hat y = \mathbf{\theta} \cdot \mathbf{x}
 \)</span>$</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                    <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">)</span>
@@ -1256,6 +1267,7 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/669b3fdf646a7fa101f3da8c729e7acf3c09d67f1a3313b6271250db980f91ce.png" src="../_images/669b3fdf646a7fa101f3da8c729e7acf3c09d67f1a3313b6271250db980f91ce.png" />
 </div>
@@ -1318,7 +1330,12 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                    <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">)</span>
@@ -1333,13 +1350,13 @@ $<span class="math notranslate nohighlight">\(
 
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="n">min_gdp</span><span class="p">,</span> <span class="n">max_gdp</span><span class="p">,</span> <span class="n">min_life_sat</span><span class="p">,</span> <span class="n">max_life_sat</span><span class="p">])</span>
 
-<span class="n">save_fig</span><span class="p">(</span><span class="s1">&#39;best_fit_model_plot&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/115ef247ead14aaf23755a6405819549a8d933a8e9d6637a142cb0697997a619.png" src="../_images/115ef247ead14aaf23755a6405819549a8d933a8e9d6637a142cb0697997a619.png" />
+<img alt="../_images/be50a0dd1f4627b0a528cf0e734d88a340834fe7f40d4b285b95e975d4746bc1.png" src="../_images/be50a0dd1f4627b0a528cf0e734d88a340834fe7f40d4b285b95e975d4746bc1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1368,7 +1385,12 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                    <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">)</span>
@@ -1393,6 +1415,7 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/4d36a4e702796a461cb23f725df5a9bf7bb9560f0673c5630dabdb0fa5714104.png" src="../_images/4d36a4e702796a461cb23f725df5a9bf7bb9560f0673c5630dabdb0fa5714104.png" />
 </div>
@@ -1512,7 +1535,12 @@ new cases you want to generalize to.</p>
 </div>
 <p>For example, the set of countries we used earlier for training the linear model was not
 perfectly representative; a few countries were missing.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
                         <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1544,6 +1572,7 @@ perfectly representative; a few countries were missing.</p>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/d07ab930f146558ef0e4f554f1ca5670a72027d430810478bdb026e17e6ca25b.png" src="../_images/d07ab930f146558ef0e4f554f1ca5670a72027d430810478bdb026e17e6ca25b.png" />
 </div>
@@ -1581,7 +1610,12 @@ we saw earlier, dimensionality reduction algorithms can help).</p></li>
 <section id="overfitting-the-training-data">
 <h3>Overfitting the Training Data<a class="headerlink" href="#overfitting-the-training-data" title="Link to this heading">#</a></h3>
 <p>Overfitting happens when the model is too complex relative to the amount and noisiness of the training data.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">pipeline</span>
@@ -1608,6 +1642,7 @@ we saw earlier, dimensionality reduction algorithms can help).</p></li>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/8b2f8a20b5d03e9b3fd381004105cc337ddb113d2e3dac3ed497bfcdd0c94e93.png" src="../_images/8b2f8a20b5d03e9b3fd381004105cc337ddb113d2e3dac3ed497bfcdd0c94e93.png" />
 </div>
@@ -1741,7 +1776,12 @@ Name: Life satisfaction, dtype: float64
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">missing_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">gdppc_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifesat_col</span><span class="p">,</span>
@@ -1767,6 +1807,7 @@ Name: Life satisfaction, dtype: float64
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/d384bcd076d7f434e236996dbcd0b5ed53a563b846462955cafd7e9c081e1725.png" src="../_images/d384bcd076d7f434e236996dbcd0b5ed53a563b846462955cafd7e9c081e1725.png" />
 </div>
