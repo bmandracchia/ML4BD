@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/04_classifiers';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Decision Trees" href="05_decision_trees.html" />
     <link rel="prev" title="Categorical Variables" href="03_categorical_variables.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,6 +185,10 @@
 <li class="toctree-l1"><a class="reference internal" href="02_basic_feature_engineering.html">Basic Feature Engineering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_categorical_variables.html">Categorical Variables</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_decision_trees.html">Decision Trees</a></li>
+
+
+
 </ul>
 
     </div>
@@ -428,7 +433,12 @@ document.write(`
 <hr class="docutils" />
 <p>Classification is the task of predicting categorical outcomes/labels</p>
 <p>Categorical variables can be binary, multinominal, or ordinal</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -445,6 +455,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="medmnist">
 <h2>MedMNIST<a class="headerlink" href="#medmnist" title="Link to this heading">#</a></h2>
@@ -1172,9 +1183,9 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e5c9a3f00f02fc892ef5685ec3285b53eaf0291ddd8e61f33cee441946848919.png" src="../_images/e5c9a3f00f02fc892ef5685ec3285b53eaf0291ddd8e61f33cee441946848919.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0200, 3.0022)
-Distance from true minimum: 0.0201
+<img alt="../_images/de5569421bd8d1cd2cf7c0610b4920db76781d88ff76143fca9f0d49e67cce29.png" src="../_images/de5569421bd8d1cd2cf7c0610b4920db76781d88ff76143fca9f0d49e67cce29.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9874, 3.0088)
+Distance from true minimum: 0.0154
 </pre></div>
 </div>
 </div>
@@ -1248,9 +1259,9 @@ might make the algorithm diverge.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bdecae2d63a7fcdd8448f29f84afedc2132c0ef42b6a6eb7b76c83be494286bf.png" src="../_images/bdecae2d63a7fcdd8448f29f84afedc2132c0ef42b6a6eb7b76c83be494286bf.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0528, 3.0190)
-Distance from true minimum: 0.0561
+<img alt="../_images/11378e98bf349aacb6916f72784cb5bb295530fe49fb177c4f07be59bf7663b6.png" src="../_images/11378e98bf349aacb6916f72784cb5bb295530fe49fb177c4f07be59bf7663b6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9587, 2.9537)
+Distance from true minimum: 0.0620
 </pre></div>
 </div>
 </div>
@@ -3602,6 +3613,15 @@ adding noise to their pixel intensities using NumPy’s <code class="docutils li
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Categorical Variables</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="05_decision_trees.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Decision Trees</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
