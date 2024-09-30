@@ -189,7 +189,6 @@
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Dimensionality Reduction: PCA</a></li>
-
 </ul>
 
     </div>
@@ -385,7 +384,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dimensionality Reduction: PCA</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-approaches-for-dimensionality-reduction">Main Approaches for Dimensionality Reduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection">Projection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning">Manifold Learning</a></li>
@@ -395,15 +393,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preserving-the-variance">Preserving the Variance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components">Principal Components</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition">Singular Value Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecting-down-to-k-dimensions">Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-implementation-summary">PCA Implementation Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikit-learn">Using Scikit-Learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-principal-components">Selecting principal components</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-k-based-on-accounted-variance">Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projecting-down-to-k-dimensions">Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-implementation-summary">PCA Implementation Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikit-learn">Using Scikit-Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-principal-components">Selecting principal components</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-k-based-on-accounted-variance">Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-mnist-dataset">Code example: MNIST dataset</a><ul class="nav section-nav flex-column">
@@ -414,9 +410,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -933,10 +926,8 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 </section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="projecting-down-to-k-dimensions">
-<h1>Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions<a class="headerlink" href="#projecting-down-to-k-dimensions" title="Link to this heading">#</a></h1>
+<section id="projecting-down-to-k-dimensions">
+<h3>Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions<a class="headerlink" href="#projecting-down-to-k-dimensions" title="Link to this heading">#</a></h3>
 <p>Once you have identified all the principal components, you can reduce the dimensionality of the dataset down to <span class="math notranslate nohighlight">\(k\)</span> dimensions by projecting it onto the hyperplane defined by the first <span class="math notranslate nohighlight">\(k\)</span> principal components.
 Selecting this hyperplane ensures that the projection will preserve as much variance as possible.</p>
 <p>To project the training set onto the hyperplane, you can simply compute the matrix
@@ -954,8 +945,9 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </div>
 </div>
+</section>
 <section id="pca-implementation-summary">
-<h2>PCA Implementation Summary<a class="headerlink" href="#pca-implementation-summary" title="Link to this heading">#</a></h2>
+<h3>PCA Implementation Summary<a class="headerlink" href="#pca-implementation-summary" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Step</p></th>
@@ -980,7 +972,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </section>
 <section id="using-scikit-learn">
-<h2>Using Scikit-Learn<a class="headerlink" href="#using-scikit-learn" title="Link to this heading">#</a></h2>
+<h3>Using Scikit-Learn<a class="headerlink" href="#using-scikit-learn" title="Link to this heading">#</a></h3>
 <p>With Scikit-Learn, PCA is really trivial. It even takes care of mean centering for you:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1001,7 +993,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </section>
 <section id="selecting-principal-components">
-<h2>Selecting principal components<a class="headerlink" href="#selecting-principal-components" title="Link to this heading">#</a></h2>
+<h3>Selecting principal components<a class="headerlink" href="#selecting-principal-components" title="Link to this heading">#</a></h3>
 <p>When using PCA for dimensionality reduction, one must address the question of how many principal components (<span class="math notranslate nohighlight">\(k\)</span>) to use. Like all hyperparameters, this number can be tuned based on the quality of the resulting model. But there are also heuristics that do not involve expensive computational methods.</p>
 <p>One possibility is to pick <span class="math notranslate nohighlight">\(k\)</span> to account for a desired proportion of total variance. (This option is available in the scikit-learn package PCA.) The variance of the projection onto the <em>k</em>th component (also termed <strong>explained variance ratio</strong>) is:</p>
 <div class="math notranslate nohighlight">
@@ -1010,7 +1002,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 \]</div>
 <p>which is the square of the <em>k</em>th-largest singular value of <span class="math notranslate nohighlight">\(X\)</span></p>
 <section id="selecting-k-based-on-accounted-variance">
-<h3>Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance<a class="headerlink" href="#selecting-k-based-on-accounted-variance" title="Link to this heading">#</a></h3>
+<h4>Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance<a class="headerlink" href="#selecting-k-based-on-accounted-variance" title="Link to this heading">#</a></h4>
 <p>The ordered list of singular values of a matrix is called its spectrum. Thus, to determine how many components to use, one can perform a simple spectral analysis of the data matrix and pick the threshold that retains enough variance.</p>
 <blockquote>
 <div><p>So, to retain enough components to cover 80% of the total variance in the data, pick <span class="math notranslate nohighlight">\(k\)</span> such that:</p>
@@ -1044,6 +1036,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="code-example-mnist-dataset">
@@ -1419,7 +1412,6 @@ Compression Ratio: 5.090909090909091
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dimensionality Reduction: PCA</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-approaches-for-dimensionality-reduction">Main Approaches for Dimensionality Reduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection">Projection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning">Manifold Learning</a></li>
@@ -1429,15 +1421,13 @@ Compression Ratio: 5.090909090909091
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preserving-the-variance">Preserving the Variance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components">Principal Components</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition">Singular Value Decomposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projecting-down-to-k-dimensions">Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-implementation-summary">PCA Implementation Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikit-learn">Using Scikit-Learn</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-principal-components">Selecting principal components</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-k-based-on-accounted-variance">Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projecting-down-to-k-dimensions">Projecting Down to <span class="math notranslate nohighlight">\(k\)</span> Dimensions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-implementation-summary">PCA Implementation Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scikit-learn">Using Scikit-Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-principal-components">Selecting principal components</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-k-based-on-accounted-variance">Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example-mnist-dataset">Code example: MNIST dataset</a><ul class="nav section-nav flex-column">
@@ -1448,9 +1438,6 @@ Compression Ratio: 5.090909090909091
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
