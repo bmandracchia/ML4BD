@@ -11,6 +11,6 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 # **Feature Engineering**
 
-## The Machine Learning Fundamentals
+## Dimensionality Reduction
 
 ---
