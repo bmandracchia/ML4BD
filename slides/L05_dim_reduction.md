@@ -91,3 +91,74 @@ However, this assumption does not always hold.
 In short, if you reduce the dimensionality of your training set before training a model, it will usually speed up training, but it may not always lead to a better or simpler solution; it all depends on the dataset.
 
 ![bg left:40% 95%](image-65.png)
+
+---
+
+## PCA
+
+PCA is by far the most popular dimensionality reduction algorithm and focuses on the notion of linear dependency. 
+
+Linearly dependent features are a waste of space and computation power because the information could have been encoded in
+much fewer features.
+
+The key idea here is to replace redundant features with a few new features that adequately summarize information contained in the original feature space. 
+
+---
+
+### Preserving the Variance
+
+One way to mathematically define “adequately summarize information” is to say that before you can project the training set onto a lower-dimensional hyperplane, you first need to choose the right hyperplane, i.e., the one that will most likely lose less information.
+
+To do this, we can maximize the average distance between pairs of points, or equivalently, the average distance between each point and its mean, which is the variance. 
+
+---
+
+### Preserving the Variance
+
+![](image-66.png)
+
+---
+
+### Principal Components
+
+PCA identifies the axis that accounts for the largest amount of variance in the training set. It also finds a second axis, orthogonal to the first one, that accounts for the largest amount of remaining variance. 
+
+*The unit vector that defines the *i*th axis is called the $i$-th principal component (PC).*
+
+
+---
+
+### Singular Value Decomposition
+
+SVD is a standard matrix factorization technique that can decompose the training set matrix $X$ into the matrix multiplication of three matrices $U$, $\Sigma$, and $V^T$. where $V$ contains all the principal components that we are looking for:
+ $$ V = \Bigg( c_1 \; c_2 \; \dots \; c_n \Bigg) $$
+
+$U$ and $V$ are orthogonal matrices (i.e., $U^TU = I$ and $V^TV = I$). $\Sigma$ is a diagonal matrix containing the singular values of $X$, which can be positive, zero, or negative. 
+
+---
+### Singular Value Decomposition
+
+In principle, the SVD factorization algorithm returns three matrices, $U$, $\Sigma$ and $V$, where $U$ is an $m\times m$ matrix, $\Sigma$ is an $m\times n$ matrix, and $V$ is an $n\times n$ matrix. 
+
+However, the `svd()` function returns $U$, $s$ and $V^T$ instead. $s$ is the vector containing all the values on the main diagonal of the top $n$ rows of $\Sigma$. 
+
+---
+# Projecting Down to $k$ Dimensions
+
+Once you have identified all the principal components, you can reduce the dimensionality of the dataset down to $k$ dimensions by projecting it onto the hyperplane defined by the first $k$ principal components. 
+
+Selecting this hyperplane ensures that the projection will preserve as much variance as possible.
+
+---
+# Projecting Down to $k$ Dimensions
+
+To project the training set onto the hyperplane, you can simply compute the matrix multiplication of the training set matrix $X$ by the matrix $V_k$, defined as the matrix containing the first $k$ principal components (i.e., the matrix composed of the first $k$ columns of V)
+
+$$
+Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
+$$
+
+---
+
+
+
