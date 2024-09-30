@@ -902,11 +902,12 @@ set. It also finds a second axis, orthogonal to the first one, that accounts for
 The easiest way to implement PCA is by taking the <strong>Singular Value Decomposition</strong> (SVD) of the centered data matrix.</p>
 <blockquote>
 <div><p>SVD is a standard matrix factorization technique that can decompose the training set matrix <span class="math notranslate nohighlight">\(X\)</span> into the matrix multiplication of three matrices <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(\Sigma\)</span>, and <span class="math notranslate nohighlight">\(V^T\)</span>. where <span class="math notranslate nohighlight">\(V\)</span> contains all the principal components that we are looking for:
-$<span class="math notranslate nohighlight">\( V = \Bigg( c_1 \; c_2 \; \dots \; c_n \Bigg) \)</span>$</p>
+$<span class="math notranslate nohighlight">\( 
+   V = \Bigg( c_1 \; c_2 \; \dots \; c_n \Bigg) 
+\)</span>$</p>
 <p><span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are orthogonal matrices (i.e., <span class="math notranslate nohighlight">\(U^TU = I\)</span> and <span class="math notranslate nohighlight">\(V^TV = I\)</span>). <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix containing the singular values of <span class="math notranslate nohighlight">\(X\)</span>, which can be positive, zero, or negative.</p>
 </div></blockquote>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="Singular-Value-Decomposition.svg.png" src="chapters/attachment:Singular-Value-Decomposition.svg.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -966,16 +967,16 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>1. Center the Data Matrix</strong></p></td>
-<td><p>Center the data matrix <span class="math notranslate nohighlight">\( C \)</span> by subtracting the mean:  $<span class="math notranslate nohighlight">\( C = X - \mathbf{1}\mu^T \)</span><span class="math notranslate nohighlight">\( where \)</span> \mathbf{1} <span class="math notranslate nohighlight">\( is a column vector of ones and \)</span> \mu <span class="math notranslate nohighlight">\( is the mean vector of the rows of \)</span> X $.</p></td>
+<td><p>Center the data matrix <span class="math notranslate nohighlight">\( C \)</span> by subtracting the mean:  <span class="math notranslate nohighlight">\( C = X - \mathbf{1}\mu^T \)</span>, where <span class="math notranslate nohighlight">\( \mathbf{1} \)</span> is a column vector of ones and <span class="math notranslate nohighlight">\( \mu \)</span> is the mean vector of the rows of <span class="math notranslate nohighlight">\( X \)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>2. Compute the SVD</strong></p></td>
-<td><p>Perform Singular Value Decomposition (SVD) on the centered data matrix <span class="math notranslate nohighlight">\( C \)</span>: $<span class="math notranslate nohighlight">\( C = U\Sigma V^T \)</span>$</p></td>
+<td><p>Perform Singular Value Decomposition (SVD) on the centered data matrix <span class="math notranslate nohighlight">\( C \)</span>: <span class="math notranslate nohighlight">\( C = U\Sigma V^T \)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><strong>3. Find Principal Components</strong></p></td>
 <td><p>The first <span class="math notranslate nohighlight">\( k \)</span> principal components are the first <span class="math notranslate nohighlight">\( k \)</span> columns of <span class="math notranslate nohighlight">\( V \)</span>, corresponding to the <span class="math notranslate nohighlight">\( k \)</span> largest singular values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>4. Transform the Data</strong></p></td>
-<td><p>The transformed data is given by the first <span class="math notranslate nohighlight">\( k \)</span> columns of <span class="math notranslate nohighlight">\( U \)</span>. <br> (For whitening, scale the vectors by the inverse of the singular values, ensuring they are nonzero.)</p></td>
+<td><p>The transformed data is given by the first <span class="math notranslate nohighlight">\( k \)</span> columns of <span class="math notranslate nohighlight">\( U \)</span>. (For whitening, scale the vectors by the inverse of the singular values, ensuring they are nonzero.)</p></td>
 </tr>
 </tbody>
 </table>
