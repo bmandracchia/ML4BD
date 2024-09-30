@@ -18,3 +18,4 @@ parts:
   - file: chapters/03_categorical_variables
   - file: chapters/04_classifiers
   - file: chapters/05_decision_trees
+  - file: chapters/06_dimensionality_reduction
