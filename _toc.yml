@@ -19,3 +19,4 @@ parts:
   - file: chapters/04_classifiers
   - file: chapters/05_decision_trees
   - file: chapters/06_dimensionality_reduction
+  - file: chapters/07_kmeans
