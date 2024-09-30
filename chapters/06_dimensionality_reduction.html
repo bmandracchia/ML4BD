@@ -966,10 +966,10 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>1. Center the Data Matrix</strong></p></td>
-<td><p>Center the data matrix <span class="math notranslate nohighlight">\( C \)</span> by subtracting the mean:  <br> $<span class="math notranslate nohighlight">\( C = X - \mathbf{1}\mu^T \)</span><span class="math notranslate nohighlight">\( &lt;br&gt; where \)</span> \mathbf{1} <span class="math notranslate nohighlight">\( is a column vector of ones and \)</span> \mu <span class="math notranslate nohighlight">\( is the mean vector of the rows of \)</span> X $.</p></td>
+<td><p>Center the data matrix <span class="math notranslate nohighlight">\( C \)</span> by subtracting the mean:  $<span class="math notranslate nohighlight">\( C = X - \mathbf{1}\mu^T \)</span><span class="math notranslate nohighlight">\( where \)</span> \mathbf{1} <span class="math notranslate nohighlight">\( is a column vector of ones and \)</span> \mu <span class="math notranslate nohighlight">\( is the mean vector of the rows of \)</span> X $.</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>2. Compute the SVD</strong></p></td>
-<td><p>Perform Singular Value Decomposition (SVD) on the centered data matrix <span class="math notranslate nohighlight">\( C \)</span>: <br> $<span class="math notranslate nohighlight">\( C = U\Sigma V^T \)</span>$</p></td>
+<td><p>Perform Singular Value Decomposition (SVD) on the centered data matrix <span class="math notranslate nohighlight">\( C \)</span>: $<span class="math notranslate nohighlight">\( C = U\Sigma V^T \)</span>$</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>3. Find Principal Components</strong></p></td>
 <td><p>The first <span class="math notranslate nohighlight">\( k \)</span> principal components are the first <span class="math notranslate nohighlight">\( k \)</span> columns of <span class="math notranslate nohighlight">\( V \)</span>, corresponding to the <span class="math notranslate nohighlight">\( k \)</span> largest singular values.</p></td>
@@ -1005,11 +1005,12 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 <section id="selecting-principal-components">
 <h2>Selecting principal components<a class="headerlink" href="#selecting-principal-components" title="Link to this heading">#</a></h2>
 <p>When using PCA for dimensionality reduction, one must address the question of how many principal components (<span class="math notranslate nohighlight">\(k\)</span>) to use. Like all hyperparameters, this number can be tuned based on the quality of the resulting model. But there are also heuristics that do not involve expensive computational methods.</p>
-<p>One possibility is to pick <span class="math notranslate nohighlight">\(k\)</span> to account for a desired proportion of total variance. (This option is available in the scikit-learn package PCA.) The variance of the projection onto the <em>k</em>th component (also termed <strong>explained variance ratio</strong>) is:
-$<span class="math notranslate nohighlight">\(
-|| X\mathbf{v_k} ||^2 = ||\mathbf{u_k}\sigma_k||^2 = \sigma_k^2
-\)</span><span class="math notranslate nohighlight">\(
-which is the square of the *k*th-largest singular value of \)</span>X$</p>
+<p>One possibility is to pick <span class="math notranslate nohighlight">\(k\)</span> to account for a desired proportion of total variance. (This option is available in the scikit-learn package PCA.) The variance of the projection onto the <em>k</em>th component (also termed <strong>explained variance ratio</strong>) is:</p>
+<div class="math notranslate nohighlight">
+\[ 
+    || X\mathbf{v_k} ||^2 = ||\mathbf{u_k}\sigma_k||^2 = \sigma_k^2 
+\]</div>
+<p>which is the square of the <em>k</em>th-largest singular value of <span class="math notranslate nohighlight">\(X\)</span></p>
 <section id="selecting-k-based-on-accounted-variance">
 <h3>Selecting <span class="math notranslate nohighlight">\(k\)</span> based on accounted variance<a class="headerlink" href="#selecting-k-based-on-accounted-variance" title="Link to this heading">#</a></h3>
 <p>The ordered list of singular values of a matrix is called its spectrum. Thus, to determine how many components to use, one can perform a simple spectral analysis of the data matrix and pick the threshold that retains enough variance.</p>
@@ -1146,10 +1147,6 @@ which is the square of the *k*th-largest singular value of \)</span>X$</p>
     <span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
                       <span class="n">marker</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">s</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
-<span class="c1"># Add color bar to show the label mapping</span>
-<span class="c1"># cbar = plt.colorbar(scatter, ax=ax, pad=0.1)</span>
-<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-
 <span class="c1"># Set axis labels with adjusted font size</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
@@ -1174,21 +1171,7 @@ which is the square of the *k*th-largest singular value of \)</span>X$</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">15</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">pca_images</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>                       <span class="n">marker</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$</span><span class="si">{}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">s</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># Add color bar to show the label mapping</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># cbar = plt.colorbar(scatter, ax=ax, pad=0.1)</span>
-<span class="ne">---&gt; </span><span class="mi">15</span> <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;Labels&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1"># Set axis labels with adjusted font size</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;cbar&#39; is not defined
-</pre></div>
-</div>
-<img alt="../_images/7bd96905e804edc5652347298c62fae4252fbdf857dfe8abbd1dfb426c149c8b.png" src="../_images/7bd96905e804edc5652347298c62fae4252fbdf857dfe8abbd1dfb426c149c8b.png" />
+<img alt="../_images/160236f603cec1530a30709169688a0b20c3dcc84061492c21b7cb7cb7673a66.png" src="../_images/160236f603cec1530a30709169688a0b20c3dcc84061492c21b7cb7cb7673a66.png" />
 </div>
 </div>
 </section>
