@@ -930,7 +930,7 @@ The easiest way to implement PCA is by taking the <strong>Singular Value Decompo
 Selecting this hyperplane ensures that the projection will preserve as much variance as possible.</p>
 <p>To project the training set onto the hyperplane, you can simply compute the matrix
 multiplication of the training set matrix <span class="math notranslate nohighlight">\(X\)</span> by the matrix <span class="math notranslate nohighlight">\(V_k\)</span>, defined as the matrix
-containing the first <span class="math notranslate nohighlight">\(k\)</span> principal components (i.e., the matrix composed of the first <span class="math notranslate nohighlight">\(k\)</span> columns of V)</p>
+containing the first <span class="math notranslate nohighlight">\(k\)</span> principal components (i.e., the matrix composed of the first <span class="math notranslate nohighlight">\(k\)</span> columns of V):</p>
 <div class="math notranslate nohighlight">
 \[
 Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
