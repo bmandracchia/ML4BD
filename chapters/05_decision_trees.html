@@ -186,11 +186,7 @@
 <li class="toctree-l1"><a class="reference internal" href="03_categorical_variables.html">Categorical Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_classifiers.html">Classification</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Decision Trees</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="06_dimensionality_reduction.html">Dimensionality Reduction: PCA</a></li>
-
 </ul>
 
     </div>
@@ -386,29 +382,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Trees</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-visualizing-a-decision-tree">Training and Visualizing a Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-decision-boundaries">Visualizing Decision Boundaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretation-white-box-versus-black-box">Model Interpretation: White Box Versus Black Box</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-decision-boundaries">Visualizing Decision Boundaries</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretation-white-box-versus-black-box">Model Interpretation: White Box Versus Black Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-tree-cart-algorithm">Classification And Regression Tree (CART) algorithm</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-tree-cart-algorithm">Classification And Regression Tree (CART) algorithm</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-class-probabilities">Estimating Class Probabilities</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization-hyperparameters">Regularization Hyperparameters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-class-probabilities">Estimating Class Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization-hyperparameters">Regularization Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instability">Instability</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-to-axis-orientation">Sensitivity to axis orientation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-have-high-variance">Decision Trees Have High Variance</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -546,9 +536,8 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="making-predictions">
-<h1>Making Predictions<a class="headerlink" href="#making-predictions" title="Link to this heading">#</a></h1>
+<section id="making-predictions">
+<h2>Making Predictions<a class="headerlink" href="#making-predictions" title="Link to this heading">#</a></h2>
 <p>Now, let’s train a Decision Tree with a depth of 1 and visualize the decision-making process.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1011,7 +1000,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5949a1ec717822e688aed3d97943d5f2b6383c47d824cdd3adcb019fcf77f4c9.svg" src="../_images/5949a1ec717822e688aed3d97943d5f2b6383c47d824cdd3adcb019fcf77f4c9.svg" />
+<img alt="../_images/72c8894feea82171b56742df63001d66889f328d444fdaac1869d609acb2dd0d.svg" src="../_images/72c8894feea82171b56742df63001d66889f328d444fdaac1869d609acb2dd0d.svg" />
 </div>
 </div>
 <p>Each node in the decision tree has several important attributes. The <strong>samples</strong> attribute shows the number of training instances associated with the node. For example, at depth 1 (right), 52 instances have age less than 41.5 years.</p>
@@ -1022,7 +1011,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 \[ G_i = 1 - \sum_{k=1}^{n} p_{i,k}^2 \]</div>
 <p>where <span class="math notranslate nohighlight">\( p_{i,k} \)</span> is the proportion of class <span class="math notranslate nohighlight">\( k \)</span> instances within the <span class="math notranslate nohighlight">\( i^{th} \)</span> node.</p>
 <section id="visualizing-decision-boundaries">
-<h2>Visualizing Decision Boundaries<a class="headerlink" href="#visualizing-decision-boundaries" title="Link to this heading">#</a></h2>
+<h3>Visualizing Decision Boundaries<a class="headerlink" href="#visualizing-decision-boundaries" title="Link to this heading">#</a></h3>
 <p>If we plot the Decision Tree’s decision boundaries, we can see how the model makes decisions based on patient sodium-potassium ratio and age.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1530,7 +1519,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8d90d55ed55764da3bb5b5ec2d5e2daacb6e2d7d0d5a256367176d41a845ddef.svg" src="../_images/8d90d55ed55764da3bb5b5ec2d5e2daacb6e2d7d0d5a256367176d41a845ddef.svg" />
+<img alt="../_images/9a8fff20db3876f3ca5593d143048945f6fcb1ee771c384aa01d5d3f97a22e94.svg" src="../_images/9a8fff20db3876f3ca5593d143048945f6fcb1ee771c384aa01d5d3f97a22e94.svg" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1564,7 +1553,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <section id="model-interpretation-white-box-versus-black-box">
-<h3>Model Interpretation: White Box Versus Black Box<a class="headerlink" href="#model-interpretation-white-box-versus-black-box" title="Link to this heading">#</a></h3>
+<h4>Model Interpretation: White Box Versus Black Box<a class="headerlink" href="#model-interpretation-white-box-versus-black-box" title="Link to this heading">#</a></h4>
 <p>As you can see Decision Trees are fairly intuitive and their decisions are easy to interpret.
 Such models are often called white box models. In contrast, as we will see, neural networks are generally considered black box models. They
 make great predictions, and you can easily check the calculations that they performed
@@ -1573,7 +1562,7 @@ why the predictions were made.</p>
 </section>
 </section>
 <section id="classification-and-regression-tree-cart-algorithm">
-<h2>Classification And Regression Tree (CART) algorithm<a class="headerlink" href="#classification-and-regression-tree-cart-algorithm" title="Link to this heading">#</a></h2>
+<h3>Classification And Regression Tree (CART) algorithm<a class="headerlink" href="#classification-and-regression-tree-cart-algorithm" title="Link to this heading">#</a></h3>
 <p>Scikit-Learn uses the <strong>CART</strong> algorithm, which produces only binary
 trees: nonleaf nodes always have two children (i.e., questions only
 have yes/no answers).</p>
@@ -1595,8 +1584,8 @@ with large training sets.</p>
 For small training sets (less than a few thousand instances), Scikit-Learn can speed up training by presorting the data (set presort=True), but this slows down training considerably for larger training sets.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="estimating-class-probabilities">
-<h1>Estimating Class Probabilities<a class="headerlink" href="#estimating-class-probabilities" title="Link to this heading">#</a></h1>
+<section id="estimating-class-probabilities">
+<h2>Estimating Class Probabilities<a class="headerlink" href="#estimating-class-probabilities" title="Link to this heading">#</a></h2>
 <p>A Decision Tree can also estimate the probability that an instance belongs to a particular
 class <span class="math notranslate nohighlight">\(k\)</span>: first it traverses the tree to find the leaf node for this instance, and then it
 returns the ratio of training instances of class <span class="math notranslate nohighlight">\(k\)</span> in this node.</p>
@@ -1637,12 +1626,12 @@ returns the ratio of training instances of class <span class="math notranslate n
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/2f92938a25984566cb5dcddb7c806446e767b30db3421a5bdd66666ff868b6d9.svg" src="../_images/2f92938a25984566cb5dcddb7c806446e767b30db3421a5bdd66666ff868b6d9.svg" />
+<img alt="../_images/206c30da3210f95f1dedd5b2d4c2061944e8b88d49bfddaf4f468df7859eee64.svg" src="../_images/206c30da3210f95f1dedd5b2d4c2061944e8b88d49bfddaf4f468df7859eee64.svg" />
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="regularization-hyperparameters">
-<h1>Regularization Hyperparameters<a class="headerlink" href="#regularization-hyperparameters" title="Link to this heading">#</a></h1>
+<section id="regularization-hyperparameters">
+<h2>Regularization Hyperparameters<a class="headerlink" href="#regularization-hyperparameters" title="Link to this heading">#</a></h2>
 <p>Decision Trees make very few assumptions about the training data (as opposed to linear
 models, which obviously assume that the data is linear, for example).</p>
 <p>If left unconstrained, the tree structure will adapt itself to the training data, fitting it very
@@ -2155,6 +2144,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 </div>
+</section>
 <section id="instability">
 <h2>Instability<a class="headerlink" href="#instability" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Decision</span> <span class="pre">Trees</span></code> are simple to understand and interpret, easy to use, versatile, and powerful.</p>
@@ -2283,29 +2273,23 @@ Although it fits the training set perfectly, it is very likely that the model on
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Decision Trees</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-visualizing-a-decision-tree">Training and Visualizing a Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-decision-boundaries">Visualizing Decision Boundaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretation-white-box-versus-black-box">Model Interpretation: White Box Versus Black Box</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making Predictions</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-decision-boundaries">Visualizing Decision Boundaries</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretation-white-box-versus-black-box">Model Interpretation: White Box Versus Black Box</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-tree-cart-algorithm">Classification And Regression Tree (CART) algorithm</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-and-regression-tree-cart-algorithm">Classification And Regression Tree (CART) algorithm</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-class-probabilities">Estimating Class Probabilities</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization-hyperparameters">Regularization Hyperparameters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-class-probabilities">Estimating Class Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularization-hyperparameters">Regularization Hyperparameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instability">Instability</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-to-axis-orientation">Sensitivity to axis orientation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-have-high-variance">Decision Trees Have High Variance</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
