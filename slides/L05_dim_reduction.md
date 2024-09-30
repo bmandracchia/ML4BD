@@ -115,7 +115,7 @@ To do this, we can maximize the average distance between pairs of points, or equ
 
 ### Preserving the Variance
 
-![](image-66.png)
+![bg 60%](image-67.png)
 
 ---
 
@@ -160,5 +160,88 @@ $$
 
 ---
 
+### PCA Implementation Summary 
+
+---
+
+### Using Scikit-Learn
+
+With Scikit-Learn, PCA is really trivial:
+
+```python
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+X2D = pca.fit_transform(X)
+pca.components_
+``` 
+
+But how many principal components ($k$) to use? 
+
+One possibility is to pick $k$ to account for a desired proportion of total variance. 
+
+---
+#### Selecting $k$ based on accounted variance
+
+The variance of the projection onto the *k*th component (also termed **explained variance ratio**) is:
+$$
+|| X\mathbf{v_k} ||^2 = ||\mathbf{u_k}\sigma_k||^2 = \sigma_k^2
+$$
 
 
+```python
+pca.explained_variance_ratio_
+-> array([0.7578477 , 0.15186921])
+```
+
+The first dimension explains about 76% of the variance, while the second explains about 15%.
+
+---
+#### Selecting $k$ based on accounted variance
+
+To determine how many components to use, one can perform a simple analysis of the data matrix and pick the threshold that retains enough variance.
+So, to  cover 80% of the total variance in the data, pick $k$ such that:
+
+$$ \frac{\Sigma_{i=1}^k \sigma_i^2}{\Sigma_{i=1}^d \sigma_i^2} \ge 0.8 $$
+
+```python
+# The number of components is automatically chosen to account for 
+# at least 80% of the total variance.
+pca_transformer = PCA(n_components=0.8)
+```
+
+---
+## PCA for Compression
+
+Next, we will see how PCA can be used for data compression by applying it to a higher resolution version of the MNIST dataset.
+
+Obviously after dimensionality reduction, the training set takes up much less space.
+
+---
+## PCA for Compression
+
+![bg 50%](image-71.png)
+
+---
+## PCA for Compression
+
+![bg 50%](image-70.png)
+
+---
+## PCA for Compression
+
+![bg 60%](image-72.png)
+
+```
+Original size (pixels): 44.86 MB
+Compressed size (components): 8.81 MB
+```
+
+---
+
+### Limitations of PCA
+
+- Uninterpretable outcome
+- High computational cost
+- Difficult to perform in a streaming fashion, in batch updates, or from a sample of the full data.
+- Sensitive to the presence of outliers
