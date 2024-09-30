@@ -900,14 +900,11 @@ set. It also finds a second axis, orthogonal to the first one, that accounts for
 <h3>Singular Value Decomposition<a class="headerlink" href="#singular-value-decomposition" title="Link to this heading">#</a></h3>
 <p>So how can we find the principal components of a training set?
 The easiest way to implement PCA is by taking the <strong>Singular Value Decomposition</strong> (SVD) of the centered data matrix.</p>
-<blockquote>
-<div><p>SVD is a standard matrix factorization technique that can decompose the training set matrix <span class="math notranslate nohighlight">\(X\)</span> into the matrix multiplication of three matrices <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(\Sigma\)</span>, and <span class="math notranslate nohighlight">\(V^T\)</span>. where <span class="math notranslate nohighlight">\(V\)</span> contains all the principal components that we are looking for:
+<p>SVD is a standard matrix factorization technique that can decompose the training set matrix <span class="math notranslate nohighlight">\(X\)</span> into the matrix multiplication of three matrices <span class="math notranslate nohighlight">\(U\)</span>, <span class="math notranslate nohighlight">\(\Sigma\)</span>, and <span class="math notranslate nohighlight">\(V^T\)</span>. where <span class="math notranslate nohighlight">\(V\)</span> contains all the principal components that we are looking for:
 $<span class="math notranslate nohighlight">\( 
-   V = \Bigg( c_1 \; c_2 \; \dots \; c_n \Bigg) 
+    V = \Bigg( c_1 \; c_2 \; \dots \; c_n \Bigg) 
 \)</span>$</p>
 <p><span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are orthogonal matrices (i.e., <span class="math notranslate nohighlight">\(U^TU = I\)</span> and <span class="math notranslate nohighlight">\(V^TV = I\)</span>). <span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix containing the singular values of <span class="math notranslate nohighlight">\(X\)</span>, which can be positive, zero, or negative.</p>
-</div></blockquote>
-<p><img alt="Singular-Value-Decomposition.svg.png" src="chapters/attachment:Singular-Value-Decomposition.svg.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
