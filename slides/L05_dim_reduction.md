@@ -143,6 +143,12 @@ In principle, the SVD factorization algorithm returns three matrices, $U$, $\Sig
 However, the `svd()` function returns $U$, $s$ and $V^T$ instead. $s$ is the vector containing all the values on the main diagonal of the top $n$ rows of $\Sigma$. 
 
 ---
+### Singular Value Decomposition
+
+![bg 40%](../chapters/images/Singular-Value-Decomposition.svg.png)
+
+
+---
 # Projecting Down to $k$ Dimensions
 
 Once you have identified all the principal components, you can reduce the dimensionality of the dataset down to $k$ dimensions by projecting it onto the hyperplane defined by the first $k$ principal components. 
@@ -160,7 +166,12 @@ $$
 
 ---
 
-### PCA Implementation Summary 
+### PCA Implementation: Summary 
+
+1. Center the Data Matrix
+1. Compute the SVD
+1. Find Principal Components
+1. Transform the Data
 
 ---
 
