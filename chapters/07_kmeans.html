@@ -616,7 +616,7 @@ Points that are close to each other (where “closeness” can be defined by a c
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/630a10e67542454fa42ec312c3296930c2bf612de7c80fa0475ff9db39b11f5c.png" src="../_images/630a10e67542454fa42ec312c3296930c2bf612de7c80fa0475ff9db39b11f5c.png" />
+<img alt="../_images/a854aa7d66ee12de76b36dd58e44f6ce25d7060f5a2efdd891f1ac85ac3bb955.png" src="../_images/a854aa7d66ee12de76b36dd58e44f6ce25d7060f5a2efdd891f1ac85ac3bb955.png" />
 </div>
 </div>
 <p>Common applications of clustering assume that there are natural clusters to be found; i.e., there are regions of dense data scattered in an otherwise empty space.  In these situations, there is a notion of the correct number of clusters, and people have invented clustering indices that measure the quality of data groupings in order to select for k.</p>
@@ -624,7 +624,12 @@ Points that are close to each other (where “closeness” can be defined by a c
 <p>In this case, the role of a clustering algorithm is <strong>vector quantization</strong>, i.e., partitioning the data into a finite number of chunks. The number of clusters can be selected based on acceptable approximation error when using quantized vectors instead of the original ones.</p>
 <p>Uniform distribution is the worst-case scenario for k-means. If data density is not uniform, then we will be able to represent more data with fewer clusters. In general, it is difficult to tell how data is distributed in high-dimensional space. One can be conservative and pick a larger k, but it can’t be too large, because k will become the number of features for the next modeling step.</p>
 <p>Visually, this usage of k-means can be thought of  as covering the data surface with patches, which is what we get if we run k-means on a <em>Swiss roll</em> dataset.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">griddata</span>
@@ -669,8 +674,9 @@ Points that are close to each other (where “closeness” can be defined by a c
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="../_images/390efc2cb892da018e0897a9961736878b5315a19dd96ddc017366283b419693.png" src="../_images/390efc2cb892da018e0897a9961736878b5315a19dd96ddc017366283b419693.png" />
+<img alt="../_images/b5b2144fdf1f8d26ecacf6951f3fba8bac6ed3d578a440f9998dd22867f330e6.png" src="../_images/b5b2144fdf1f8d26ecacf6951f3fba8bac6ed3d578a440f9998dd22867f330e6.png" />
 </div>
 </div>
 <section id="the-k-means-algorithm">
