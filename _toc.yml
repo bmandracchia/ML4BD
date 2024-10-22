@@ -7,16 +7,16 @@ parts:
 - caption: Computational Tools
   numbered: false
   chapters:
-  - file: chapters/00_python_primer
-  - file: chapters/00_data_science_with_pandas
-  - file: chapters/00_jupyter_markdown
+  - file: chapters/01_python_primer
+  - file: chapters/02_data_science_with_pandas
+  - file: chapters/03_jupyter_markdown
 - caption: Feature Engineering
   numbered: false
   chapters:
-  - file: chapters/01_machine_learning_fundamentals
-  - file: chapters/02_basic_feature_engineering
-  - file: chapters/03_categorical_variables
-  - file: chapters/04_classifiers
-  - file: chapters/05_decision_trees
-  - file: chapters/06_dimensionality_reduction
-  - file: chapters/07_kmeans
+  - file: chapters/11_machine_learning_fundamentals
+  - file: chapters/12_basic_feature_engineering
+  - file: chapters/13_categorical_variables
+  - file: chapters/14_classifiers
+  - file: chapters/15_decision_trees
+  - file: chapters/16_dimensionality_reduction
+  - file: chapters/17_kmeans
