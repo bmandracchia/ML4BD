@@ -20,3 +20,7 @@ parts:
   - file: chapters/15_decision_trees
   - file: chapters/16_dimensionality_reduction
   - file: chapters/17_kmeans
+- caption: Deep Learning
+  numbered: false
+  chapters:
+  - file: chapters/21_neural networks
