@@ -24,3 +24,8 @@ parts:
   numbered: false
   chapters:
   - file: chapters/21_neural networks
+  - file: chapters/23_NN_as_UA
+  - file: chapters/24_Loss_Metrics_and_Optimizers
+  - file: chapters/25_Image_Classification
+  - file: chapters/26_convolutions
+  - file: chapters/27_resnet2
