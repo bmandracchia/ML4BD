@@ -419,7 +419,20 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="resnets-for-biomedical-image-analysis">
+  <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.vision.all</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="resnets-for-biomedical-image-analysis">
 <h1>ResNets for Biomedical Image Analysis<a class="headerlink" href="#resnets-for-biomedical-image-analysis" title="Link to this heading">#</a></h1>
 <p>In this lesson, we will expand upon Convolutional Neural Networks (CNNs) to understand the ResNet (Residual Network) architecture, a powerful tool in medical image analysis. ResNets were introduced in 2015 by Kaiming He et al. in <a class="reference external" href="https://arxiv.org/abs/1512.03385">“Deep Residual Learning for Image Recognition”</a>. Since then, ResNets have been widely adopted, particularly for medical imaging applications such as MRI, CT, and X-ray image classification. The architecture’s main advantage is its ability to train very deep networks, which is essential when detecting subtle patterns in high-resolution medical images.</p>
 <p>We’ll first explore the ResNet basics, then discuss recent modifications that enhance its performance. For our medical example, let’s use a dataset that includes images of different tissue types or disease classes in 3D scans, resized for faster training.</p>
@@ -445,8 +458,8 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">return</span> <span class="n">DataBlock</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="n">blocks</span><span class="o">=</span><span class="p">(</span><span class="n">ImageBlock</span><span class="p">,</span> <span class="n">CategoryBlock</span><span class="p">),</span> <span class="n">get_items</span><span class="o">=</span><span class="n">get_image_files</span><span class="p">,</span> 
@@ -457,7 +470,7 @@ document.write(`
 <span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">dls</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">MEDICAL_DATASET</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">96</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
-<span class="ne">NameError</span>: name &#39;URLs&#39; is not defined
+<span class="ne">AttributeError</span>: type object &#39;URLs&#39; has no attribute &#39;MEDICAL_DATASET&#39;
 </pre></div>
 </div>
 </div>
@@ -576,7 +589,8 @@ H(x) = F(x) + x
 <section id="bottleneck-layers-for-efficient-training-in-medical-imaging">
 <h2>Bottleneck Layers for Efficient Training in Medical Imaging<a class="headerlink" href="#bottleneck-layers-for-efficient-training-in-medical-imaging" title="Link to this heading">#</a></h2>
 <p>For very deep ResNets, like ResNet-50 or ResNet-101, we can use bottleneck layers. These layers use three convolutions: a 1×1 layer to reduce channels, a 3×3 layer for feature extraction, and another 1×1 layer to restore channels. This reduces computational cost while maintaining high performance—a crucial feature for computationally intensive 3D scans.</p>
-<img alt="  " width="550" caption="Comparison of regular and bottleneck ResNet blocks (courtesy of Kaiming He et al.)" id="resnet_compare" src="images/Lesson_06_bottleneck.png"><div class="cell docutils container">
+<p><img alt="Comparison of regular and bottleneck ResNet blocks (courtesy of Kaiming He et al.)" src="../_images/Lesson_06_bottleneck.png" /></p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_conv_block</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
@@ -605,7 +619,7 @@ H(x) = F(x) + x
 <section id="improved-loss-landscape-with-resnet">
 <h3>Improved Loss Landscape with ResNet<a class="headerlink" href="#improved-loss-landscape-with-resnet" title="Link to this heading">#</a></h3>
 <p>One of the reasons ResNets work so well in medical imaging is that skip connections smooth the loss landscape, reducing the risk of sharp local minima that hinder optimization. Studies, such as the one by Hao Li et al. in <a class="reference external" href="https://arxiv.org/abs/1712.09913">“Visualizing the Loss Landscape of Neural Nets”</a>, show that ResNets exhibit smoother loss surfaces, making them particularly robust for applications like tumor classification where high accuracy and stability are crucial.</p>
-<img alt="Impact of ResNet on loss landscape" width="600" caption="Impact of ResNet on loss landscape (courtesy of Hao Li et al.)" id="resnet_surface" src="images/Lesson_06_loss_landscape.png">
+<p><img alt="Impact of ResNet on loss landscape (courtesy of Hao Li et al.)" src="../_images/Lesson_06_loss_landscape.png" /></p>
 <p>By building ResNet architectures with these advanced techniques, we can create robust models tailored to the complex, high-dimensional data encountered in biomedical engineering.</p>
 </section>
 </section>

@@ -663,7 +663,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a2e0e1b7a3152461c595ff47a96f3b68111a832cdb8a14ee3a47b209a9e4afa8.png" src="../_images/a2e0e1b7a3152461c595ff47a96f3b68111a832cdb8a14ee3a47b209a9e4afa8.png" />
+<img alt="../_images/0b26b03dfc35e65a7d20e9246586e60a0152fae2e62f22517f6e090c4bb8cbab.png" src="../_images/0b26b03dfc35e65a7d20e9246586e60a0152fae2e62f22517f6e090c4bb8cbab.png" />
 </div>
 </div>
 <p>The next line of the code training our image recognizer tells fastai to create a <em>convolutional neural network</em> (CNN) and specifies what <em>architecture</em> to use (i.e. what kind of model to create), what data we want to train it on, and what <em>metric</em> to use:</p>
@@ -717,9 +717,9 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.328656</td>
-      <td>2.020570</td>
-      <td>0.758199</td>
+      <td>3.342438</td>
+      <td>2.095797</td>
+      <td>0.772651</td>
       <td>00:03</td>
     </tr>
   </tbody>
@@ -752,23 +752,23 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.568908</td>
-      <td>1.936679</td>
-      <td>0.672596</td>
+      <td>2.376996</td>
+      <td>1.852490</td>
+      <td>0.665370</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>2.341554</td>
-      <td>1.656337</td>
-      <td>0.548082</td>
+      <td>2.198699</td>
+      <td>1.504225</td>
+      <td>0.526404</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>2.120677</td>
-      <td>1.547658</td>
-      <td>0.510283</td>
+      <td>1.979807</td>
+      <td>1.427775</td>
+      <td>0.490828</td>
       <td>00:06</td>
     </tr>
   </tbody>
@@ -788,7 +788,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/f9a58a865543313c4478e0c85bad139c72938c1fa5757ff92d2f71f1eb2c4d82.png" src="../_images/f9a58a865543313c4478e0c85bad139c72938c1fa5757ff92d2f71f1eb2c4d82.png" />
+</div><div class="output text_html"></div><img alt="../_images/b26ff0000f3103c0defea2617ac6f65b557a217c792fb98571d28b10ca009bf6.png" src="../_images/b26ff0000f3103c0defea2617ac6f65b557a217c792fb98571d28b10ca009bf6.png" />
 </div>
 </div>
 <p>A <em>metric</em> is a function that measures the quality of the model’s predictions using the validation set, and will be printed at the end of each <em>epoch</em>. In this case, we’re using <code class="docutils literal notranslate"><span class="pre">error_rate</span></code>, which is a function provided by fastai that does just what it says: tells you what percentage of images in the validation set are being classified incorrectly. Another common metric for classification is <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (which is just <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">-</span> <span class="pre">error_rate</span></code>).</p>
@@ -844,7 +844,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/b1cb9f5e6d626927cebf6ccf892f5ea74773e86f4880287107f9de26231f8bf4.png" src="../_images/b1cb9f5e6d626927cebf6ccf892f5ea74773e86f4880287107f9de26231f8bf4.png" />
+</div><div class="output text_html"></div><img alt="../_images/59b92220f280fa3a655c1c8c89e227e56af75137b23cd54ad99f69dc0aa7e50f.png" src="../_images/59b92220f280fa3a655c1c8c89e227e56af75137b23cd54ad99f69dc0aa7e50f.png" />
 </div>
 </div>
 <p>The confusion matrix shows the number of correct and incorrect predictions the model made. This visualization helps us understand where the model struggles, such as distinguishing between similar skin lesions.</p>
@@ -875,7 +875,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 8; Probability: 0.2634
+</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 8; Probability: 0.7729
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
@@ -949,10 +949,10 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.284143</td>
-      <td>1.879599</td>
-      <td>0.672040</td>
-      <td>00:02</td>
+      <td>3.374401</td>
+      <td>2.013752</td>
+      <td>0.786548</td>
+      <td>00:03</td>
     </tr>
   </tbody>
 </table></div><div class="output text_html">
@@ -974,7 +974,7 @@ document.write(`
 </div><div class="output text_html">
     <div>
       <progress value='3' class='' max='10' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      30.00% [3/10 00:19&lt;00:45]
+      30.00% [3/10 00:19&lt;00:46]
     </div>
     
 <table border="1" class="dataframe">
@@ -990,31 +990,31 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.765048</td>
-      <td>1.822412</td>
-      <td>0.663702</td>
+      <td>2.491307</td>
+      <td>1.944028</td>
+      <td>0.719288</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>2.480754</td>
-      <td>1.581218</td>
-      <td>0.547526</td>
+      <td>2.446112</td>
+      <td>1.638891</td>
+      <td>0.549194</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>2.337329</td>
-      <td>1.513028</td>
-      <td>0.504169</td>
+      <td>2.275390</td>
+      <td>1.469933</td>
+      <td>0.501390</td>
       <td>00:06</td>
     </tr>
   </tbody>
 </table><p>
 
     <div>
-      <progress value='6' class='' max='7' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      85.71% [6/7 00:03&lt;00:00 2.1833]
+      <progress value='2' class='' max='7' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      28.57% [2/7 00:01&lt;00:02 2.2569]
     </div>
     </div></div>
 </div>
