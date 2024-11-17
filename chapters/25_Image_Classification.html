@@ -198,6 +198,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="26_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="27_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -581,7 +582,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3c6538e6fcffe7fdcf073fee33920c26fc3e064b2bb686cf9d68eb39e1186f4f.png" src="../_images/3c6538e6fcffe7fdcf073fee33920c26fc3e064b2bb686cf9d68eb39e1186f4f.png" />
+<img alt="../_images/9fe6fd2a83fd0f654d3daf1a2ab03ea4b9e704a76aa19cdc80cb6289a603ff69.png" src="../_images/9fe6fd2a83fd0f654d3daf1a2ab03ea4b9e704a76aa19cdc80cb6289a603ff69.png" />
 </div>
 </div>
 <p>This visualizes a batch of images and their labels, helping confirm that images match expected labels. If needed, use the <code class="docutils literal notranslate"><span class="pre">summary</span></code> method to display a detailed breakdown of data transformations and steps.</p>
@@ -636,8 +637,9 @@ Applying item_tfms to the first sample:
       (TensorImage of size 3x460x460, TensorCategory(30))
 
 Adding the next 3 samples
-
-No before_batch transform to apply
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No before_batch transform to apply
 
 Collating items in a batch
 
@@ -647,9 +649,7 @@ Applying batch_tfms to the batch built
       (TensorImage of size 4x3x460x460, TensorCategory([30,  8, 31, 23]))
     applying IntToFloatTensor -- {&#39;div&#39;: 255.0, &#39;div_mask&#39;: 1} gives
       (TensorImage of size 4x3x460x460, TensorCategory([30,  8, 31, 23]))
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    applying Flip -- {&#39;size&#39;: None, &#39;mode&#39;: &#39;bilinear&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;align_corners&#39;: True, &#39;p&#39;: 0.5} gives
+    applying Flip -- {&#39;size&#39;: None, &#39;mode&#39;: &#39;bilinear&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;align_corners&#39;: True, &#39;p&#39;: 0.5} gives
       (TensorImage of size 4x3x460x460, TensorCategory([30,  8, 31, 23]))
     applying RandomResizedCropGPU -- {&#39;size&#39;: (224, 224), &#39;min_scale&#39;: 0.75, &#39;ratio&#39;: (1, 1), &#39;mode&#39;: &#39;bilinear&#39;, &#39;valid_scale&#39;: 1.0, &#39;max_scale&#39;: 1.0, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;p&#39;: 1.0} gives
       (TensorImage of size 4x3x224x224, TensorCategory([30,  8, 31, 23]))
@@ -709,7 +709,7 @@ Applying batch_tfms to the batch built
 
     <div>
       <progress value='9' class='' max='92' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      9.78% [9/92 00:27&lt;04:09 5.3258]
+      9.78% [9/92 00:28&lt;04:21 5.3931]
     </div>
     </div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
@@ -784,110 +784,123 @@ Applying batch_tfms to the batch built
 <span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:225,</span> in <span class="ni">Learner._do_one_batch</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;after_loss&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yb</span><span class="p">):</span> <span class="k">return</span>
-<span class="ne">--&gt; </span><span class="mi">225</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_grad_opt</span><span class="p">()</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:218,</span> in <span class="ni">Learner._do_one_batch</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="k">def</span> <span class="nf">_do_one_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">218</span>     <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">xb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>     <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;after_pred&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yb</span><span class="p">):</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:213,</span> in <span class="ni">Learner._do_grad_opt</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">def</span> <span class="nf">_do_grad_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">213</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward</span><span class="p">,</span> <span class="s1">&#39;backward&#39;</span><span class="p">,</span> <span class="n">CancelBackwardException</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_step</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">CancelStepException</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1553,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1553</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1562,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1558</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1561</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1562</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:209,</span> in <span class="ni">Learner._backward</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl</span><span class="p">)</span>
-<span class="nn">    207     for o</span> in <span class="ni">enumerate(self.dl): self.one_batch</span><span class="nt">(*o)</span>
-<span class="ne">--&gt; </span><span class="mi">209</span> <span class="k">def</span> <span class="nf">_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_grad</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span> <span class="k">def</span> <span class="nf">_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">def</span> <span class="nf">_do_grad_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\container.py:219,</span> in <span class="ni">Sequential.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">219</span>         <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">return</span> <span class="nb">input</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:512,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span><span class="w"> </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes the gradient of current tensor wrt graph leaves.</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">470</span><span class="sd"> The graph is differentiated using the chain rule. If the tensor is</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span><span class="sd">         used to compute the :attr:`tensors`.</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">512</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
-<span class="g g-Whitespace">    </span><span class="mi">515</span>         <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">516</span>         <span class="n">gradient</span><span class="o">=</span><span class="n">gradient</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="n">retain_graph</span><span class="o">=</span><span class="n">retain_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="p">)</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1553,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1553</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\overrides.py:1647,</span> in <span class="ni">handle_torch_function</span><span class="nt">(public_api, relevant_args, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1641</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Defining your `__torch_function__ as a plain method is deprecated and &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1642</span>                   <span class="s2">&quot;will be an error in future, please define it as a classmethod.&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1643</span>                   <span class="ne">DeprecationWarning</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1645</span> <span class="c1"># Use `public_api` instead of `implementation` so __torch_function__</span>
-<span class="g g-Whitespace">   </span><span class="mi">1646</span> <span class="c1"># implementations can do equality/identity comparisons.</span>
-<span class="ne">-&gt; </span><span class="mi">1647</span> <span class="n">result</span> <span class="o">=</span> <span class="n">torch_func_method</span><span class="p">(</span><span class="n">public_api</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1649</span> <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">NotImplemented</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1650</span>     <span class="k">return</span> <span class="n">result</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1562,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1558</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1561</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1562</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\torch_core.py:384,</span> in <span class="ni">TensorBase.__torch_function__</span><span class="nt">(cls, func, types, args, kwargs)</span>
-<span class="nn">    382 if cls.debug and func.__name__ not</span> in <span class="ni">(&#39;__str__&#39;,&#39;__repr__&#39;): print</span><span class="nt">(func, types, args, kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="k">if</span> <span class="n">_torch_handled</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_opt</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span> <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,)</span>
-<span class="ne">--&gt; </span><span class="mi">384</span> <span class="n">res</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__torch_function__</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ifnone</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="p">{}))</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="n">dict_objs</span> <span class="o">=</span> <span class="n">_find_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span> <span class="k">else</span> <span class="n">_find_args</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">res</span><span class="p">),</span><span class="n">TensorBase</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dict_objs</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="n">dict_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">as_copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\container.py:219,</span> in <span class="ni">Sequential.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">219</span>         <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">return</span> <span class="nb">input</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:1437,</span> in <span class="ni">Tensor.__torch_function__</span><span class="nt">(cls, func, types, args, kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1434</span>     <span class="k">return</span> <span class="bp">NotImplemented</span>
-<span class="g g-Whitespace">   </span><span class="mi">1436</span> <span class="k">with</span> <span class="n">_C</span><span class="o">.</span><span class="n">DisableTorchFunctionSubclass</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1437</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1438</span>     <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">get_default_nowrap_functions</span><span class="p">():</span>
-<span class="g g-Whitespace">   </span><span class="mi">1439</span>         <span class="k">return</span> <span class="n">ret</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1553,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1553</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:521,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">512</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">521</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="p">)</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1562,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1558</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1561</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1562</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\autograd\__init__.py:289,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="c1"># The reason we repeat the same comment below is that</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="c1"># calls in the traceback and some print out the last line</span>
-<span class="ne">--&gt; </span><span class="mi">289</span> <span class="n">_engine_run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span>     <span class="n">tensors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span>     <span class="n">grad_tensors_</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="n">retain_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span>     <span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="p">)</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\container.py:219,</span> in <span class="ni">Sequential.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">219</span>         <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">return</span> <span class="nb">input</span>
 
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\autograd\graph.py:769,</span> in <span class="ni">_engine_run_backward</span><span class="nt">(t_outputs, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">767</span>     <span class="n">unregister_hooks</span> <span class="o">=</span> <span class="n">_register_logging_hooks_on_whole_graph</span><span class="p">(</span><span class="n">t_outputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">768</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">769</span>     <span class="k">return</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">770</span>         <span class="n">t_outputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">771</span>     <span class="p">)</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span>     <span class="k">if</span> <span class="n">attach_logging_hooks</span><span class="p">:</span>
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1553,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1553</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1562,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1558</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1561</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1562</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torchvision\models\resnet.py:92,</span> in <span class="ni">BasicBlock.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span>     <span class="n">identity</span> <span class="o">=</span> <span class="n">x</span>
+<span class="ne">---&gt; </span><span class="mi">92</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1553,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1553</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\module.py:1562,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1558</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1559</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1560</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1561</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1562</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\conv.py:458,</span> in <span class="ni">Conv2d.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">458</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\nn\modules\conv.py:454,</span> in <span class="ni">Conv2d._conv_forward</span><span class="nt">(self, input, weight, bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span> <span class="o">!=</span> <span class="s1">&#39;zeros&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reversed_padding_repeated_twice</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span>                     <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>                     <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">454</span> <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
