@@ -16,17 +16,6 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 ---
 
 ### **Introduction to Network Architectures**
-
-  - Deep networks consist of layered structures that capture complex patterns in data.
-  - We can categorize architectures into four major types:
-    1. Unsupervised Pretrained Networks (UPNs)
-    2. Convolutional Neural Networks (CNNs)
-    3. Recurrent Neural Networks (RNNs)
-    4. Recursive Neural Networks
-
----
-
-### **Introduction to Network Architectures**
 - To generate data (e.g., images, audio, or text):
   - GANs
   - VAEs
@@ -39,28 +28,28 @@ backgroundImage: url('https://marp.app/assets/hero-background.svg')
 
 ---
 
-### **Unsupervised Pretrained Networks (UPNs)**
-Networks that learn features from unlabeled data and transfer them to other tasks.
+### **Autoencoders**
 
-  - **Autoencoders**: Learn compressed representations of data, useful for anomaly detection.
-  - **Deep Belief Networks (DBNs)**: Stack Restricted Boltzmann Machines (RBMs) for feature extraction.
-  - **Generative Adversarial Networks (GANs)**: Two-network architecture for generating realistic data samples.
+Autoencoders learn to encode data into a smaller dimensionality (latent space) and then decode it back to its original form.
+
+![bg 40%](./imgs/autoencoders.jpg)
 
 ---
 
 ### **Autoencoders**
 
-Autoencoders learn to encode data into a smaller dimensionality (latent space) and then decode it back to its original form.
 - Comprised of two main components:
   - **Encoder**: Compresses input into a lower-dimensional representation.
   - **Decoder**: Reconstructs the original input from the encoded representation.
+  
+  ![bg 40%](./imgs/autoencoders.png)
 
 ---
 
-### **Autoencoders**: Example Architectures
-- **Vanilla Autoencoder**: Basic structure with one encoder and one decoder.
-- **Variational Autoencoder (VAE)**: Adds stochastic properties for more robust feature extraction.
-- **Denoising Autoencoder**: Trained with noisy inputs to enhance denoising capabilities.
+### **Variational Autoencoder (VAE)**
+Adds stochastic properties for more robust feature extraction.
+
+![bg 45%](./imgs/VAE.jpg)
 
 ---
 
@@ -68,11 +57,19 @@ Autoencoders learn to encode data into a smaller dimensionality (latent space) a
 - **Components**:
   - Stacked Restricted Boltzmann Machines (RBMs).
   - Fine-tuning phase with supervised learning.
-  
+
+![bg right:40% 100%](./imgs/dbn.jpg)
+
+---
+
+###  **Deep Belief Networks (DBNs)**
 - **Purpose**:
   - DBNs use unsupervised layers to capture high-level data features before applying a classifier.
-
-
+  
+ ![bg right:40% 100%](./imgs/act_rend_beginning.jpg)
+ ![bg right:40% 100%](./imgs/act_rend_later.jpg)
+ ![bg right:40% 100%](./imgs/act_rend_end.jpg)
+ 
 ---
 
 ### **Generative Adversarial Networks (GANs)**
@@ -181,5 +178,5 @@ They model sequential data where time dependency matters.
 - **Integration of Multi-Modal Data**: Combining imaging, genomics, and EHR data.
 - **Ethics and Fairness**: Ensuring AI fairness and reducing biases in healthcare applications.
 - **Emerging Architectures**:
-  - Hybrid models combining CNNs, RNNs, and attention mechanisms for richer modeling .
+  - Hybrid models combining CNNs, RNNs, and attention mechanisms for richer modeling.
 

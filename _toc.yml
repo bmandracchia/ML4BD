@@ -29,3 +29,4 @@ parts:
   - file: chapters/25_Image_Classification
   - file: chapters/26_convolutions
   - file: chapters/27_resnet2
+  - file: chapters/28_PBDL
