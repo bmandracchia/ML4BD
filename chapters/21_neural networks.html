@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/21_neural networks';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Neural Networks as Universal Approximators" href="23_NN_as_UA.html" />
+    <link rel="next" title="Neural Networks as Universal Approximators" href="22_NN_as_UA.html" />
     <link rel="prev" title="Nonlinear Manifold Feature Extraction" href="17_kmeans.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -190,13 +190,13 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Deep Learning in Biomedical Engineering</a></li>
-<li class="toctree-l1"><a class="reference internal" href="23_NN_as_UA.html">Neural Networks as Universal Approximators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="24_Loss_Metrics_and_Optimizers.html">Training a Digit Classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="25_Image_Classification.html">Image Classification</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="26_convolutions.html">Convolutional Neural Networks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="27_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="22_NN_as_UA.html">Neural Networks as Universal Approximators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_Loss_Metrics_and_Optimizers.html">Training a Digit Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -664,7 +664,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/15b0214f00848d5a20846af82c9e5d2312ebedb6bc98a9dc498aeea54eb9e13d.png" src="../_images/15b0214f00848d5a20846af82c9e5d2312ebedb6bc98a9dc498aeea54eb9e13d.png" />
+<img alt="../_images/df0adda75d9c3d6f74fc521ccc6da81261a6a9b9b51ddb40ee7afbba309f58db.png" src="../_images/df0adda75d9c3d6f74fc521ccc6da81261a6a9b9b51ddb40ee7afbba309f58db.png" />
 </div>
 </div>
 <p>The next line of the code training our image recognizer tells fastai to create a <em>convolutional neural network</em> (CNN) and specifies what <em>architecture</em> to use (i.e. what kind of model to create), what data we want to train it on, and what <em>metric</em> to use:</p>
@@ -718,9 +718,9 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.304111</td>
-      <td>2.018705</td>
-      <td>0.779878</td>
+      <td>3.190651</td>
+      <td>2.030096</td>
+      <td>0.749861</td>
       <td>00:03</td>
     </tr>
   </tbody>
@@ -753,24 +753,24 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.438584</td>
-      <td>1.770567</td>
-      <td>0.611451</td>
+      <td>2.499359</td>
+      <td>1.744424</td>
+      <td>0.619233</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>2.196379</td>
-      <td>1.615041</td>
-      <td>0.561979</td>
-      <td>00:07</td>
+      <td>2.164765</td>
+      <td>1.495489</td>
+      <td>0.503613</td>
+      <td>00:06</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>2.029545</td>
-      <td>1.538312</td>
-      <td>0.510839</td>
-      <td>00:07</td>
+      <td>1.988138</td>
+      <td>1.437683</td>
+      <td>0.475264</td>
+      <td>00:06</td>
     </tr>
   </tbody>
 </table></div><div class="output text_html">
@@ -789,7 +789,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/3103a37e38af3a36a7117d8fa1d72138de82bf80c58cd1b3540b698c3121c184.png" src="../_images/3103a37e38af3a36a7117d8fa1d72138de82bf80c58cd1b3540b698c3121c184.png" />
+</div><div class="output text_html"></div><img alt="../_images/18d95e1ce9cc892b229760e673b5085898d7ead9f7c42900bfce54b79bcb716e.png" src="../_images/18d95e1ce9cc892b229760e673b5085898d7ead9f7c42900bfce54b79bcb716e.png" />
 </div>
 </div>
 <p>A <em>metric</em> is a function that measures the quality of the model’s predictions using the validation set, and will be printed at the end of each <em>epoch</em>. In this case, we’re using <code class="docutils literal notranslate"><span class="pre">error_rate</span></code>, which is a function provided by fastai that does just what it says: tells you what percentage of images in the validation set are being classified incorrectly. Another common metric for classification is <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (which is just <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">-</span> <span class="pre">error_rate</span></code>).</p>
@@ -845,7 +845,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/e0d3af6ec9237841f715defdc4814e2694b8b26dd438453370d68ccbc3a7a7ff.png" src="../_images/e0d3af6ec9237841f715defdc4814e2694b8b26dd438453370d68ccbc3a7a7ff.png" />
+</div><div class="output text_html"></div><img alt="../_images/fa0646b7564fa350b6eed9a25771ce57da917c0a08f2cb0bf1b111be21a12f42.png" src="../_images/fa0646b7564fa350b6eed9a25771ce57da917c0a08f2cb0bf1b111be21a12f42.png" />
 </div>
 </div>
 <p>The confusion matrix shows the number of correct and incorrect predictions the model made. This visualization helps us understand where the model struggles, such as distinguishing between similar skin lesions.</p>
@@ -876,7 +876,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 6; Probability: 0.4523
+</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 8; Probability: 0.7824
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
@@ -950,10 +950,10 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.288800</td>
-      <td>1.995523</td>
-      <td>0.748193</td>
-      <td>00:02</td>
+      <td>3.257477</td>
+      <td>1.942663</td>
+      <td>0.730962</td>
+      <td>00:03</td>
     </tr>
   </tbody>
 </table></div><div class="output text_html">
@@ -975,7 +975,7 @@ document.write(`
 </div><div class="output text_html">
     <div>
       <progress value='3' class='' max='10' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      30.00% [3/10 00:19&lt;00:45]
+      30.00% [3/10 00:18&lt;00:43]
     </div>
     
 <table border="1" class="dataframe">
@@ -991,31 +991,31 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.536156</td>
-      <td>1.888857</td>
-      <td>0.677599</td>
-      <td>00:05</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>2.443167</td>
-      <td>1.657754</td>
-      <td>0.589216</td>
+      <td>2.501112</td>
+      <td>1.864596</td>
+      <td>0.706504</td>
       <td>00:06</td>
     </tr>
     <tr>
+      <td>1</td>
+      <td>2.336900</td>
+      <td>1.537696</td>
+      <td>0.526959</td>
+      <td>00:05</td>
+    </tr>
+    <tr>
       <td>2</td>
-      <td>2.268511</td>
-      <td>1.518619</td>
-      <td>0.514730</td>
-      <td>00:07</td>
+      <td>2.217687</td>
+      <td>1.394767</td>
+      <td>0.476932</td>
+      <td>00:06</td>
     </tr>
   </tbody>
 </table><p>
 
     <div>
       <progress value='5' class='' max='7' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      71.43% [5/7 00:03&lt;00:01 2.1572]
+      71.43% [5/7 00:03&lt;00:01 2.0780]
     </div>
     </div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
@@ -1638,7 +1638,7 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="23_NN_as_UA.html"
+       href="22_NN_as_UA.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>

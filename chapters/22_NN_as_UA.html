@@ -1,0 +1,816 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Neural Networks as Universal Approximators &#8212; Introduction to Machine Learning for Biomedical Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"660af737c82448ddb50e95f685b0daf6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "506663eb77b94bedbfb2bae0ab1d95c0": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_205bdd749a9f4698a40c36ad6ae4d199", "IPY_MODEL_c5c99c92df70469bb1af8e8c3f18a82e", "IPY_MODEL_a3b02085a6cb4fa781257edc9aa025e3"], "layout": "IPY_MODEL_660af737c82448ddb50e95f685b0daf6", "tabbable": null, "tooltip": null}}, "3d9b189377a64e77b5ad0796f5a6a1bb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "aa1e241055d44c7b83f00d0cd8287e54": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "205bdd749a9f4698a40c36ad6ae4d199": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "m", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_3d9b189377a64e77b5ad0796f5a6a1bb", "max": 4.5, "min": -1.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_aa1e241055d44c7b83f00d0cd8287e54", "tabbable": null, "tooltip": null, "value": 1.5}}, "060b3f19839f4b2a93ef2c0cdf04fa96": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "020d59c88936407ea49eded3490bb2c8": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "c5c99c92df70469bb1af8e8c3f18a82e": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "b", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_060b3f19839f4b2a93ef2c0cdf04fa96", "max": 4.5, "min": -1.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_020d59c88936407ea49eded3490bb2c8", "tabbable": null, "tooltip": null, "value": 1.5}}, "a6be872b854b47b091188ce7624080be": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a3b02085a6cb4fa781257edc9aa025e3": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_a6be872b854b47b091188ce7624080be", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<Figure size 640x480 with 1 Axes>", "image/png": "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"}}], "tabbable": null, "tooltip": null}}, "48820954539d48ec93aedca577464a95": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "234385dbd8004c2ab5a6e5fac60f77ca": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_8665a58c08bb4d92bb5ab728e65bcc35", "IPY_MODEL_b9d06d52507343c19c7c04f1679f1805", "IPY_MODEL_50cdaf18f8074dc894beb73ce401eb7a", "IPY_MODEL_e91023390bc34decb6d83af471221f89", "IPY_MODEL_027ab1e173454dd49aba9ae0fe64a8ed"], "layout": "IPY_MODEL_48820954539d48ec93aedca577464a95", "tabbable": null, "tooltip": null}}, "cc2127b3e97649e991a592aa8f826cb6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "714fcd0174d842f7acf58bc867b74711": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "8665a58c08bb4d92bb5ab728e65bcc35": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "m1", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_cc2127b3e97649e991a592aa8f826cb6", "max": 1.5, "min": -4.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_714fcd0174d842f7acf58bc867b74711", "tabbable": null, "tooltip": null, "value": -1.5}}, "d42f30022f5d4d8eb151c424556804e7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4731a6cee3874d1ba763f46f1a481c7a": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "b9d06d52507343c19c7c04f1679f1805": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "b1", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_d42f30022f5d4d8eb151c424556804e7", "max": 1.5, "min": -4.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_4731a6cee3874d1ba763f46f1a481c7a", "tabbable": null, "tooltip": null, "value": -1.5}}, "adfbd2bd1a9d4a059e942b0d50381edb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c71a257369d144b796b53fbca3ab22ac": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "50cdaf18f8074dc894beb73ce401eb7a": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "m2", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_adfbd2bd1a9d4a059e942b0d50381edb", "max": 4.5, "min": -1.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_c71a257369d144b796b53fbca3ab22ac", "tabbable": null, "tooltip": null, "value": 1.5}}, "ebf43b8c0904406088589e070774069d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9e9287f394f64b5a80e5c46f3c1e1475": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "e91023390bc34decb6d83af471221f89": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "b2", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_ebf43b8c0904406088589e070774069d", "max": 4.5, "min": -1.5, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_9e9287f394f64b5a80e5c46f3c1e1475", "tabbable": null, "tooltip": null, "value": 1.5}}, "f3a9fa21a23b404e836a68b3ee3ff0f0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "027ab1e173454dd49aba9ae0fe64a8ed": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_f3a9fa21a23b404e836a68b3ee3ff0f0", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<Figure size 640x480 with 1 Axes>", "image/png": "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N9dCx6hRtmV7rVrSggW2R0gII4gAABDs9u2TevWSli+363vvlaZNk3w+t3UVAoZmAAAIZitWSA0aWAiJibEJqvPnh0UIkQgiAAAEp5Mnpaefltq0kfbskerUkTZskPr3d35ibmFiaAYAgGCza5fUrZu0Zo1dP/CA9Je/SKVKua3LAwQRAACCydKlUu/e0sGDUunSNhTTrZvrqjzD0AwAAMEgO1t67DHpjjsshDRsKG3aFNYhRKIjAgCAezt2SF26SCkpdj14sPSnP0nR0W7rCgCCCAAALi1YID34oJSRIZUtK82cKXXs6LqqgGFoBgAAF44dsxUwXbpYCGnRQtqyJaJCiEQQAQAg8LZtk264QZo+3Zbijh5t+4XExbmuLOAYmgEAIFD8funNN20OyPHjUuXK0pw5tldIhCKIAAAQCOnp0kMP2a6oktS2rfT221KlSm7rcoyhGQAAvJaSYstx58+XihaVxo+Xli2L+BAi0REBAMA7fr80caI0YoR04oR0+eUWRpo2dV1Z0CCIAADghQMHpD59bKdUSbr7bmnGDOmyy9zWFWQYmgEAoLCtXm0n5i5dapuSvf66tHAhISQPBBEAAApLTo40bpzUurX000/SVVdJ69ZJjzwSVifmFqaABZHExERFRUVp6NChgbolAACBs3u3dOut0pgxUm6u1LOntHGjdUZwVgEJIl988YWmTZum6667LhC3AwAgsJYvt8CxYoVUqpQ0e7Y9Spd2XVnQ8zyIHD16VPfff7+mT5+uy/IZG8vKylJ6evppDwAAgtaJE9Ljj0vt20v790v161sXpGdP15WFDM+DSEJCgm6//Xbdcsst+b42MTFRPp/v1CMuAre6BQCEiB9+kG66SXrpJbtOSLD5IL//vdu6QoynQWT+/PnatGmTEhMTz+v1I0eOVFpa2qnHzp07vSwPAIALs3ChdP310vr10qWXSosWSZMmSTExrisLOZ7tI7Jz504NGTJE//Vf/6WY83xjoqOjFR0d7VVJAABcnOPHpWHDpClT7PrGG6V586SaNZ2WFcqi/H6/34tvvGTJEt11110qWrToqedycnIUFRWlIkWKKCsr67Rfy0t6erp8Pp/S0tIUGxvrRZkAAJyf7dul++6Ttm616xEjpGeflYoVc1tXECrI57dnHZE2bdroq6++Ou25Pn366Oqrr9aIESPyDSEAAASN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"}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/22_NN_as_UA';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Training a Digit Classifier" href="23_Loss_Metrics_and_Optimizers.html" />
+    <link rel="prev" title="Deep Learning in Biomedical Engineering" href="21_neural%20networks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introduction to Machine Learning for Biomedical Data - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introduction to Machine Learning for Biomedical Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Computational Tools</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_python_primer.html">Python: a Primer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_science_with_pandas.html">Data Science with Python and Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_jupyter_markdown.html">Jupyter &amp; Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Feature Engineering</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="11_machine_learning_fundamentals.html">The Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_basic_feature_engineering.html">Basic Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_categorical_variables.html">Categorical Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_classifiers.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_decision_trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_dimensionality_reduction.html">Dimensionality Reduction: PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_kmeans.html">Nonlinear Manifold Feature Extraction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="21_neural%20networks.html">Deep Learning in Biomedical Engineering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Neural Networks as Universal Approximators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_Loss_Metrics_and_Optimizers.html">Training a Digit Classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bmandracchia/ML4BD/issues/new?title=Issue%20on%20page%20%2Fchapters/22_NN_as_UA.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/22_NN_as_UA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Neural Networks as Universal Approximators</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure-of-a-neural-network">Basic Structure of a Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-as-flexible-function-approximators">Neural Networks as Flexible Function Approximators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-building-blocks-of-neural-networks">The Building Blocks of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-multiple-linear-layers-alone-are-not-sufficient">Why Multiple Linear Layers Alone are Not Sufficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-nonlinearity-the-key-to-complex-representations">Adding Nonlinearity: The Key to Complex Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-complex-models-with-layers-and-activation-functions">Building Complex Models with Layers and Activation Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-universal-approximation-theorem">The Universal Approximation Theorem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-functions">Activation Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relu-function">ReLU Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigmoid-function">Sigmoid Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanh-function">Tanh Function</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="neural-networks-as-universal-approximators">
+<h1>Neural Networks as Universal Approximators<a class="headerlink" href="#neural-networks-as-universal-approximators" title="Link to this heading">#</a></h1>
+<section id="basic-structure-of-a-neural-network">
+<h2>Basic Structure of a Neural Network<a class="headerlink" href="#basic-structure-of-a-neural-network" title="Link to this heading">#</a></h2>
+<p>A neural network is a mathematical function that takes inputs, transforms them through layers of computation, and produces outputs. In a standard neural network:</p>
+<ol class="arabic simple">
+<li><p>Each input is multiplied by a set of weights, which are adjustable values, or <em>parameters</em>.</p></li>
+<li><p>These weighted inputs are summed together and passed through an <em>activation function</em> that adds non-linearity to the network.</p></li>
+<li><p>The outputs of one layer become the inputs to the next layer, repeating the process until we reach the final layer, which produces the network’s prediction.</p></li>
+</ol>
+<p>The initial weights are typically set randomly, so a newly initialized neural network doesn’t perform any useful task—it behaves as a random function. The real magic of neural networks happens when we adjust these weights to improve the network’s performance on a specific task, a process called <em>training</em>.</p>
+</section>
+<section id="neural-networks-as-flexible-function-approximators">
+<h2>Neural Networks as Flexible Function Approximators<a class="headerlink" href="#neural-networks-as-flexible-function-approximators" title="Link to this heading">#</a></h2>
+<p>With deep neural networks, we use observational data to jointly learn both a representation via hidden layers and a linear predictor that acts upon that representation.</p>
+<p>By combining multiple layers, each with its own parameters and activation functions, neural networks can approximate highly complex functions. This capability is central to the Universal Approximation Theorem, which states that a neural network with enough parameters can approximate any continuous function.</p>
+<section id="the-building-blocks-of-neural-networks">
+<h3>The Building Blocks of Neural Networks<a class="headerlink" href="#the-building-blocks-of-neural-networks" title="Link to this heading">#</a></h3>
+<p>The two fundamental operations in neural networks are:</p>
+<ol class="arabic simple">
+<li><p><strong>Matrix Multiplication</strong>: This involves multiplying inputs by weights and adding biases. In neural networks, this operation is the core of each layer’s computation.</p></li>
+<li><p><strong>Activation Functions</strong>: Non-linear functions, like the rectified linear unit (ReLU), allow the network to capture complex patterns. ReLU replaces negative values with zero, enabling the network to learn non-linear transformations.</p></li>
+</ol>
+<p>Here’s a simple implementation of a rectified linear function (ReLU):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rectified_linear</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s what it looks like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+<span class="kn">from</span> <span class="nn">fastai.basics</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">plot_function</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mf">2.1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">2.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">,</span><span class="nb">max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">ylim</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_function</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">rectified_linear</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/745688bc17c16dbd622d264a96c04ce2efa2832460b82399f9e96f11ccb1bef5.png" src="../_images/745688bc17c16dbd622d264a96c04ce2efa2832460b82399f9e96f11ccb1bef5.png" />
+</div>
+</div>
+<p>To understand how this function works, try using this interactive version to play around with the parameters <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_relu</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">rectified_linear</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span><span class="n">b</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "506663eb77b94bedbfb2bae0ab1d95c0"}</script></div>
+</div>
+<p>As you see, <code class="docutils literal notranslate"><span class="pre">m</span></code> changes the slope, and <code class="docutils literal notranslate"><span class="pre">b</span></code> changes where the “hook” appears. This function doesn’t do much on its own, but let’s see what happens when we add two of them together:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_relu</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rectified_linear</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">rectified_linear</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nd">@interact</span><span class="p">(</span><span class="n">m1</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">b1</span><span class="o">=-</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">b2</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_double_relu</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">b2</span><span class="p">):</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">double_relu</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span><span class="n">b1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="n">b2</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "234385dbd8004c2ab5a6e5fac60f77ca"}</script></div>
+</div>
+<p>By stacking and combining ReLU functions, neural networks can create intricate mappings between inputs and outputs. This allows them to approximate non-linear functions, which is essential for tasks like image recognition and natural language processing.</p>
+<p>This exact same approach can be expanded to functions of 2, 3, or more parameters.</p>
+<p>The basic idea is that by using multiple <strong>linear layers</strong> in a model, we allow it to perform more computations, thereby making it capable of modeling increasingly complex functions. However, if we simply stack one linear layer directly after another without any nonlinearity in between, it does not increase the expressive power of the model.</p>
+</section>
+<section id="why-multiple-linear-layers-alone-are-not-sufficient">
+<h3>Why Multiple Linear Layers Alone are Not Sufficient<a class="headerlink" href="#why-multiple-linear-layers-alone-are-not-sufficient" title="Link to this heading">#</a></h3>
+<p>Let’s break this down mathematically:</p>
+<ol class="arabic simple">
+<li><p><strong>Linear Transformation</strong>: A linear layer performs a transformation on its input, given by:
+$<span class="math notranslate nohighlight">\(
+f(x) = W \cdot x + b
+\)</span>$
+where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( W \)</span> is a matrix of weights,</p></li>
+<li><p><span class="math notranslate nohighlight">\( x \)</span> is the input vector, and</p></li>
+<li><p><span class="math notranslate nohighlight">\( b \)</span> is a bias vector.</p></li>
+</ul>
+</li>
+<li><p><strong>Composition of Linear Functions</strong>: Suppose we apply two consecutive linear layers, <span class="math notranslate nohighlight">\( f(x) = W_1 \cdot x + b_1 \)</span> and <span class="math notranslate nohighlight">\( g(x) = W_2 \cdot f(x) + b_2 \)</span>. Expanding <span class="math notranslate nohighlight">\( g(x) \)</span> yields:
+$<span class="math notranslate nohighlight">\(
+g(x) = W_2 \cdot (W_1 \cdot x + b_1) + b_2
+\)</span><span class="math notranslate nohighlight">\(
+This simplifies to:
+\)</span><span class="math notranslate nohighlight">\(
+g(x) = (W_2 \cdot W_1) \cdot x + (W_2 \cdot b_1 + b_2)
+\)</span><span class="math notranslate nohighlight">\(
+which is again a linear transformation of \)</span> x $. Thus, applying multiple linear layers in sequence still results in a single linear transformation.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Mathematical Insight</strong>: The composition of two linear transformations is itself a linear transformation. Therefore, stacking multiple linear layers without any nonlinear activation functions in between results in a model no more expressive than a single linear layer.</p>
+</div></blockquote>
+</section>
+<section id="adding-nonlinearity-the-key-to-complex-representations">
+<h3>Adding Nonlinearity: The Key to Complex Representations<a class="headerlink" href="#adding-nonlinearity-the-key-to-complex-representations" title="Link to this heading">#</a></h3>
+<p>To overcome this limitation, we introduce a <strong>nonlinear function</strong>, also known as an <strong>activation function</strong>, between the layers. This breaks the linearity of the transformation chain and allows each layer to learn different aspects of the data.</p>
+<p>Consider the <strong>ReLU (Rectified Linear Unit)</strong> activation function, which is one of the simplest and most effective nonlinear functions in deep learning. ReLU is defined as:
+$<span class="math notranslate nohighlight">\(
+\text{ReLU}(z) = \max(0, z)
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span> z = W \cdot x + b $.</p>
+<p>ReLU has two important properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Nonlinearity</strong>: By setting negative values to zero, ReLU introduces a nonlinear element, which means that the composition of layers containing ReLU functions is no longer purely linear.</p></li>
+<li><p><strong>Conditional Behavior</strong>: The ReLU function can be thought of as a simple <code class="docutils literal notranslate"><span class="pre">if</span></code> statement that returns 0 for negative inputs and the input itself for positive inputs, effectively adding a decision-making element to each layer.</p></li>
+</ol>
+</section>
+<section id="building-complex-models-with-layers-and-activation-functions">
+<h3>Building Complex Models with Layers and Activation Functions<a class="headerlink" href="#building-complex-models-with-layers-and-activation-functions" title="Link to this heading">#</a></h3>
+<p>With this nonlinear function, we can build a network that consists of:</p>
+<ul class="simple">
+<li><p>A <strong>sequence of linear transformations</strong> (layers), each with its own set of weights and biases.</p></li>
+<li><p><strong>Activation functions</strong> (such as ReLU) inserted between these layers to add complexity to the model’s behavior.</p></li>
+</ul>
+<p>Consider a neural network with two layers:</p>
+<ol class="arabic simple">
+<li><p><strong>First Layer</strong>: Applies a linear transformation, followed by a ReLU:
+$<span class="math notranslate nohighlight">\(
+h(x) = \text{ReLU}(W_1 \cdot x + b_1)
+\)</span>$</p></li>
+<li><p><strong>Second Layer</strong>: Applies another linear transformation to the output of the ReLU:
+$<span class="math notranslate nohighlight">\(
+f(x) = W_2 \cdot h(x) + b_2
+\)</span>$</p></li>
+</ol>
+<p>Now, <span class="math notranslate nohighlight">\( f(x) \)</span> is no longer a simple linear function of <span class="math notranslate nohighlight">\( x \)</span>; it is a composition of linear and nonlinear transformations, enabling it to capture much more complex patterns.</p>
+</section>
+<section id="the-universal-approximation-theorem">
+<h3>The Universal Approximation Theorem<a class="headerlink" href="#the-universal-approximation-theorem" title="Link to this heading">#</a></h3>
+<p>The addition of nonlinearity allows neural networks to approximate any continuous function to an arbitrary degree of accuracy, provided they have enough layers and units. This concept is formalized in the <strong>Universal Approximation Theorem</strong>, which states that:</p>
+<blockquote>
+<div><p>A neural network with at least one hidden layer containing a sufficient number of neurons, and a non-linear activation function, can approximate any continuous function on a compact subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> to any desired accuracy.</p>
+</div></blockquote>
+<p>This means that, theoretically, a neural network with just one hidden layer and a nonlinear activation function can approximate functions as complex as we need, given sufficient capacity.</p>
+</section>
+</section>
+<section id="activation-functions">
+<h2>Activation Functions<a class="headerlink" href="#activation-functions" title="Link to this heading">#</a></h2>
+<p>Activation functions decide whether a neuron should be activated or not by calculating the weighted sum and further adding bias to it. They are differentiable operators for transforming input signals to outputs, while most of them add nonlinearity. Because activation functions are fundamental to deep learning, let’s briefly survey some common ones.</p>
+<section id="relu-function">
+<h3>ReLU Function<a class="headerlink" href="#relu-function" title="Link to this heading">#</a></h3>
+<p>The most popular choice, due to both simplicity of implementation and its good performance on a variety of predictive tasks, is the rectified linear unit (ReLU) (Nair and Hinton, 2010). ReLU provides a very simple nonlinear transformation. Given an element, the function is defined as the maximum of that element and</p>
+<div class="math notranslate nohighlight">
+\[
+\text{ReLU}(z) = \max(0, z)
+\]</div>
+<p>Informally, the ReLU function retains only positive elements and discards all negative elements by setting the corresponding activations to 0. To gain some intuition, we can plot the function. As you can see, the activation function is piecewise linear.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_function</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ReLU Function&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ad3106c927b296bc5e7fa84140af3a8ce638143a9eb034e39dd883c58c5c3f27.png" src="../_images/ad3106c927b296bc5e7fa84140af3a8ce638143a9eb034e39dd883c58c5c3f27.png" />
+</div>
+</div>
+<p>When the input is negative, the derivative of the ReLU function is 0, and when the input is positive, the derivative of the ReLU function is 1. Note that the ReLU function is not differentiable when the input takes value precisely equal to 0. In these cases, we default to the left-hand-side derivative and say that the derivative is 0 when the input is 0. We can get away with this because the input may never actually be zero (mathematicians would say that it is nondifferentiable on a set of measure zero).</p>
+<p>The reason for using ReLU is that its derivatives are particularly well behaved: either they vanish or they just let the argument through. This makes optimization better behaved and it mitigated the well-documented problem of vanishing gradients that plagued previous versions of neural networks.</p>
+</section>
+<section id="sigmoid-function">
+<h3>Sigmoid Function<a class="headerlink" href="#sigmoid-function" title="Link to this heading">#</a></h3>
+<p>The <em>sigmoid function</em> transforms those inputs whose values lie in the
+domain <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, to outputs that lie on the interval (0, 1).
+For that reason, the sigmoid is often called a <em>squashing function</em>: it
+squashes any input in the range (-inf, inf) to some value in the range
+(0, 1):</p>
+<div class="math notranslate nohighlight">
+\[ \operatorname{sigmoid}(x) = \frac{1}{1 + \exp(-x)}.\]</div>
+<p>In the earliest neural networks, scientists were interested in modeling
+biological neurons that either <em>fire</em> or <em>do not fire</em>. Thus the
+pioneers of this field, going all the way back to McCulloch and Pitts,
+the inventors of the artificial neuron, focused on thresholding units. A thresholding activation takes value 0
+when its input is below some threshold and value 1 when the input
+exceeds the threshold.</p>
+<p>When attention shifted to gradient-based learning, the sigmoid function
+was a natural choice because it is a smooth, differentiable
+approximation to a thresholding unit. Sigmoids are still widely used as
+activation functions on the output units when we want to interpret the
+outputs as probabilities for binary classification problems: you can
+think of the sigmoid as a special case of the softmax. However, the
+sigmoid has largely been replaced by the simpler and more easily
+trainable ReLU for most use in hidden layers. Much of this has to do
+with the fact that the sigmoid poses challenges for optimization since its gradient vanishes for large
+positive <em>and</em> negative arguments. This can lead to plateaus that are
+difficult to escape from. Nonetheless sigmoids are important. For example, recurrent neural networks leverage sigmoid units to control the
+flow of information across time.</p>
+<p>Below, we plot the sigmoid function. Note that when the input is close
+to 0, the sigmoid function approaches a linear transformation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_function</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Sigmoid Function&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/947aecc50e650ff0bfa9628eb01be77abedabeec198dd1dc0d5050ba73f318e8.png" src="../_images/947aecc50e650ff0bfa9628eb01be77abedabeec198dd1dc0d5050ba73f318e8.png" />
+</div>
+</div>
+<p>The derivative of the sigmoid function is given by the following
+equation:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx} \operatorname{sigmoid}(x) = \frac{\exp(-x)}{(1 + \exp(-x))^2} = \operatorname{sigmoid}(x)\left(1-\operatorname{sigmoid}(x)\right).\]</div>
+<p>Note that when the input is 0, the derivative of the sigmoid function reaches a maximum
+of 0.25. As the input diverges from 0 in either direction, the
+derivative approaches 0.</p>
+</section>
+<section id="tanh-function">
+<h3>Tanh Function<a class="headerlink" href="#tanh-function" title="Link to this heading">#</a></h3>
+<p>Like the sigmoid function, the tanh (hyperbolic tangent) function also
+squashes its inputs, transforming them into elements on the interval
+between :math:<code class="docutils literal notranslate"><span class="pre">-1</span></code> and :math:<code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[ \operatorname{tanh}(x) = \frac{1 - \exp(-2x)}{1 + \exp(-2x)}.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_function</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tanh Function&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d58c3529aa802ae7c70e49ba425a6b10d39a03e58e4903bc3ac13294d1a07f54.png" src="../_images/d58c3529aa802ae7c70e49ba425a6b10d39a03e58e4903bc3ac13294d1a07f54.png" />
+</div>
+</div>
+<p>Note that as input nears 0, the tanh
+function approaches a linear transformation. Although the shape of the
+function is similar to that of the sigmoid function, the tanh function
+exhibits point symmetry about the origin of the coordinate system</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="21_neural%20networks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Deep Learning in Biomedical Engineering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="23_Loss_Metrics_and_Optimizers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Training a Digit Classifier</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure-of-a-neural-network">Basic Structure of a Neural Network</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-as-flexible-function-approximators">Neural Networks as Flexible Function Approximators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-building-blocks-of-neural-networks">The Building Blocks of Neural Networks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-multiple-linear-layers-alone-are-not-sufficient">Why Multiple Linear Layers Alone are Not Sufficient</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-nonlinearity-the-key-to-complex-representations">Adding Nonlinearity: The Key to Complex Representations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#building-complex-models-with-layers-and-activation-functions">Building Complex Models with Layers and Activation Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-universal-approximation-theorem">The Universal Approximation Theorem</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-functions">Activation Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relu-function">ReLU Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigmoid-function">Sigmoid Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tanh-function">Tanh Function</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Biagio Mandracchia
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
