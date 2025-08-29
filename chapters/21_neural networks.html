@@ -195,8 +195,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -541,9 +542,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch8\pathmnist.npz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: ./datasets/ch8\pathmnist.npz
+Using downloaded and verified file: ./datasets/ch8\pathmnist.npz
 </pre></div>
 </div>
 </div>
@@ -574,9 +573,7 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: datasets\ch8\pathmnist.npz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using downloaded and verified file: datasets\ch8\pathmnist.npz
+Using downloaded and verified file: datasets\ch8\pathmnist.npz
 </pre></div>
 </div>
 </div>
@@ -664,7 +661,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/df0adda75d9c3d6f74fc521ccc6da81261a6a9b9b51ddb40ee7afbba309f58db.png" src="../_images/df0adda75d9c3d6f74fc521ccc6da81261a6a9b9b51ddb40ee7afbba309f58db.png" />
+<img alt="../_images/9c33ca393beffe024eed00bc795f7f5552c82e2b1e65ba527354dc5d156f03df.png" src="../_images/9c33ca393beffe024eed00bc795f7f5552c82e2b1e65ba527354dc5d156f03df.png" />
 </div>
 </div>
 <p>The next line of the code training our image recognizer tells fastai to create a <em>convolutional neural network</em> (CNN) and specifies what <em>architecture</em> to use (i.e. what kind of model to create), what data we want to train it on, and what <em>metric</em> to use:</p>
@@ -718,9 +715,9 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.190651</td>
-      <td>2.030096</td>
-      <td>0.749861</td>
+      <td>3.261369</td>
+      <td>1.991843</td>
+      <td>0.743747</td>
       <td>00:03</td>
     </tr>
   </tbody>
@@ -753,23 +750,23 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.499359</td>
-      <td>1.744424</td>
-      <td>0.619233</td>
+      <td>2.329051</td>
+      <td>1.788579</td>
+      <td>0.648138</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>2.164765</td>
-      <td>1.495489</td>
-      <td>0.503613</td>
+      <td>2.204921</td>
+      <td>1.521289</td>
+      <td>0.540300</td>
       <td>00:06</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>1.988138</td>
-      <td>1.437683</td>
-      <td>0.475264</td>
+      <td>2.098126</td>
+      <td>1.478716</td>
+      <td>0.496943</td>
       <td>00:06</td>
     </tr>
   </tbody>
@@ -789,7 +786,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/18d95e1ce9cc892b229760e673b5085898d7ead9f7c42900bfce54b79bcb716e.png" src="../_images/18d95e1ce9cc892b229760e673b5085898d7ead9f7c42900bfce54b79bcb716e.png" />
+</div><div class="output text_html"></div><img alt="../_images/cc249edfad405a18698b47db784bd480b1935273b43a5a5518921d136b7de200.png" src="../_images/cc249edfad405a18698b47db784bd480b1935273b43a5a5518921d136b7de200.png" />
 </div>
 </div>
 <p>A <em>metric</em> is a function that measures the quality of the model’s predictions using the validation set, and will be printed at the end of each <em>epoch</em>. In this case, we’re using <code class="docutils literal notranslate"><span class="pre">error_rate</span></code>, which is a function provided by fastai that does just what it says: tells you what percentage of images in the validation set are being classified incorrectly. Another common metric for classification is <code class="docutils literal notranslate"><span class="pre">accuracy</span></code> (which is just <code class="docutils literal notranslate"><span class="pre">1.0</span> <span class="pre">-</span> <span class="pre">error_rate</span></code>).</p>
@@ -845,7 +842,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><img alt="../_images/fa0646b7564fa350b6eed9a25771ce57da917c0a08f2cb0bf1b111be21a12f42.png" src="../_images/fa0646b7564fa350b6eed9a25771ce57da917c0a08f2cb0bf1b111be21a12f42.png" />
+</div><div class="output text_html"></div><img alt="../_images/3cfcebf5332ea3bdbfb0923b41882e647e2906c90413983bdce4f07eec166123.png" src="../_images/3cfcebf5332ea3bdbfb0923b41882e647e2906c90413983bdce4f07eec166123.png" />
 </div>
 </div>
 <p>The confusion matrix shows the number of correct and incorrect predictions the model made. This visualization helps us understand where the model struggles, such as distinguishing between similar skin lesions.</p>
@@ -876,7 +873,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 8; Probability: 0.7824
+</div><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prediction: 7; Probability: 0.3714
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
@@ -950,9 +947,9 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>3.257477</td>
-      <td>1.942663</td>
-      <td>0.730962</td>
+      <td>3.223267</td>
+      <td>1.971703</td>
+      <td>0.767649</td>
       <td>00:03</td>
     </tr>
   </tbody>
@@ -972,13 +969,7 @@ document.write(`
         background: #F44336;
     }
 </style>
-</div><div class="output text_html">
-    <div>
-      <progress value='3' class='' max='10' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      30.00% [3/10 00:18&lt;00:43]
-    </div>
-    
-<table border="1" class="dataframe">
+</div><div class="output text_html"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: left;">
       <th>epoch</th>
@@ -991,213 +982,76 @@ document.write(`
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.501112</td>
-      <td>1.864596</td>
-      <td>0.706504</td>
-      <td>00:06</td>
+      <td>2.756138</td>
+      <td>1.978324</td>
+      <td>0.758755</td>
+      <td>00:07</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>2.336900</td>
-      <td>1.537696</td>
-      <td>0.526959</td>
-      <td>00:05</td>
+      <td>2.596331</td>
+      <td>1.620664</td>
+      <td>0.555864</td>
+      <td>00:07</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>2.217687</td>
-      <td>1.394767</td>
-      <td>0.476932</td>
+      <td>2.398460</td>
+      <td>1.464274</td>
+      <td>0.487493</td>
       <td>00:06</td>
     </tr>
+    <tr>
+      <td>3</td>
+      <td>2.201341</td>
+      <td>1.493079</td>
+      <td>0.470817</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>2.026988</td>
+      <td>1.461085</td>
+      <td>0.450806</td>
+      <td>00:06</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.895333</td>
+      <td>1.492575</td>
+      <td>0.429127</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1.818913</td>
+      <td>1.432546</td>
+      <td>0.412451</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>1.730843</td>
+      <td>1.443276</td>
+      <td>0.413007</td>
+      <td>00:06</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>1.669149</td>
+      <td>1.406350</td>
+      <td>0.410228</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>1.632360</td>
+      <td>1.405136</td>
+      <td>0.409672</td>
+      <td>00:07</td>
+    </tr>
   </tbody>
-</table><p>
-
-    <div>
-      <progress value='5' class='' max='7' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      71.43% [5/7 00:03&lt;00:01 2.0780]
-    </div>
-    </div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">18</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">dls</span> <span class="o">=</span> <span class="n">dblock</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">df_train</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">learn</span> <span class="o">=</span> <span class="n">vision_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> 
-<span class="g g-Whitespace">     </span><span class="mi">14</span>                        <span class="n">resnet18</span><span class="p">,</span> 
-<span class="g g-Whitespace">     </span><span class="mi">15</span>                        <span class="n">metrics</span><span class="o">=</span><span class="n">error_rate</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>                     <span class="c1">#    cbs=ShortEpochCallback(.1, short_valid=False),</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>                        <span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\callback\schedule.py:170,</span> in <span class="ni">fine_tune</span><span class="nt">(self, epochs, base_lr, freeze_epochs, lr_mult, pct_start, div, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="n">base_lr</span> <span class="o">/=</span> <span class="mi">2</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span> <span class="bp">self</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">170</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="n">base_lr</span><span class="o">/</span><span class="n">lr_mult</span><span class="p">,</span> <span class="n">base_lr</span><span class="p">),</span> <span class="n">pct_start</span><span class="o">=</span><span class="n">pct_start</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="n">div</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\callback\schedule.py:121,</span> in <span class="ni">fit_one_cycle</span><span class="nt">(self, n_epoch, lr_max, div, div_final, pct_start, wd, moms, cbs, reset_opt, start_epoch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="n">lr_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">hypers</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span> <span class="n">scheds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="n">combined_cos</span><span class="p">(</span><span class="n">pct_start</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">/</span><span class="n">div</span><span class="p">,</span> <span class="n">lr_max</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">/</span><span class="n">div_final</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>           <span class="s1">&#39;mom&#39;</span><span class="p">:</span> <span class="n">combined_cos</span><span class="p">(</span><span class="n">pct_start</span><span class="p">,</span> <span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moms</span> <span class="k">if</span> <span class="n">moms</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">moms</span><span class="p">))}</span>
-<span class="ne">--&gt; </span><span class="mi">121</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n_epoch</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">ParamScheduler</span><span class="p">(</span><span class="n">scheds</span><span class="p">)</span><span class="o">+</span><span class="n">L</span><span class="p">(</span><span class="n">cbs</span><span class="p">),</span> <span class="n">reset_opt</span><span class="o">=</span><span class="n">reset_opt</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="n">wd</span><span class="p">,</span> <span class="n">start_epoch</span><span class="o">=</span><span class="n">start_epoch</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:266,</span> in <span class="ni">Learner.fit</span><span class="nt">(self, n_epoch, lr, wd, cbs, reset_opt, start_epoch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">set_hypers</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="k">if</span> <span class="n">lr</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">lr</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_epoch</span> <span class="o">=</span> <span class="n">n_epoch</span>
-<span class="ne">--&gt; </span><span class="mi">266</span> <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_do_fit</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">,</span> <span class="n">CancelFitException</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_cleanup</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:255,</span> in <span class="ni">Learner._do_fit</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span> <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_epoch</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="o">=</span><span class="n">epoch</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_do_epoch</span><span class="p">,</span> <span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="n">CancelEpochException</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:249,</span> in <span class="ni">Learner._do_epoch</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="k">def</span> <span class="nf">_do_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">249</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_do_epoch_train</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_do_epoch_validate</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:241,</span> in <span class="ni">Learner._do_epoch_train</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span> <span class="k">def</span> <span class="nf">_do_epoch_train</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">train</span>
-<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_batches</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">CancelTrainException</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:207,</span> in <span class="ni">Learner.all_batches</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">def</span> <span class="nf">all_batches</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl</span><span class="p">)</span>
-<span class="nn">--&gt; 207     for o</span> in <span class="ni">enumerate(self.dl): self.one_batch</span><span class="nt">(*o)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:237,</span> in <span class="ni">Learner.one_batch</span><span class="nt">(self, i, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span> <span class="n">b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_device</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">237</span> <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_do_one_batch</span><span class="p">,</span> <span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="n">CancelBatchException</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:225,</span> in <span class="ni">Learner._do_one_batch</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span> <span class="bp">self</span><span class="p">(</span><span class="s1">&#39;after_loss&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">yb</span><span class="p">):</span> <span class="k">return</span>
-<span class="ne">--&gt; </span><span class="mi">225</span> <span class="bp">self</span><span class="o">.</span><span class="n">_do_grad_opt</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:213,</span> in <span class="ni">Learner._do_grad_opt</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span> <span class="k">def</span> <span class="nf">_do_grad_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">213</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward</span><span class="p">,</span> <span class="s1">&#39;backward&#39;</span><span class="p">,</span> <span class="n">CancelBackwardException</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_step</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">CancelStepException</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>     <span class="bp">self</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:201,</span> in <span class="ni">Learner._with_events</span><span class="nt">(self, f, event_type, ex, final)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="k">def</span> <span class="nf">_with_events</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">noop</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">201</span>     <span class="k">try</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;before_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">f</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>     <span class="k">except</span> <span class="n">ex</span><span class="p">:</span> <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_cancel_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="bp">self</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;after_</span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>  <span class="n">final</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\learner.py:209,</span> in <span class="ni">Learner._backward</span><span class="nt">(self)</span>
-<span class="ne">--&gt; </span><span class="mi">209</span> <span class="k">def</span> <span class="nf">_backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_grad</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:512,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span><span class="w"> </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Computes the gradient of current tensor wrt graph leaves.</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">470</span><span class="sd"> The graph is differentiated using the chain rule. If the tensor is</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span><span class="sd">         used to compute the :attr:`tensors`.</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">512</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
-<span class="g g-Whitespace">    </span><span class="mi">515</span>         <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">516</span>         <span class="n">gradient</span><span class="o">=</span><span class="n">gradient</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span>         <span class="n">retain_graph</span><span class="o">=</span><span class="n">retain_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\overrides.py:1647,</span> in <span class="ni">handle_torch_function</span><span class="nt">(public_api, relevant_args, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1641</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Defining your `__torch_function__ as a plain method is deprecated and &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1642</span>                   <span class="s2">&quot;will be an error in future, please define it as a classmethod.&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1643</span>                   <span class="ne">DeprecationWarning</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1645</span> <span class="c1"># Use `public_api` instead of `implementation` so __torch_function__</span>
-<span class="g g-Whitespace">   </span><span class="mi">1646</span> <span class="c1"># implementations can do equality/identity comparisons.</span>
-<span class="ne">-&gt; </span><span class="mi">1647</span> <span class="n">result</span> <span class="o">=</span> <span class="n">torch_func_method</span><span class="p">(</span><span class="n">public_api</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1649</span> <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">NotImplemented</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1650</span>     <span class="k">return</span> <span class="n">result</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\fastai\torch_core.py:384,</span> in <span class="ni">TensorBase.__torch_function__</span><span class="nt">(cls, func, types, args, kwargs)</span>
-<span class="nn">    382 if cls.debug and func.__name__ not</span> in <span class="ni">(&#39;__str__&#39;,&#39;__repr__&#39;): print</span><span class="nt">(func, types, args, kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="k">if</span> <span class="n">_torch_handled</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_opt</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span> <span class="n">types</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,)</span>
-<span class="ne">--&gt; </span><span class="mi">384</span> <span class="n">res</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__torch_function__</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">types</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">ifnone</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="p">{}))</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="n">dict_objs</span> <span class="o">=</span> <span class="n">_find_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span> <span class="k">else</span> <span class="n">_find_args</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">res</span><span class="p">),</span><span class="n">TensorBase</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dict_objs</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">set_meta</span><span class="p">(</span><span class="n">dict_objs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">as_copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:1437,</span> in <span class="ni">Tensor.__torch_function__</span><span class="nt">(cls, func, types, args, kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1434</span>     <span class="k">return</span> <span class="bp">NotImplemented</span>
-<span class="g g-Whitespace">   </span><span class="mi">1436</span> <span class="k">with</span> <span class="n">_C</span><span class="o">.</span><span class="n">DisableTorchFunctionSubclass</span><span class="p">():</span>
-<span class="ne">-&gt; </span><span class="mi">1437</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1438</span>     <span class="k">if</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">get_default_nowrap_functions</span><span class="p">():</span>
-<span class="g g-Whitespace">   </span><span class="mi">1439</span>         <span class="k">return</span> <span class="n">ret</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\_tensor.py:521,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">512</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">521</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\autograd\__init__.py:289,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="c1"># The reason we repeat the same comment below is that</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="c1"># calls in the traceback and some print out the last line</span>
-<span class="ne">--&gt; </span><span class="mi">289</span> <span class="n">_engine_run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span>     <span class="n">tensors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span>     <span class="n">grad_tensors_</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="n">retain_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span>     <span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="n">inputs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span>     <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">297</span> <span class="p">)</span>
-
-<span class="nn">File ~\anaconda3\envs\book\Lib\site-packages\torch\autograd\graph.py:769,</span> in <span class="ni">_engine_run_backward</span><span class="nt">(t_outputs, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">767</span>     <span class="n">unregister_hooks</span> <span class="o">=</span> <span class="n">_register_logging_hooks_on_whole_graph</span><span class="p">(</span><span class="n">t_outputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">768</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">769</span>     <span class="k">return</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">770</span>         <span class="n">t_outputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">771</span>     <span class="p">)</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
-<span class="g g-Whitespace">    </span><span class="mi">772</span> <span class="k">finally</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">773</span>     <span class="k">if</span> <span class="n">attach_logging_hooks</span><span class="p">:</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
+</table></div></div>
 </div>
 <p>By augmenting the data and fine-tuning the model, we can potentially reduce the error rate and improve the model’s ability to generalize.</p>
 </section>

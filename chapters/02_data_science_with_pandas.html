@@ -195,8 +195,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -414,9 +415,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="data-science-with-python-and-pandas">
+  <section class="tex2jax_ignore mathjax_ignore" id="data-science-with-python-and-pandas">
 <h1>Data Science with Python and Pandas<a class="headerlink" href="#data-science-with-python-and-pandas" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
 <p>Simply put, a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is a “reskinned” or “repurposed” <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array in that they are actually built on and around <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. However, there are a few points that make <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> more specialized for data science:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can contain different data types (numerics, strings, booleans) in different columns (though each column has to be homogenous), whereas a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array is entirely homogenous</p></li>
@@ -1406,31 +1406,31 @@ dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>11</td>
-      <td>NaN</td>
-      <td>31</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>12</td>
       <td>22.0</td>
       <td>32</td>
       <td>42</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>1</th>
       <td>13</td>
       <td>23.0</td>
       <td>33</td>
       <td>43</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>2</th>
       <td>14</td>
       <td>24.0</td>
       <td>34</td>
       <td>44</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11</td>
+      <td>NaN</td>
+      <td>31</td>
+      <td>41</td>
     </tr>
   </tbody>
 </table>
@@ -1568,7 +1568,7 @@ dtype: int64
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/06bbd8d51a7ab4a54bdaefe6033faacea1cea91fc8246e22faa9d94ad58d447e.png" src="../_images/06bbd8d51a7ab4a54bdaefe6033faacea1cea91fc8246e22faa9d94ad58d447e.png" />
+</div></div><img alt="../_images/11e5b8e0b3ac4a2e33a4720f6cb15baa721d23691ce7205c82d37e022a530566.png" src="../_images/11e5b8e0b3ac4a2e33a4720f6cb15baa721d23691ce7205c82d37e022a530566.png" />
 </div>
 </div>
 <p><strong>Challenge problem:</strong> Can you change the code above to create a line plot instead of a scatter plot? Hint: The word <strong>line</strong> is key. For your convenience, the code from above is duplicated below so you can modify it:</p>
@@ -1635,7 +1635,7 @@ dtype: int64
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/06bbd8d51a7ab4a54bdaefe6033faacea1cea91fc8246e22faa9d94ad58d447e.png" src="../_images/06bbd8d51a7ab4a54bdaefe6033faacea1cea91fc8246e22faa9d94ad58d447e.png" />
+</div></div><img alt="../_images/11e5b8e0b3ac4a2e33a4720f6cb15baa721d23691ce7205c82d37e022a530566.png" src="../_images/11e5b8e0b3ac4a2e33a4720f6cb15baa721d23691ce7205c82d37e022a530566.png" />
 </div>
 </div>
 </section>

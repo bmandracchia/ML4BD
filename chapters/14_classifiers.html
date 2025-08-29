@@ -197,8 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -440,7 +441,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="classification">
 <h1>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
 <p>Classification is the task of predicting categorical outcomes/labels</p>
 <p>Categorical variables can be binary, multinominal, or ordinal</p>
 <div class="cell tag_hide-input docutils container">
@@ -1239,9 +1239,9 @@ At each step it attempts to decrease the cost function (e.g., the MSE), calculat
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/421dcd6519a8772ffd1cf1b748b8c530611dc7fc0eb28aa0b781cdb0872c302f.png" src="../_images/421dcd6519a8772ffd1cf1b748b8c530611dc7fc0eb28aa0b781cdb0872c302f.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0003, 3.0063)
-Distance from true minimum: 0.0064
+<img alt="../_images/de2bd0ca3ab061ec9006d386a2f5ef6288f80877d4ee2e3010946a5e3a720d4e.png" src="../_images/de2bd0ca3ab061ec9006d386a2f5ef6288f80877d4ee2e3010946a5e3a720d4e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0008, 3.0369)
+Distance from true minimum: 0.0369
 </pre></div>
 </div>
 </div>
@@ -1249,7 +1249,9 @@ Distance from true minimum: 0.0064
 <p>To implement Gradient Descent, you need to compute the gradient of the cost function
 with regards to each model parameter <span class="math notranslate nohighlight">\(\theta_j\)</span>.</p>
 <div class="math notranslate nohighlight">
-\[ \frac{\partial}{\partial \mathbf{\theta_j}} \mathrm{MSE}(\theta) = \frac{2}{m} \Sigma_{t=1}^m (\mathbf{\theta}^T \mathbf{x}^{(t)} - y^{(t)}) x_j^{(t)} \]</div>
+\[ 
+\frac{\partial}{\partial \mathbf{\theta_j}} \mathrm{MSE}(\theta) = \frac{2}{m} \Sigma_{t=1}^m (\mathbf{\theta}^T \mathbf{x}^{(t)} - y^{(t)}) x_j^{(t)} 
+\]</div>
 <p>The gradient vector contains all the partial derivatives of the cost function (one for each model parameter)</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1321,9 +1323,9 @@ might make the algorithm diverge.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/45d502558c416ebe603ebe133c996ecbf40032585b0222a95c9b5a34b9203a14.png" src="../_images/45d502558c416ebe603ebe133c996ecbf40032585b0222a95c9b5a34b9203a14.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (2.0105, 2.9913)
-Distance from true minimum: 0.0137
+<img alt="../_images/4d921ce51de6ab88e82ac4b0a951a8dcc1164ccd0420715357990e6f9ce28c03.png" src="../_images/4d921ce51de6ab88e82ac4b0a951a8dcc1164ccd0420715357990e6f9ce28c03.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final position: (1.9074, 3.0338)
+Distance from true minimum: 0.0985
 </pre></div>
 </div>
 </div>
@@ -2424,7 +2426,7 @@ against recall.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.518018638366804
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.51801863836684
 </pre></div>
 </div>
 </div>
@@ -3024,6 +3026,11 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">sgd_clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.68924003, 0.6635725 , 0.70396387])
 </pre></div>
 </div>
 </div>

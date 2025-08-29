@@ -195,8 +195,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -395,17 +396,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebook">Introduction to Jupyter Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code-blocks">Running Code Blocks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-printing-hello-world-in-python">Example: Printing “Hello World!” in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-help-function">Using the Help Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-magic-commands">Jupyter Notebook Magic Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-a-file-in-jupyter-notebook">Writing to a File in Jupyter Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-external-code">Running external code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-code-from-external-scripts">Loading Code from External Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-execution-time-of-code">Measuring Execution Time of Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-in-jupyter-notebook">Markdown in Jupyter Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-key-concepts">Terminology and Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-shortcuts-in-command-mode">Key Shortcuts in Command Mode</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-help-function">Using the Help Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-magic-commands">Jupyter Notebook Magic Commands</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-a-file-in-jupyter-notebook">Writing to a File in Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-external-code">Running external code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-code-from-external-scripts">Loading Code from External Scripts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-execution-time-of-code">Measuring Execution Time of Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-in-jupyter-notebook">Markdown in Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-key-concepts">Terminology and Key Concepts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-shortcuts-in-command-mode">Key Shortcuts in Command Mode</a></li>
 </ul>
             </nav>
         </div>
@@ -417,7 +418,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="jupyter-markdown">
+  <section class="tex2jax_ignore mathjax_ignore" id="jupyter-markdown">
 <h1>Jupyter &amp; Markdown<a class="headerlink" href="#jupyter-markdown" title="Link to this heading">#</a></h1>
 <section id="introduction-to-jupyter-notebook">
 <h2>Introduction to Jupyter Notebook<a class="headerlink" href="#introduction-to-jupyter-notebook" title="Link to this heading">#</a></h2>
@@ -436,30 +437,12 @@ document.write(`
 </pre></div>
 </div>
 </section>
-</section>
 <section id="using-the-help-function">
-<h2>Using the Help Function<a class="headerlink" href="#using-the-help-function" title="Link to this heading">#</a></h2>
+<h3>Using the Help Function<a class="headerlink" href="#using-the-help-function" title="Link to this heading">#</a></h3>
 <p>You can access detailed information about any function by using the help() function. For example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on built-in function print in module builtins:
-
-print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
-    Prints the values to a stream, or to sys.stdout by default.
-
-    sep
-      string inserted between values, default a space.
-    end
-      string appended after the last value, default a newline.
-    file
-      a file-like object (stream); defaults to the current sys.stdout.
-    flush
-      whether to forcibly flush the stream.
 </pre></div>
 </div>
 </div>
@@ -474,7 +457,7 @@ print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
 </div>
 </section>
 <section id="jupyter-notebook-magic-commands">
-<h2>Jupyter Notebook Magic Commands<a class="headerlink" href="#jupyter-notebook-magic-commands" title="Link to this heading">#</a></h2>
+<h3>Jupyter Notebook Magic Commands<a class="headerlink" href="#jupyter-notebook-magic-commands" title="Link to this heading">#</a></h3>
 <p>Magic commands are special commands in Jupyter Notebook that perform tasks beyond regular Python or Markdown functionality. They start with a percent sign % for line magics and double percent signs %% for cell magics, and can be used to execute shell commands as well.</p>
 <p>To list all available magic functions:</p>
 <div class="cell docutils container">
@@ -483,21 +466,10 @@ print(*args, sep=&#39; &#39;, end=&#39;\n&#39;, file=None, flush=False)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available line magics:
-%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cd  %clear  %cls  %code_wrap  %colors  %conda  %config  %connect_info  %copy  %ddir  %debug  %dhist  %dirs  %doctest_mode  %echo  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %macro  %magic  %mamba  %matplotlib  %micromamba  %mkdir  %more  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %ren  %rep  %rerun  %reset  %reset_selective  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
-
-Available cell magics:
-%%!  %%HTML  %%SVG  %%bash  %%capture  %%cmd  %%code_wrap  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
-
-Automagic is ON, % prefix IS NOT needed for line magics.
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="writing-to-a-file-in-jupyter-notebook">
-<h2>Writing to a File in Jupyter Notebook<a class="headerlink" href="#writing-to-a-file-in-jupyter-notebook" title="Link to this heading">#</a></h2>
+<h3>Writing to a File in Jupyter Notebook<a class="headerlink" href="#writing-to-a-file-in-jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>You can write Python scripts directly within the notebook using a special magic command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -528,35 +500,25 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting quiz.py
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="running-external-code">
-<h2>Running external code<a class="headerlink" href="#running-external-code" title="Link to this heading">#</a></h2>
+<h3>Running external code<a class="headerlink" href="#running-external-code" title="Link to this heading">#</a></h3>
 <p>To execute a Python script from an external file, use the following command:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">run</span> <span class="n">quiz</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </section>
 <section id="loading-code-from-external-scripts">
-<h2>Loading Code from External Scripts<a class="headerlink" href="#loading-code-from-external-scripts" title="Link to this heading">#</a></h2>
+<h3>Loading Code from External Scripts<a class="headerlink" href="#loading-code-from-external-scripts" title="Link to this heading">#</a></h3>
 <p>If you want to include and run code from another script file directly within your notebook, you can load it using:</p>
 </section>
 <section id="measuring-execution-time-of-code">
-<h2>Measuring Execution Time of Code<a class="headerlink" href="#measuring-execution-time-of-code" title="Link to this heading">#</a></h2>
+<h3>Measuring Execution Time of Code<a class="headerlink" href="#measuring-execution-time-of-code" title="Link to this heading">#</a></h3>
 <p>You can quickly measure the execution time of a small Python function with:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> sum(range(1000))
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11.6 μs ± 41.1 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 </pre></div>
 </div>
 </div>
@@ -565,7 +527,7 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 <p>For a complete list of magic functions, visit iPython site at <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">https://ipython.readthedocs.io/en/stable/interactive/magics.html</a></p>
 </section>
 <section id="markdown-in-jupyter-notebook">
-<h2>Markdown in Jupyter Notebook<a class="headerlink" href="#markdown-in-jupyter-notebook" title="Link to this heading">#</a></h2>
+<h3>Markdown in Jupyter Notebook<a class="headerlink" href="#markdown-in-jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>Jupyter Notebook allows you to write formatted text using Markdown. Below is an example of basic Markdown formatting:</p>
 <p>“Hello world!”</p>
 <p>For more complex Markdown features, you can use extended syntax like bold, italics, lists, and code blocks.</p>
@@ -623,14 +585,14 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 <p>This example was borrowed from <a class="reference external" href="https://www.markdownguide.org/cheat-sheet/">markdownguide.org</a></p>
 </section>
 <section id="terminology-and-key-concepts">
-<h2>Terminology and Key Concepts<a class="headerlink" href="#terminology-and-key-concepts" title="Link to this heading">#</a></h2>
+<h3>Terminology and Key Concepts<a class="headerlink" href="#terminology-and-key-concepts" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Edit mode</strong>: This is the default editing state where you can type, run code cells, or write markdown content. You enter this mode by clicking into a cell or using arrow keys to select a cell and pressing <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
 <li><p><strong>Command mode</strong>: This is the navigation state where you use keyboard shortcuts to perform actions such as running code, adding new cells, converting cells between code and markdown, etc. To enter command mode, press the <code class="docutils literal notranslate"><span class="pre">Escape</span></code> key.</p></li>
 </ul>
 </section>
 <section id="key-shortcuts-in-command-mode">
-<h2>Key Shortcuts in Command Mode<a class="headerlink" href="#key-shortcuts-in-command-mode" title="Link to this heading">#</a></h2>
+<h3>Key Shortcuts in Command Mode<a class="headerlink" href="#key-shortcuts-in-command-mode" title="Link to this heading">#</a></h3>
 <p>Here are some essential shortcuts to remember:</p>
 <ul class="simple">
 <li><p><strong>Add a new block below</strong>: Press <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p></li>
@@ -638,6 +600,7 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 <li><p><strong>Convert a block to code</strong>: Press <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
 <li><p><strong>Delete a block</strong>: Press <code class="docutils literal notranslate"><span class="pre">d</span></code> followed by <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -708,17 +671,17 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-jupyter-notebook">Introduction to Jupyter Notebook</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-code-blocks">Running Code Blocks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-printing-hello-world-in-python">Example: Printing “Hello World!” in Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-help-function">Using the Help Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-magic-commands">Jupyter Notebook Magic Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-a-file-in-jupyter-notebook">Writing to a File in Jupyter Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-external-code">Running external code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-code-from-external-scripts">Loading Code from External Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-execution-time-of-code">Measuring Execution Time of Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-in-jupyter-notebook">Markdown in Jupyter Notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-key-concepts">Terminology and Key Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-shortcuts-in-command-mode">Key Shortcuts in Command Mode</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-help-function">Using the Help Function</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-magic-commands">Jupyter Notebook Magic Commands</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-to-a-file-in-jupyter-notebook">Writing to a File in Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-external-code">Running external code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-code-from-external-scripts">Loading Code from External Scripts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#measuring-execution-time-of-code">Measuring Execution Time of Code</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#markdown-in-jupyter-notebook">Markdown in Jupyter Notebook</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology-and-key-concepts">Terminology and Key Concepts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-shortcuts-in-command-mode">Key Shortcuts in Command Mode</a></li>
 </ul>
   </nav></div>
 

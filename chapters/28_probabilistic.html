@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction to Probabilistic Learning &#8212; Introduction to Machine Learning for Biomedical Data</title>
+    <title>Probabilistic Learning &#8212; Introduction to Machine Learning for Biomedical Data</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/28_probabilistic';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introdution to Physics-Based Deep Learning" href="29_PBDL.html" />
-    <link rel="prev" title="ResNets for Biomedical Image Analysis" href="26_resnet2.html" />
+    <link rel="next" title="Physics-Based Deep Learning" href="29_PBDL.html" />
+    <link rel="prev" title="Attention Mechanisms and Transformers" href="27_transformers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -197,8 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -384,7 +385,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to Probabilistic Learning</h1>
+    <h1>Probabilistic Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -430,8 +431,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-probabilistic-learning">
-<h1>Introduction to Probabilistic Learning<a class="headerlink" href="#introduction-to-probabilistic-learning" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="probabilistic-learning">
+<h1>Probabilistic Learning<a class="headerlink" href="#probabilistic-learning" title="Link to this heading">#</a></h1>
 <p>Up to this point we have treated the target mapping as <strong>deterministic</strong>: for every input <span class="math notranslate nohighlight">\(x\)</span> there is a single, correct output <span class="math notranslate nohighlight">\(y=f(x)\)</span>. That assumption is a drastic simplification. In realistic settings, solutions may be <strong>ambiguous</strong>, our learned model may <strong>confuse</strong> similar cases, and these effects often <strong>interact</strong>. This motivates a <strong>probabilistic</strong> treatment. Conceptually, we add a new axis to the problem: instead of a single outcome <span class="math notranslate nohighlight">\(y\)</span>, we consider a <strong>distribution over possible outcomes</strong> <span class="math notranslate nohighlight">\(p(y\mid x)\)</span>. Each candidate solution <span class="math notranslate nohighlight">\(y^{(i)}\)</span> carries a probability weight <span class="math notranslate nohighlight">\(p(y^{(i)}\mid x)\)</span> (often written simply as <span class="math notranslate nohighlight">\(p\)</span>), and samples <span class="math notranslate nohighlight">\(\{y^{(i)}\}\)</span> drawn from this distribution should reflect those probabilities so that <strong>rare</strong> and <strong>frequent</strong> outcomes are distinguishable.</p>
 <p>In short, rather than reasoning about a single solution <span class="math notranslate nohighlight">\(y\)</span> per input, we reason about <strong>many samples</strong> <span class="math notranslate nohighlight">\(y^{(1)}, y^{(2)}, \dots\)</span> from a distribution that captures both <strong>variability</strong> in the data and <strong>uncertainty</strong> in our model.</p>
 <section id="uncertainty">
@@ -580,7 +581,7 @@ q_\theta(x)\ge 0
 </section>
 <section id="generative-adversarial-networks">
 <h2>Generative Adversarial Networks<a class="headerlink" href="#generative-adversarial-networks" title="Link to this heading">#</a></h2>
-<p>In <strong>Introduction to Probabilistic Learning</strong> we framed generative modeling as the task of representing the <strong>full distribution</strong> over possible states of a variable <span class="math notranslate nohighlight">\(x\)</span>, i.e., learning <span class="math notranslate nohighlight">\(p(x)\)</span> (or <span class="math notranslate nohighlight">\(p(x\mid c)\)</span> when conditioned on inputs <span class="math notranslate nohighlight">\(c\)</span>). Long before diffusion models (DDPMs and relatives) rose to prominence, <strong>Generative Adversarial Networks (GANs)</strong> provided a powerful, if temperamental, route to this goal. Although much current research gravitates toward diffusion-based approaches, GANs remain conceptually elegant and practically useful. This chapter introduces their core ideas, explains how they are trained, and highlights scenarios—especially those with <strong>ambiguous targets</strong> and <strong>no differentiable physics model</strong>—where GANs excel by avoiding the “regression-to-the-mean” pitfall of standard supervised learning.</p>
+<p>We framed generative modeling as the task of representing the <strong>full distribution</strong> over possible states of a variable <span class="math notranslate nohighlight">\(x\)</span>, i.e., learning <span class="math notranslate nohighlight">\(p(x)\)</span> (or <span class="math notranslate nohighlight">\(p(x\mid c)\)</span> when conditioned on inputs <span class="math notranslate nohighlight">\(c\)</span>). Long before diffusion models (DDPMs and relatives) rose to prominence, <strong>Generative Adversarial Networks (GANs)</strong> provided a powerful, if temperamental, route to this goal. Although much current research gravitates toward diffusion-based approaches, GANs remain conceptually elegant and practically useful. This chapter introduces their core ideas, explains how they are trained, and highlights scenarios—especially those with <strong>ambiguous targets</strong> and <strong>no differentiable physics model</strong>—where GANs excel by avoiding the “regression-to-the-mean” pitfall of standard supervised learning.</p>
 <section id="maximum-likelihood-estimation">
 <h3>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h3>
 <p>To set the stage, recall <strong>classification</strong> with <span class="math notranslate nohighlight">\(K\)</span> classes. Given a dataset <span class="math notranslate nohighlight">\(\{(x_i, y_i)\}_{i=1}^N\)</span> with <span class="math notranslate nohighlight">\(y_i\in\{1,\dots,K\}\)</span>, a probabilistic classifier <span class="math notranslate nohighlight">\(p_\phi(y\mid x)\)</span> (e.g., a softmax network with parameters <span class="math notranslate nohighlight">\(\phi\)</span>) is typically trained by <strong>maximum likelihood estimation (MLE)</strong>:</p>
@@ -781,12 +782,12 @@ h_0=x,\quad h_k=f_k(h_{k-1}),\quad z=h_K,
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="26_resnet2.html"
+       href="27_transformers.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">ResNets for Biomedical Image Analysis</p>
+        <p class="prev-next-title">Attention Mechanisms and Transformers</p>
       </div>
     </a>
     <a class="right-next"
@@ -794,7 +795,7 @@ h_0=x,\quad h_k=f_k(h_{k-1}),\quad z=h_K,
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introdution to Physics-Based Deep Learning</p>
+        <p class="prev-next-title">Physics-Based Deep Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

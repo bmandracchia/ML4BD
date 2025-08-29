@@ -197,8 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -560,15 +561,6 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1530.,  1275.,  1530.,  1275.,  1530.],
-        [ 1275., -1275.,  -765., -1275.,  1275.],
-        [ 1530.,  -765.,     0.,  -765.,  1530.],
-        [ 1275., -1275.,  -765., -1275.,  1275.],
-        [ 1530.,  1275.,  1530.,  1275.,  1530.]])
-</pre></div>
-</div>
-</div>
 </div>
 <p>Look at the shape of the result. If the original image has a height of <code class="docutils literal notranslate"><span class="pre">h</span></code> and a width of <code class="docutils literal notranslate"><span class="pre">w</span></code>, how many 3×3 windows can we find? As you can see from the example, there are <code class="docutils literal notranslate"><span class="pre">h-2</span></code> by <code class="docutils literal notranslate"><span class="pre">w-2</span></code> windows, so the image we get has a result as a height of <code class="docutils literal notranslate"><span class="pre">h-2</span></code> and a width of <code class="docutils literal notranslate"><span class="pre">w-2</span></code>.</p>
 <p>Convolutions are at the heart of CNNs, helping to create layers of increasingly abstracted feature maps that capture the essential information needed for effective image recognition.</p>
@@ -604,12 +596,6 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[[-1.,  1.],
-          [-3.,  1.]]]])
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="strides-and-padding">
@@ -629,15 +615,6 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 <span class="n">output_with_padding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output with padding:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output_with_padding</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output with padding:
-tensor([[[[-3., -2.,  1.,  3.],
-          [-5., -1.,  1.,  3.],
-          [-4., -3.,  1.,  4.],
-          [-3.,  0.,  1.,  1.]]]])
 </pre></div>
 </div>
 </div>
@@ -735,12 +712,7 @@ tensor([[[[-3., -2.,  1.,  3.],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">broken_cnn</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
-
-<span class="ne">NameError</span>: name &#39;xb&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([64, 1, 28, 28])
 </pre></div>
 </div>
 </div>

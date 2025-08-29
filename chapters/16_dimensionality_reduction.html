@@ -197,8 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -453,7 +454,6 @@ document.write(`
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="dimensionality-reduction-pca">
 <h1>Dimensionality Reduction: PCA<a class="headerlink" href="#dimensionality-reduction-pca" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
 <p>With automatic data collection and feature generation techniques, one can quickly obtain a large number of features.
 But not all of them are useful. Not only does this make training extremely slow, it can also
 make it much harder to find a good solution, as we will see. This problem is often
@@ -1042,7 +1042,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2861551894041352
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.28615518940413565
 </pre></div>
 </div>
 </div>
@@ -1063,6 +1063,11 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image shape: (1797, 64)
+</pre></div>
+</div>
+</div>
 </div>
 <p>The MNIST dataset contains images of handwritten digits. Each image is an 8x8 array of pixel values. We flatten these arrays into 1D vectors to prepare them for PCA.</p>
 <section id="applying-pca-to-the-dataset">
@@ -1071,11 +1076,6 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_data</span> <span class="o">=</span> <span class="n">digits_data</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;image shape:&#39;</span><span class="p">,</span> <span class="n">image_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image shape: (1797, 64)
 </pre></div>
 </div>
 </div>
@@ -1107,7 +1107,7 @@ Z = X V_k = U\Sigma{}V^TV_k = U_k \Sigma_k
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8028957761040318
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8028957761040316
 </pre></div>
 </div>
 </div>
@@ -1240,7 +1240,7 @@ Obviously after dimensionality reduction, the training set takes up much less sp
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of PCs:  154
-preserved variance:  0.9501960192613035
+preserved variance:  0.9501960192613034
 </pre></div>
 </div>
 </div>

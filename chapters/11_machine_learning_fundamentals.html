@@ -197,8 +197,9 @@
 <li class="toctree-l1"><a class="reference internal" href="24_MLP.html">Classification with Multilayer Perceptrons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="25_convolutions.html">Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="26_resnet2.html">ResNets for Biomedical Image Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Introduction to Probabilistic Learning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Introdution to Physics-Based Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="27_transformers.html">Attention Mechanisms and Transformers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="28_probabilistic.html">Probabilistic Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="29_PBDL.html">Physics-Based Deep Learning</a></li>
 </ul>
 
     </div>
@@ -394,8 +395,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-core-concepts">The Machine Learning Core Concepts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-steps-of-the-machine-learning-pipeline">The main steps of the machine learning pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-core-concepts">The Machine Learning Core Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-steps-of-the-machine-learning-pipeline">The main steps of the machine learning pipeline</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation">Mathematical Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-classification-and-clustering">Regression, Classification, and Clustering</a><ul class="nav section-nav flex-column">
@@ -440,7 +443,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-machine-learning-fundamentals">
 <h1>The Machine Learning Fundamentals<a class="headerlink" href="#the-machine-learning-fundamentals" title="Link to this heading">#</a></h1>
-<hr class="docutils" />
 <p><strong>Machine learning</strong> involves fitting mathematical models to data to derive insights or make predictions.</p>
 <blockquote>
 <div><p>“[Machine Learning is the] field of study that gives computers the ability to learn without being explicitly programmed.”<br />
@@ -460,9 +462,8 @@ document.write(`
 <p><strong>Models</strong>: A model is a mathematical abstraction that describes relationships between different aspects of the data. For instance, a music recommendation model might quantify user similarities based on their listening habits, recommending artists to users with similar music preferences. Models generalize from past observations to predict or infer outcomes on new data.</p>
 <p><strong>Features</strong>: A feature is a numerical representation derived from raw data. There are various ways to convert raw data into useful features, which can range from simple measures to more complex transformations. The selection of features depends not only on the nature of the data but also on the type of model being used. Certain models work better with specific kinds of features. Effective features are both relevant to the task at hand and suited to the model’s architecture.</p>
 <p><strong>Feature engineering</strong> is the process of extracting and transforming raw data into formats that are useful for the model. It involves crafting the most suitable features based on the data, model, and the specific problem being addressed. It’s a critical step because well-crafted features can significantly reduce the complexity of modeling, leading to more accurate predictions and better overall performance.</p>
-</section>
 <section id="the-main-steps-of-the-machine-learning-pipeline">
-<h2>The main steps of the machine learning pipeline<a class="headerlink" href="#the-main-steps-of-the-machine-learning-pipeline" title="Link to this heading">#</a></h2>
+<h3>The main steps of the machine learning pipeline<a class="headerlink" href="#the-main-steps-of-the-machine-learning-pipeline" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Look at the big picture.</p></li>
 <li><p>Get the data.</p></li>
@@ -474,32 +475,48 @@ document.write(`
 <li><p>Launch, monitor, and maintain your system.</p></li>
 </ol>
 </section>
+</section>
 <section id="mathematical-representation">
 <h2>Mathematical Representation<a class="headerlink" href="#mathematical-representation" title="Link to this heading">#</a></h2>
-<p>In all machine learning tasks a sample is characterized by a D-dimensional <strong>feature vector</strong>: $<span class="math notranslate nohighlight">\(\textbf{x} = (x_1, ..., x_D)^T .\)</span>$</p>
-<p>We seek to find a mathematical <strong>model</strong> to predict some outputs that can be expressed as a function <span class="math notranslate nohighlight">\(f\)</span>:
-$<span class="math notranslate nohighlight">\(\^y = f (\mathbf{x})\)</span>$</p>
+<p>In all machine learning tasks a sample is characterized by a D-dimensional <strong>feature vector</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\textbf{x} = (x_1, ..., x_D)^T .
+\]</div>
+<p>We seek to find a mathematical <strong>model</strong> to predict some outputs that can be expressed as a function <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\^y = f (\mathbf{x})
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\^y\)</span> is an output estimated by our model. In the case of regression it is an estimated
 target value, for classification and clustering it is an estimated label, and for dimensionality
 reduction it is a transformed feature vector.
 Let’s assume that we have N training samples with feature vectors <span class="math notranslate nohighlight">\(\mathbf{x}_1, ...,\mathbf{x}_N\)</span> defined
-as follows:
-$<span class="math notranslate nohighlight">\(\textbf{x}_i = (x_{i1}, ..., x_{iD})^T .\)</span>$</p>
+as follows:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{x}_i = (x_{i1}, ..., x_{iD})^T .\]</div>
 <p>The features of the training samples determine a <strong>feature matrix</strong> <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> that characterizes the whole training set. The dimensiones of the feature matrix are N × D, with training samples
 corresponding to the rows of the feature matrix and individual features to the columns
 of the feature matrix.
 In supervised learning we expect an output <span class="math notranslate nohighlight">\(\mathbf{y}_i\)</span> for each training sample <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>. These outputs
 determine the target vector for regression and the label vector for classification
-as follows:
-$<span class="math notranslate nohighlight">\(\textbf{y} = (y_1, ..., y_N)^T .\)</span>$</p>
+as follows:</p>
+<div class="math notranslate nohighlight">
+\[\textbf{y} = (y_1, ..., y_N)^T .\]</div>
 <p>To find the mathematical model <span class="math notranslate nohighlight">\(f\)</span>, we need to select its mathematical form, which
 will vary according to the machine learning algorithm. In general, we select our model
 in advance by choosing a mathematical form of the function <span class="math notranslate nohighlight">\(f\)</span> that depends on the
-feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>:
-$<span class="math notranslate nohighlight">\( \^y = f(\mathbf{x},\theta) \)</span>$</p>
-<p>Training the model <span class="math notranslate nohighlight">\(f\)</span> can then be mathematically expressed as finding the parameter vector <span class="math notranslate nohighlight">\(\^\theta\)</span> that minimizes some loss function F for the given training set
-$<span class="math notranslate nohighlight">\( \^θ = \argmin_\theta \mathbf{F}(\mathbf{X},\mathbf{y}, \theta) \)</span><span class="math notranslate nohighlight">\(
-where \)</span>\mathbf{y}$ is dropped from the equation for unsupervised tasks.</p>
+feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\^y = f(\mathbf{x},\theta) 
+\]</div>
+<p>Training the model <span class="math notranslate nohighlight">\(f\)</span> can then be mathematically expressed as finding the parameter vector <span class="math notranslate nohighlight">\( \^\theta \)</span> that minimizes some loss function F for the given training set</p>
+<div class="math notranslate nohighlight">
+\[ 
+\^θ = \argmin_\theta \mathbf{F}(\mathbf{X},\mathbf{y}, \theta) 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is dropped from the equation for unsupervised tasks.</p>
 </section>
 <section id="types-of-machine-learning">
 <h2>Types of Machine Learning<a class="headerlink" href="#types-of-machine-learning" title="Link to this heading">#</a></h2>
@@ -1336,8 +1353,10 @@ model), by reducing the number of attributes in the training data or by constrai
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-core-concepts">The Machine Learning Core Concepts</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-steps-of-the-machine-learning-pipeline">The main steps of the machine learning pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-machine-learning-core-concepts">The Machine Learning Core Concepts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-steps-of-the-machine-learning-pipeline">The main steps of the machine learning pipeline</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation">Mathematical Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-classification-and-clustering">Regression, Classification, and Clustering</a><ul class="nav section-nav flex-column">
