@@ -486,7 +486,7 @@ document.write(`
 <p>We seek to find a mathematical <strong>model</strong> to predict some outputs that can be expressed as a function <span class="math notranslate nohighlight">\(f\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
-\^y = f (\mathbf{x})
+\hat{y} = f (\mathbf{x})
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\^y\)</span> is an output estimated by our model. In the case of regression it is an estimated
 target value, for classification and clustering it is an estimated label, and for dimensionality
@@ -509,12 +509,12 @@ in advance by choosing a mathematical form of the function <span class="math not
 feature vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and parameter vector <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ 
-\^y = f(\mathbf{x},\theta) 
+\hat{y} = f(\mathbf{x},\theta) 
 \]</div>
-<p>Training the model <span class="math notranslate nohighlight">\(f\)</span> can then be mathematically expressed as finding the parameter vector <span class="math notranslate nohighlight">\( \^\theta \)</span> that minimizes some loss function F for the given training set</p>
+<p>Training the model <span class="math notranslate nohighlight">\(f\)</span> can then be mathematically expressed as finding the parameter vector <span class="math notranslate nohighlight">\( \hat{\theta} \)</span> that minimizes some loss function F for the given training set</p>
 <div class="math notranslate nohighlight">
 \[ 
-\^θ = \argmin_\theta \mathbf{F}(\mathbf{X},\mathbf{y}, \theta) 
+\hat{θ} = \mathrm{argmin}_\theta \mathbf{F}(\mathbf{X},\mathbf{y}, \theta) 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> is dropped from the equation for unsupervised tasks.</p>
 </section>
@@ -774,14 +774,16 @@ lines:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Brain</span> <span class="pre">Volume</span></code> = <span class="math notranslate nohighlight">\(\theta_0 + \theta_1 \times\)</span> <code class="docutils literal notranslate"><span class="pre">GA</span></code></p>
 <p>This model is just a linear function of the input feature <code class="docutils literal notranslate"><span class="pre">GA</span></code>, <span class="math notranslate nohighlight">\(\theta_0\)</span> and <span class="math notranslate nohighlight">\(\theta_1\)</span> are
 the model’s parameters.</p>
-<p>More generally, a linear model makes a prediction by simply computing a weighted sum of the input features, plus a constant called the intercept term (or bias):
-$<span class="math notranslate nohighlight">\(
+<p>More generally, a linear model makes a prediction by simply computing a weighted sum of the input features, plus a constant called the intercept term (or bias):</p>
+<div class="math notranslate nohighlight">
+\[
 \hat y = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \dots + \theta_n x_n
-\)</span>$</p>
-<p>In vectorized form:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>In vectorized form:</p>
+<div class="math notranslate nohighlight">
+\[
 \hat y = \mathbf{\theta} \cdot \mathbf{x}
-\)</span>$</p>
+\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -826,10 +828,11 @@ $<span class="math notranslate nohighlight">\(
 <p>For this purpose, we first need a measure of how well (or poorly) the model fits the training data.
 The most common performance measure of a regression model is the Mean Square Error (MSE).
 So, to train a Linear Regression model, you need to find the value of θ that minimizes the MSE.</p>
-<p>The MSE of a Linear Regression hypothesis <span class="math notranslate nohighlight">\(h_θ\)</span> on a training set <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is calculated using:
-$<span class="math notranslate nohighlight">\(
+<p>The MSE of a Linear Regression hypothesis <span class="math notranslate nohighlight">\(h_θ\)</span> on a training set <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is calculated using:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathrm{MSE}(X, h_θ) = \frac{1}{m} \sum_{i = 1}^{m} \big( \mathbf{\theta}^T \mathbf{x}^{(i)} − y^{(i)} \big)^2
-\)</span>$</p>
+\]</div>
 <section id="the-normal-distribution-and-squared-loss">
 <h4>The Normal Distribution and Squared Loss<a class="headerlink" href="#the-normal-distribution-and-squared-loss" title="Link to this heading">#</a></h4>
 <p>We can provide a more formal motivation for the squared loss objective by making
@@ -877,10 +880,11 @@ additive Gaussian noise.</p>
 <section id="the-normal-equation">
 <h3>The Normal Equation<a class="headerlink" href="#the-normal-equation" title="Link to this heading">#</a></h3>
 <p>To find the value of <span class="math notranslate nohighlight">\(\theta\)</span> that minimizes the cost function, there is a closed-form solution —in other words, a mathematical equation that gives the result directly.</p>
-<p>This is called the <em>Normal Equation</em>:
-$<span class="math notranslate nohighlight">\(
+<p>This is called the <em>Normal Equation</em>:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathbf{\hat \theta} = (\mathbf{X}^T\mathbf{X})^{−1} \mathbf{X}^T \mathbf{y}
-\)</span>$</p>
+\]</div>
 <p>The normal equation can be computed using <code class="docutils literal notranslate"><span class="pre">NumPy</span></code>’s Linear Algebra module (<code class="docutils literal notranslate"><span class="pre">np.linalg</span></code>)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">theta_best</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X_b</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X_b</span><span class="p">)</span> <span class="o">@</span> <span class="n">X_b</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
 </pre></div>

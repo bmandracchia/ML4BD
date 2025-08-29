@@ -435,7 +435,7 @@ document.write(`
 <p>Here, we will introduce the simplest deep networks, which are called <strong>multilayer perceptrons (MLP)</strong>, and they consist of multiple layers of neurons each fully connected to those in the layer below (from which they receive input) and those above (which they, in turn, influence).</p>
 <p>MLP overcome the limitations of linear models by incorporating one or more hidden layers. The easiest way to do this is to stack many fully connected layers on top of one another. Each layer feeds into the layer above it, until we generate outputs. We can think of the first
 layers as our representation and the final layer as our linear predictor.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="MLP" src="../_images/MLP.png" /></p>
 <section id="implementation-of-multilayer-perceptrons">
 <h2>Implementation of Multilayer Perceptrons<a class="headerlink" href="#implementation-of-multilayer-perceptrons" title="Link to this heading">#</a></h2>
 <p>Multilayer perceptrons (MLPs) are not much more complex to implement than simple linear models. The key conceptual difference is that we now concatenate multiple layers.</p>

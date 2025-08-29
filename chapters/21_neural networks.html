@@ -395,18 +395,19 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-a-brief-history">Neural Networks: A Brief History</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-learn-deep-learning">How to Learn Deep Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-software">The Software</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-neural-network">What Is a Neural Network?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-inherent-to-machine-learning">Limitations Inherent to Machine Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-our-medical-image-recognizer-works">How Our Medical Image Recognizer Works</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-neural-networks-make-predictions">How Neural Networks Make Predictions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-model-performance">Evaluating Model Performance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-ethical-considerations">Limitations and Ethical Considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-overfitting">Handling Overfitting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning">Transfer Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-the-model-for-real-world-use">Deploying the Model for Real-World Use</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-sets-and-test-sets">Validation Sets and Test Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-medical-image-recognizer-works">How a Medical Image Recognizer Works</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-neural-networks-make-predictions">How Neural Networks Make Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-model-performance">Evaluating Model Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-ethical-considerations">Limitations and Ethical Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-overfitting">Handling Overfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning">Transfer Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-the-model-for-real-world-use">Deploying the Model for Real-World Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-sets-and-test-sets">Validation Sets and Test Sets</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -433,7 +434,7 @@ document.write(`
 </div>
 </details>
 </div>
-<section id="deep-learning-in-biomedical-engineering">
+<section class="tex2jax_ignore mathjax_ignore" id="deep-learning-in-biomedical-engineering">
 <h1>Deep Learning in Biomedical Engineering<a class="headerlink" href="#deep-learning-in-biomedical-engineering" title="Link to this heading">#</a></h1>
 <p>Deep learning, a subset of machine learning, has revolutionized numerous fields, including biomedical engineering. By enabling models to automatically learn representations from large datasets, deep learning has become pivotal in applications such as medical image analysis, drug discovery, and patient monitoring. With its ability to handle complex patterns in data, deep learning is increasingly being used to solve critical healthcare challenges, from early disease detection to personalized medicine.</p>
 <p>Deep learning is a computational method that extracts and transforms data through the use of multiple layers of neural networks. In biomedical engineering, it has been applied to areas such as recognizing patterns in medical imaging (e.g., MRI or CT scans) or analyzing gene expression data. Each neural network layer processes inputs from the previous one, progressively refining and improving the output. The layers are trained using algorithms that minimize error and improve accuracy, enabling the network to perform tasks such as diagnosing diseases or predicting patient outcomes. We will discuss training algorithms in detail in the next section.</p>
@@ -457,7 +458,7 @@ document.write(`
 </div></blockquote>
 <p>This early work laid the foundation for modern neural networks, which now drive many biomedical innovations, such as interpreting brain activity, diagnosing neurological diseases, and aiding in cognitive rehabilitation.</p>
 <p>McCulloch and Pitts recognized that a simplified model of a biological neuron could be represented using basic mathematical operations, such as addition and thresholding. This model mimicked the behavior of neurons in the brain, where inputs from various sources are combined, and an output is triggered only if a certain threshold is reached. Today, this concept forms the basis of artificial neural networks used in a variety of biomedical applications, from analyzing neural activity to developing brain-computer interfaces.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="perceptron" src="../_images/perceptron.png" /></p>
 <p>Rosenblatt advanced the concept of the artificial neuron by giving it the ability to learn. He also built the first device to implement these principles, the Mark I Perceptron. However, in their book <em>Perceptrons</em> (MIT Press), Minsky and Papert demonstrated that a single-layer perceptron was unable to learn certain fundamental mathematical functions (like XOR). They also noted that using multiple layers could overcome these limitations, although only the former insight gained wide attention. This led to a significant decline in research on neural networks for the next two decades. Despite this, modern deep learning, especially in biomedical fields like medical imaging and genomics, relies heavily on multi-layered neural networks to address complex healthcare problems.</p>
 <p>Perhaps the most pivotal work in neural networks over the last 50 years was the multi-volume <em>Parallel Distributed Processing</em> (PDP) by David Rumelhart, James McClellan, and the PDP Research Group, released in 1986. Chapter 1 expresses hope similar to that of Rosenblatt:</p>
 <blockquote>
@@ -483,15 +484,6 @@ document.write(`
 <p>Learning deep learning is an essential skill for solving complex biomedical problems. From analyzing vast datasets of patient records to developing predictive models for disease progression, deep learning is becoming a vital tool for biomedical engineers. This section will guide you through the essential concepts, tools, and resources to help you become proficient in applying deep learning techniques to real-world healthcare challenges.</p>
 <p>The most challenging part of deep learning is practical: How do you ensure you have enough medical data? Is it in the correct format? Is your model training correctly? If not, how do you fix it? This is why learning by doing is essential. In biomedical engineering, hands-on experience with real datasets—such as patient records, imaging data, or genomic sequences—will improve your skills faster than purely focusing on theory. Solving real healthcare problems through coding will provide the necessary context and motivation to dive deeper into the theoretical aspects later.</p>
 </section>
-<section id="the-software">
-<h2>The Software<a class="headerlink" href="#the-software" title="Link to this heading">#</a></h2>
-<p>To effectively implement deep learning models in biomedical engineering, it’s essential to use the right tools. PyTorch, fastai, and Jupyter Notebooks are powerful, open-source software platforms that simplify the development of deep learning models.</p>
-<p>PyTorch has become the go-to framework for research and prototyping. Its dynamic computation graph (define-by-run) allows for easier debugging and a more intuitive workflow, which has made it particularly popular in academia and among researchers, including in biomedical fields. PyTorch is favored for quick experimentation and flexibility, making it a dominant player in state-of-the-art model development and research papers. For example, it is extensively used in cutting-edge tasks like medical image analysis and cancer research.</p>
-<p>Since its release in 2017, PyTorch has become the fastest-growing deep learning library and is widely used in top research papers, including many in biomedical engineering. This trend often indicates future industry adoption, as these innovations are eventually integrated into healthcare products and services. PyTorch excels as a low-level foundation for deep learning, providing essential operations that power applications like medical image analysis and predictive modeling. The fastai library enhances PyTorch by adding high-level functionality, making it easier for researchers and engineers to develop complex models, such as those used in diagnosing diseases or analyzing biomedical signals.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
-<p>Fastai builds on PyTorch, providing an easy-to-use framework for rapidly developing models, while Jupyter Notebooks allow you to combine code, data visualization, and documentation seamlessly in one place, making them ideal for biomedical research projects.</p>
-<p>While the choice of software (e.g., PyTorch, TensorFlow) isn’t crucial, as switching between libraries is relatively easy, mastering the foundations and techniques of deep learning is what truly matters—especially in biomedical engineering. Whether you are developing models to predict disease progression, analyze medical images, or discover new drugs, understanding the core principles is key. In this course, we will focus on writing code that clearly illustrates the deep learning concepts you need to learn for practical applications in healthcare.</p>
-</section>
 <section id="what-is-a-neural-network">
 <h2>What Is a Neural Network?<a class="headerlink" href="#what-is-a-neural-network" title="Link to this heading">#</a></h2>
 <p>If we regard a neural network as a mathematical function, it is incredibly flexible depending on its weights. According to the <em>universal approximation theorem</em>, a neural network can theoretically solve any problem to any level of accuracy. This flexibility makes neural networks particularly suited for solving complex biomedical problems, such as detecting skin lesions or analyzing genomic sequences. The key challenge lies in training the network effectively, which involves finding the right weight assignments for the model.</p>
@@ -507,11 +499,11 @@ document.write(`
 <li><p>It’s not enough to have just examples of input data; we also need <strong>labels</strong> for that data. For example, having images of skin lesions isn’t enough to train a model—each image needs to be labeled with information such as whether it indicates a benign or malignant condition.</p></li>
 </ul>
 <p>In healthcare, many organizations claim they don’t have enough data, but in reality, they often lack enough <strong>labeled</strong> data. For instance, dermatology clinics may have archives of skin lesion images, but these images might not have structured labels, as clinicians often provide free-text reports.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="cover" src="../_images/cover.png" /></p>
 <p>Another critical insight comes from considering how a model interacts with its environment, particularly in healthcare settings. This interaction can create a <strong>positive feedback loop</strong>, where the more the model is used, the more biased the data becomes, potentially leading to even more biased predictions. For example, if a model trained on limited or biased patient demographics is used in a clinic, its predictions may reinforce existing biases in diagnosis, which can negatively affect patient care.</p>
 </section>
-<section id="how-our-medical-image-recognizer-works">
-<h2>How Our Medical Image Recognizer Works<a class="headerlink" href="#how-our-medical-image-recognizer-works" title="Link to this heading">#</a></h2>
+<section id="how-a-medical-image-recognizer-works">
+<h2>How a Medical Image Recognizer Works<a class="headerlink" href="#how-a-medical-image-recognizer-works" title="Link to this heading">#</a></h2>
 <p>In this section, we will build and fine-tune a medical image recognizer that can classify colon pathologies from histology slides using the MedMNIST Dataset.</p>
 <p>The following code will provide:</p>
 <ol class="arabic simple">
@@ -882,13 +874,12 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 <img alt="../_images/c4d4f2fe44976065a21bbd92ea7a70466065923d58ac2770c600030ed23ddba8.png" src="../_images/c4d4f2fe44976065a21bbd92ea7a70466065923d58ac2770c600030ed23ddba8.png" />
 </div>
 </div>
-</section>
 <section id="how-neural-networks-make-predictions">
-<h2>How Neural Networks Make Predictions<a class="headerlink" href="#how-neural-networks-make-predictions" title="Link to this heading">#</a></h2>
+<h3>How Neural Networks Make Predictions<a class="headerlink" href="#how-neural-networks-make-predictions" title="Link to this heading">#</a></h3>
 <p>When you pass an image through the neural network, the model processes it through several layers. Each layer performs mathematical operations on the input data (e.g., pixels of the image) and progressively refines its understanding of the image’s features. For instance, the first layers might detect simple patterns like edges, while deeper layers might recognize complex structures, such as shapes that are characteristic of certain skin lesions. Finally, the model makes a prediction by assigning a probability to each possible class (e.g., benign or malignant).</p>
 </section>
 <section id="improving-the-model">
-<h2>Improving the Model<a class="headerlink" href="#improving-the-model" title="Link to this heading">#</a></h2>
+<h3>Improving the Model<a class="headerlink" href="#improving-the-model" title="Link to this heading">#</a></h3>
 <p>If the model’s performance isn’t satisfactory, there are several ways we can improve it:</p>
 <ol class="arabic simple">
 <li><p><strong>Data Augmentation</strong>: Applying transformations like flipping, rotating, and zooming in on the images to artificially increase the diversity of the training set.</p></li>
@@ -1056,7 +1047,7 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 <p>By augmenting the data and fine-tuning the model, we can potentially reduce the error rate and improve the model’s ability to generalize.</p>
 </section>
 <section id="evaluating-model-performance">
-<h2>Evaluating Model Performance<a class="headerlink" href="#evaluating-model-performance" title="Link to this heading">#</a></h2>
+<h3>Evaluating Model Performance<a class="headerlink" href="#evaluating-model-performance" title="Link to this heading">#</a></h3>
 <p>Once the model has been trained, it’s crucial to evaluate its performance using a validation set. In our case, we split the dataset into 80% training images and 20% validation images. The model’s performance on the validation set is a strong indicator of how well it will generalize to new, unseen data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1075,11 +1066,11 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 <p>The loss curve helps us understand whether the model is overfitting (learning too much from the training data but performing poorly on new data) or underfitting (failing to capture the complexity of the data).</p>
 </section>
 <section id="limitations-and-ethical-considerations">
-<h2>Limitations and Ethical Considerations<a class="headerlink" href="#limitations-and-ethical-considerations" title="Link to this heading">#</a></h2>
+<h3>Limitations and Ethical Considerations<a class="headerlink" href="#limitations-and-ethical-considerations" title="Link to this heading">#</a></h3>
 <p>It’s important to recognize that while machine learning models like this one can assist in diagnosing medical conditions, they are not perfect. Misclassifications can occur, and it’s crucial to ensure that such models are evaluated rigorously before being used in clinical settings. Additionally, considerations like data privacy, informed consent, and bias in training data must be addressed to avoid unintended consequences, such as biased diagnoses for certain demographic groups.</p>
 </section>
 <section id="handling-overfitting">
-<h2>Handling Overfitting<a class="headerlink" href="#handling-overfitting" title="Link to this heading">#</a></h2>
+<h3>Handling Overfitting<a class="headerlink" href="#handling-overfitting" title="Link to this heading">#</a></h3>
 <p>One of the most common challenges in machine learning, particularly with smaller datasets like the ISIC dataset, is <strong>overfitting</strong>. Overfitting occurs when the model learns the details and noise in the training data to the extent that it negatively impacts its performance on new data. To mitigate overfitting, we can use techniques such as <strong>dropout</strong> and <strong>regularization</strong>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1232,7 +1223,7 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 <p>By adding dropout to the network, we randomly disable a fraction of the neurons during training, which helps prevent the model from becoming too reliant on any single feature in the data.</p>
 </section>
 <section id="transfer-learning">
-<h2>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Link to this heading">#</a></h2>
+<h3>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Link to this heading">#</a></h3>
 <p>Transfer learning is particularly useful in biomedical engineering because medical datasets are often small and expensive to collect. By using a model pretrained on a large, general dataset and fine-tuning it on a smaller, domain-specific dataset, we can achieve high performance without needing a vast amount of labeled data.</p>
 <p>In this notebook, we leveraged a pretrained ResNet model, which was originally trained on millions of general images, and fine-tuned it to specialize in classifying skin lesions.</p>
 <div class="cell docutils container">
@@ -1400,7 +1391,7 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 <p>The <em>head</em> of a model is the part that is newly added to be specific to the new dataset. An <em>epoch</em> is one complete pass through the dataset. After calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>, the results after each epoch are printed, showing the epoch number, the training and validation set losses (the “measure of performance” used for training the model), and any <em>metrics</em> you’ve requested (error rate, in this case).</p>
 </section>
 <section id="deploying-the-model-for-real-world-use">
-<h2>Deploying the Model for Real-World Use<a class="headerlink" href="#deploying-the-model-for-real-world-use" title="Link to this heading">#</a></h2>
+<h3>Deploying the Model for Real-World Use<a class="headerlink" href="#deploying-the-model-for-real-world-use" title="Link to this heading">#</a></h3>
 <p>Once the model is trained and validated, it can be deployed to assist healthcare professionals in real-world scenarios. For deployment on a local device or cloud platform, the model can be exported and integrated into medical software.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1443,12 +1434,12 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
 </div>
 </div>
 </section>
-<hr class="docutils" />
 <section id="validation-sets-and-test-sets">
-<h2>Validation Sets and Test Sets<a class="headerlink" href="#validation-sets-and-test-sets" title="Link to this heading">#</a></h2>
+<h3>Validation Sets and Test Sets<a class="headerlink" href="#validation-sets-and-test-sets" title="Link to this heading">#</a></h3>
 <p>When training a model, the process focuses on optimizing predictions based solely on the training data to determine weight parameters. However, we, as modelers, are indirectly influencing the model in a way the training process does not: we adjust hyperparameters based on performance observed in the validation data. This means that our exploration and adjustments can inadvertently lead to “overfitting” on the validation data itself, as we repeatedly tweak and test based on it. In the same way that the model is at risk of overfitting the training data, we are at risk of overfitting our hyperparameter choices to the validation data.</p>
 <p>The solution to this dilemma is to add a further layer of withheld data: the <em>test set</em>. Just as the validation set is kept separate from training, the test set must be entirely reserved, even from our own tuning efforts. The test set should never be used to adjust or improve the model; instead, it is reserved solely for evaluating the final model’s performance. In this structure, the data is split into a hierarchy based on exposure: the training data is fully utilized, the validation data is partially used for tuning, and the test data is kept entirely hidden until the end. This hierarchy aligns with our modeling stages: training through backpropagation, manual hyperparameter tuning, and the ultimate evaluation of the model’s generalizability.</p>
 <p>To get reliable accuracy estimates, both the test and validation sets should include enough data. For example, if you’re building a cat detector, you’ll want at least 30 images of cats in the validation set. If you have a large dataset, the standard 20% split for validation might be more than necessary; conversely, when data is plentiful, using some for validation usually has little impact on the model’s ability to generalize.</p>
+</section>
 </section>
 </section>
 
@@ -1518,18 +1509,19 @@ Using downloaded and verified file: datasets\ch8\pathmnist.npz
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neural-networks-a-brief-history">Neural Networks: A Brief History</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-learn-deep-learning">How to Learn Deep Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-software">The Software</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-neural-network">What Is a Neural Network?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-inherent-to-machine-learning">Limitations Inherent to Machine Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-our-medical-image-recognizer-works">How Our Medical Image Recognizer Works</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-neural-networks-make-predictions">How Neural Networks Make Predictions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-model-performance">Evaluating Model Performance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-ethical-considerations">Limitations and Ethical Considerations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-overfitting">Handling Overfitting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning">Transfer Learning</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-the-model-for-real-world-use">Deploying the Model for Real-World Use</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-sets-and-test-sets">Validation Sets and Test Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-a-medical-image-recognizer-works">How a Medical Image Recognizer Works</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-neural-networks-make-predictions">How Neural Networks Make Predictions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-model-performance">Evaluating Model Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-and-ethical-considerations">Limitations and Ethical Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-overfitting">Handling Overfitting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transfer-learning">Transfer Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploying-the-model-for-real-world-use">Deploying the Model for Real-World Use</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-sets-and-test-sets">Validation Sets and Test Sets</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

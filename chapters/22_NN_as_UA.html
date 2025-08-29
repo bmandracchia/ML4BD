@@ -513,27 +513,31 @@ document.write(`
 <section id="why-multiple-linear-layers-alone-are-not-sufficient">
 <h3>Why Multiple Linear Layers Alone are Not Sufficient<a class="headerlink" href="#why-multiple-linear-layers-alone-are-not-sufficient" title="Link to this heading">#</a></h3>
 <p>Let’s break this down mathematically:</p>
-<ol class="arabic simple">
-<li><p><strong>Linear Transformation</strong>: A linear layer performs a transformation on its input, given by:
-$<span class="math notranslate nohighlight">\(
-f(x) = W \cdot x + b
-\)</span>$
-where:</p>
+<ol class="arabic">
+<li><p><strong>Linear Transformation</strong>: A linear layer performs a transformation on its input, given by:</p>
+<div class="math notranslate nohighlight">
+\[
+   f(x) = W \cdot x + b
+   \]</div>
+<p>where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\( W \)</span> is a matrix of weights,</p></li>
 <li><p><span class="math notranslate nohighlight">\( x \)</span> is the input vector, and</p></li>
 <li><p><span class="math notranslate nohighlight">\( b \)</span> is a bias vector.</p></li>
 </ul>
 </li>
-<li><p><strong>Composition of Linear Functions</strong>: Suppose we apply two consecutive linear layers, <span class="math notranslate nohighlight">\( f(x) = W_1 \cdot x + b_1 \)</span> and <span class="math notranslate nohighlight">\( g(x) = W_2 \cdot f(x) + b_2 \)</span>. Expanding <span class="math notranslate nohighlight">\( g(x) \)</span> yields:
-$<span class="math notranslate nohighlight">\(
-g(x) = W_2 \cdot (W_1 \cdot x + b_1) + b_2
-\)</span><span class="math notranslate nohighlight">\(
-This simplifies to:
-\)</span><span class="math notranslate nohighlight">\(
-g(x) = (W_2 \cdot W_1) \cdot x + (W_2 \cdot b_1 + b_2)
-\)</span><span class="math notranslate nohighlight">\(
-which is again a linear transformation of \)</span> x $. Thus, applying multiple linear layers in sequence still results in a single linear transformation.</p></li>
+<li><p><strong>Composition of Linear Functions</strong>: Suppose we apply two consecutive linear layers, <span class="math notranslate nohighlight">\( f(x) = W_1 \cdot x + b_1 \)</span> and <span class="math notranslate nohighlight">\( g(x) = W_2 \cdot f(x) + b_2 \)</span>. Expanding <span class="math notranslate nohighlight">\( g(x) \)</span> yields:</p>
+<div class="math notranslate nohighlight">
+\[
+   g(x) = W_2 \cdot (W_1 \cdot x + b_1) + b_2
+   \]</div>
+<p>This simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+   g(x) = (W_2 \cdot W_1) \cdot x + (W_2 \cdot b_1 + b_2)
+   \]</div>
+<p>which is again a linear transformation of <span class="math notranslate nohighlight">\( x \)</span>. Thus, applying multiple linear layers in sequence still results in a single linear transformation.</p>
+</li>
 </ol>
 <blockquote>
 <div><p><strong>Mathematical Insight</strong>: The composition of two linear transformations is itself a linear transformation. Therefore, stacking multiple linear layers without any nonlinear activation functions in between results in a model no more expressive than a single linear layer.</p>
@@ -542,11 +546,12 @@ which is again a linear transformation of \)</span> x $. Thus, applying multiple
 <section id="adding-nonlinearity-the-key-to-complex-representations">
 <h3>Adding Nonlinearity: The Key to Complex Representations<a class="headerlink" href="#adding-nonlinearity-the-key-to-complex-representations" title="Link to this heading">#</a></h3>
 <p>To overcome this limitation, we introduce a <strong>nonlinear function</strong>, also known as an <strong>activation function</strong>, between the layers. This breaks the linearity of the transformation chain and allows each layer to learn different aspects of the data.</p>
-<p>Consider the <strong>ReLU (Rectified Linear Unit)</strong> activation function, which is one of the simplest and most effective nonlinear functions in deep learning. ReLU is defined as:
-$<span class="math notranslate nohighlight">\(
+<p>Consider the <strong>ReLU (Rectified Linear Unit)</strong> activation function, which is one of the simplest and most effective nonlinear functions in deep learning. ReLU is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
 \text{ReLU}(z) = \max(0, z)
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span> z = W \cdot x + b $.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( z = W \cdot x + b \)</span>.</p>
 <p>ReLU has two important properties:</p>
 <ol class="arabic simple">
 <li><p><strong>Nonlinearity</strong>: By setting negative values to zero, ReLU introduces a nonlinear element, which means that the composition of layers containing ReLU functions is no longer purely linear.</p></li>
@@ -561,15 +566,19 @@ where \)</span> z = W \cdot x + b $.</p>
 <li><p><strong>Activation functions</strong> (such as ReLU) inserted between these layers to add complexity to the model’s behavior.</p></li>
 </ul>
 <p>Consider a neural network with two layers:</p>
-<ol class="arabic simple">
-<li><p><strong>First Layer</strong>: Applies a linear transformation, followed by a ReLU:
-$<span class="math notranslate nohighlight">\(
-h(x) = \text{ReLU}(W_1 \cdot x + b_1)
-\)</span>$</p></li>
-<li><p><strong>Second Layer</strong>: Applies another linear transformation to the output of the ReLU:
-$<span class="math notranslate nohighlight">\(
-f(x) = W_2 \cdot h(x) + b_2
-\)</span>$</p></li>
+<ol class="arabic">
+<li><p><strong>First Layer</strong>: Applies a linear transformation, followed by a ReLU:</p>
+<div class="math notranslate nohighlight">
+\[
+   h(x) = \text{ReLU}(W_1 \cdot x + b_1)
+   \]</div>
+</li>
+<li><p><strong>Second Layer</strong>: Applies another linear transformation to the output of the ReLU:</p>
+<div class="math notranslate nohighlight">
+\[
+   f(x) = W_2 \cdot h(x) + b_2
+   \]</div>
+</li>
 </ol>
 <p>Now, <span class="math notranslate nohighlight">\( f(x) \)</span> is no longer a simple linear function of <span class="math notranslate nohighlight">\( x \)</span>; it is a composition of linear and nonlinear transformations, enabling it to capture much more complex patterns.</p>
 </section>
@@ -657,7 +666,7 @@ derivative approaches 0.</p>
 <h3>Tanh Function<a class="headerlink" href="#tanh-function" title="Link to this heading">#</a></h3>
 <p>Like the sigmoid function, the tanh (hyperbolic tangent) function also
 squashes its inputs, transforming them into elements on the interval
-between :math:<code class="docutils literal notranslate"><span class="pre">-1</span></code> and :math:<code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(1\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[ \operatorname{tanh}(x) = \frac{1 - \exp(-2x)}{1 + \exp(-2x)}.\]</div>
 <div class="cell docutils container">

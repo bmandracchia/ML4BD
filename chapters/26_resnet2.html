@@ -463,7 +463,7 @@ f^*_{\mathcal{F}} \;=\; \arg\min_{f \in \mathcal{F}} L(\mathbf{X}, \mathbf{y}, f
 <li><p>For <strong>non-nested classes</strong>, increasing capacity can sometimes move us <em>further away</em> from the truth. As illustrated in the figure below, <span class="math notranslate nohighlight">\(\mathcal{F}_3\)</span> is closer to <span class="math notranslate nohighlight">\(f^*\)</span> than <span class="math notranslate nohighlight">\(\mathcal{F}_1\)</span>, but <span class="math notranslate nohighlight">\(\mathcal{F}_6\)</span> moves further away. Simply enlarging the space of possible solutions is not enough.</p></li>
 <li><p>For <strong>nested classes</strong> (<span class="math notranslate nohighlight">\(\mathcal{F}*1 \subseteq \mathcal{F}*2 \subseteq \dots\)</span>), each expansion strictly increases expressive power, guaranteeing that <span class="math notranslate nohighlight">\(f^**{\mathcal{F}*{k+1}}\)</span> is at least as good as <span class="math notranslate nohighlight">\(f^*_{\mathcal{F}_k}\)</span> (in terms of approximation error).</p></li>
 </ul>
-<p><img alt="functionclasses" src="chapters/attachment:image.png" /></p>
+<p><img alt="functionclasses" src="../_images/nested_func.png" /></p>
 <p>This distinction highlights why architectural design matters: not every added layer or parameter leads to meaningful improvements.</p>
 </section>
 <section id="deep-networks-and-the-identity-function">
@@ -683,7 +683,7 @@ f^*_{\mathcal{F}} \;=\; \arg\min_{f \in \mathcal{F}} L(\mathbf{X}, \mathbf{y}, f
 H(x) = F(x) + x
 \]</div>
 <p>This approach helps the model focus on the differences (residuals) that distinguish various tumor types, making the network easier to train with gradient-based optimizers.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="res_block" src="../_images/resblock.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ResBlock</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>

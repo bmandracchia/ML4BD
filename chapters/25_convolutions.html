@@ -561,6 +561,15 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 1530.,  1275.,  1530.,  1275.,  1530.],
+        [ 1275., -1275.,  -765., -1275.,  1275.],
+        [ 1530.,  -765.,     0.,  -765.,  1530.],
+        [ 1275., -1275.,  -765., -1275.,  1275.],
+        [ 1530.,  1275.,  1530.,  1275.,  1530.]])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Look at the shape of the result. If the original image has a height of <code class="docutils literal notranslate"><span class="pre">h</span></code> and a width of <code class="docutils literal notranslate"><span class="pre">w</span></code>, how many 3×3 windows can we find? As you can see from the example, there are <code class="docutils literal notranslate"><span class="pre">h-2</span></code> by <code class="docutils literal notranslate"><span class="pre">w-2</span></code> windows, so the image we get has a result as a height of <code class="docutils literal notranslate"><span class="pre">h-2</span></code> and a width of <code class="docutils literal notranslate"><span class="pre">w-2</span></code>.</p>
 <p>Convolutions are at the heart of CNNs, helping to create layers of increasingly abstracted feature maps that capture the essential information needed for effective image recognition.</p>
@@ -596,6 +605,12 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[[[-1.,  1.],
+          [-3.,  1.]]]])
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="strides-and-padding">
@@ -615,6 +630,15 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 <span class="n">output_with_padding</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Output with padding:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output_with_padding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output with padding:
+tensor([[[[-3., -2.,  1.,  3.],
+          [-5., -1.,  1.,  3.],
+          [-4., -3.,  1.,  4.],
+          [-3.,  0.,  1.,  1.]]]])
 </pre></div>
 </div>
 </div>
@@ -687,6 +711,32 @@ K = \begin{bmatrix} -1 &amp; -1 &amp; -1 \\ -1 &amp; 8 &amp; -1 \\ -1 &amp; -1 &
 <section id="building-a-convolutional-neural-network">
 <h2>Building a Convolutional Neural Network<a class="headerlink" href="#building-a-convolutional-neural-network" title="Link to this heading">#</a></h2>
 <p>In constructing a CNN, we aim to learn effective image features automatically rather than handcrafting filters. Specifically, we will optimize the convolutional kernel values via Stochastic Gradient Descent (SGD), allowing the model to learn the most informative features directly from the data. This approach is crucial, as certain complex patterns (especially in later layers) are difficult to manually design. When we use convolutions instead of (or in addition to) fully connected layers, we build what is known as a <em>Convolutional Neural Network</em> (CNN).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">MNIST_SAMPLE</span><span class="p">)</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">((</span><span class="n">ImageBlock</span><span class="p">(</span><span class="bp">cls</span><span class="o">=</span><span class="n">PILImageBW</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">),</span> 
+                  <span class="n">get_items</span><span class="o">=</span><span class="n">get_image_files</span><span class="p">,</span> 
+                  <span class="n">splitter</span><span class="o">=</span><span class="n">GrandparentSplitter</span><span class="p">(),</span>
+                  <span class="n">get_y</span><span class="o">=</span><span class="n">parent_label</span><span class="p">)</span>
+
+<span class="n">dls</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">xb</span><span class="p">,</span><span class="n">yb</span> <span class="o">=</span> <span class="n">first</span><span class="p">(</span><span class="n">dls</span><span class="o">.</span><span class="n">valid</span><span class="p">)</span>
+<span class="n">xb</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([64, 1, 28, 28])
+</pre></div>
+</div>
+</div>
+</div>
 <section id="creating-the-cnn">
 <h3>Creating the CNN<a class="headerlink" href="#creating-the-cnn" title="Link to this heading">#</a></h3>
 <p>Let’s start with a basic convolutional neural network:</p>
@@ -835,8 +885,8 @@ Total params: 6,722
 Total trainable params: 6,722
 Total non-trainable params: 0
 
-Optimizer used: &lt;function Adam at 0x7f52294904a0&gt;
-Loss function: &lt;function cross_entropy at 0x7f527455e980&gt;
+Optimizer used: &lt;function Adam at 0x00000211C6C9BBA0&gt;
+Loss function: &lt;function cross_entropy at 0x00000211BC6F40E0&gt;
 
 Callbacks:
   - TrainEvalCallback
@@ -884,17 +934,17 @@ Callbacks:
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.072507</td>
-      <td>0.034740</td>
-      <td>0.988224</td>
-      <td>00:02</td>
+      <td>0.061466</td>
+      <td>0.031233</td>
+      <td>0.987733</td>
+      <td>00:18</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.021638</td>
-      <td>0.016491</td>
+      <td>0.022755</td>
+      <td>0.019546</td>
       <td>0.994603</td>
-      <td>00:02</td>
+      <td>00:15</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -963,10 +1013,11 @@ Callbacks:
 </ul>
 </li>
 </ul>
-<p>For example, if the input activation map is 14×14 with 4 output channels and a 3×3 kernel, the computation would be:
-$<span class="math notranslate nohighlight">\(
+<p>For example, if the input activation map is 14×14 with 4 output channels and a 3×3 kernel, the computation would be:</p>
+<div class="math notranslate nohighlight">
+\[
 14 \times 14 \times 4 \times 3 \times 3 = 7,056 \text{ multiplications per feature map.}
-\)</span>$</p>
+\]</div>
 <p>By doubling the number of channels after each stride-2 operation, we maintain consistent computation as we reduce grid size. This design allows deeper layers to extract increasingly abstract and semantically rich features, balancing both capacity and efficiency in the network.</p>
 </section>
 </section>
@@ -978,6 +1029,11 @@ $<span class="math notranslate nohighlight">\(
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">MNIST</span><span class="p">)</span>
 <span class="n">Path</span><span class="o">.</span><span class="n">BASE_PATH</span> <span class="o">=</span> <span class="n">path</span>
 <span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#2) [Path(&#39;testing&#39;),Path(&#39;training&#39;)]
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1063,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6f15fd5ef146c0ee187064739f31df6e1ac054d32354e4251e04b44e3ee6d700.png" src="../_images/6f15fd5ef146c0ee187064739f31df6e1ac054d32354e4251e04b44e3ee6d700.png" />
+<img alt="../_images/de2feec508ca94d8369131944d1e5cb625b7a8a8d2c3924194463a0111a32502.png" src="../_images/de2feec508ca94d8369131944d1e5cb625b7a8a8d2c3924194463a0111a32502.png" />
 </div>
 </div>
 <section id="a-simple-baseline-cnn">
@@ -1069,7 +1125,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ed2f4316d600f814fffcecf29db3a3785beabd7ecd95ff7814f4262f8b9deefe.png" src="../_images/ed2f4316d600f814fffcecf29db3a3785beabd7ecd95ff7814f4262f8b9deefe.png" />
+<img alt="../_images/d8eaea7ec610a07dabd0e2cd3254027d47915011db24a2a795ae622a08adeada.png" src="../_images/d8eaea7ec610a07dabd0e2cd3254027d47915011db24a2a795ae622a08adeada.png" />
 </div>
 </div>
 <p>Ideally, the mean and standard deviation should remain stable or follow a smooth trend. A high percentage of activations near zero indicates that a significant portion of the model is inactive or contributing minimally, which can propagate through layers, worsening at deeper levels.</p>
@@ -1081,7 +1137,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b537d29bb622e51989e0c9ed7fa299c1369590fb5f07d3fc2d72f47124f0c35.png" src="../_images/5b537d29bb622e51989e0c9ed7fa299c1369590fb5f07d3fc2d72f47124f0c35.png" />
+<img alt="../_images/f20d37b7ff5a148113354159a9bee7264a7641171cecb55a522190d661833c17.png" src="../_images/f20d37b7ff5a148113354159a9bee7264a7641171cecb55a522190d661833c17.png" />
 </div>
 </div>
 <p>As expected, instability and zero activations often increase towards the end of the network, suggesting that some layers are “dead” and effectively passing zero values forward. This issue compounds through layers, making training difficult</p>
@@ -1138,10 +1194,10 @@ $<span class="math notranslate nohighlight">\(
   <tbody>
     <tr>
       <td>0</td>
-      <td>2.315653</td>
-      <td>2.302183</td>
+      <td>2.308856</td>
+      <td>2.304741</td>
       <td>0.113500</td>
-      <td>00:09</td>
+      <td>01:10</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -1154,7 +1210,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0ca1e35dd5929afac0ec601b9b506f859219239e4793f9636a78128ab4dfd920.png" src="../_images/0ca1e35dd5929afac0ec601b9b506f859219239e4793f9636a78128ab4dfd920.png" />
+<img alt="../_images/783c6ba0cc045207c2af93281c07520343d4fd29ed2ed9f97eb26e3dc353e481.png" src="../_images/783c6ba0cc045207c2af93281c07520343d4fd29ed2ed9f97eb26e3dc353e481.png" />
 </div>
 </div>
 <p>Again, we’ve got most of our activations near zero. Let’s see what else we can do to improve training stability.</p>
@@ -1226,10 +1282,10 @@ $<span class="math notranslate nohighlight">\(
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.200606</td>
-      <td>0.074460</td>
-      <td>0.975100</td>
-      <td>00:08</td>
+      <td>0.210347</td>
+      <td>0.074806</td>
+      <td>0.974900</td>
+      <td>01:09</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -1244,7 +1300,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d83753038453707e907a77d93a1c8649d626f9ef64d05e42122a540f92d9bf0e.png" src="../_images/d83753038453707e907a77d93a1c8649d626f9ef64d05e42122a540f92d9bf0e.png" />
+<img alt="../_images/e73e43add5a345de3e79c047169ed3da1fd6cb2039079f3436a20ec9f84c2b7c.png" src="../_images/e73e43add5a345de3e79c047169ed3da1fd6cb2039079f3436a20ec9f84c2b7c.png" />
 </div>
 </div>
 <p>Let’s take a look at our layer stats again:</p>
@@ -1255,7 +1311,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e28ec33ceac25cae684c4191408b3292d4123520ffed6634a3f0dab7525abf52.png" src="../_images/e28ec33ceac25cae684c4191408b3292d4123520ffed6634a3f0dab7525abf52.png" />
+<img alt="../_images/735bf24962f2250fce13e93abeb03675598d10c04bb5b498782b762aec21cd5b.png" src="../_images/735bf24962f2250fce13e93abeb03675598d10c04bb5b498782b762aec21cd5b.png" />
 </div>
 </div>
 <p>The percentage of near-zero weights is getting much better, although it’s still quite high.</p>
@@ -1311,13 +1367,7 @@ y_i = \gamma \hat{x}_i + \beta
         background: #F44336;
     }
 </style>
-</div><div class="output text_html">
-    <div>
-      <progress value='0' class='' max='1' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      0.00% [0/1 00:00&lt;?]
-    </div>
-    
-<table border="1" class="dataframe">
+</div><div class="output text_html"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: left;">
       <th>epoch</th>
@@ -1328,16 +1378,17 @@ y_i = \gamma \hat{x}_i + \beta
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.133975</td>
+      <td>0.058637</td>
+      <td>0.985600</td>
+      <td>01:10</td>
+    </tr>
   </tbody>
-</table><p>
-
-    <div>
-      <progress value='0' class='' max='117' style='width:300px; height:20px; vertical-align: middle;'></progress>
-      0.00% [0/117 00:00&lt;?]
-    </div>
-    </div></div>
+</table></div></div>
 </div>
-<p>That’s a great result! Let’s take a look at <code class="docutils literal notranslate"><span class="pre">color_dim</span></code>:</p>
+<p>That’s even better! Let’s take a look at the activation stats:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">activation_stats</span><span class="o">.</span><span class="n">plot_layer_stats</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
@@ -1345,10 +1396,10 @@ y_i = \gamma \hat{x}_i + \beta
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f00df89ea64984882d535194fc675b12a5061c5c0669a351dcd228090ecfacd8.png" src="../_images/f00df89ea64984882d535194fc675b12a5061c5c0669a351dcd228090ecfacd8.png" />
+<img alt="../_images/8faec7fd93a7d6e679b279e32e5ff46178544cf68da30e5ad35fb459f2d6f3de.png" src="../_images/8faec7fd93a7d6e679b279e32e5ff46178544cf68da30e5ad35fb459f2d6f3de.png" />
 </div>
 </div>
-<p>This is just what we hope to see: a smooth development of activations, with no “crashes.” Batchnorm has really delivered on its promise here! In fact, batchnorm has been so successful that we see it (or something very similar) in nearly all modern neural networks.</p>
+<p>This is closer to what we hope to see: a smooth development of activations, with no “crashes”. This gives us a hint of why batchnorm has been so successful that we see it (or something very similar) in nearly all modern neural networks.</p>
 <p>BatchNorm acts as a form of <strong>regularization</strong> by introducing slight stochasticity to the model’s activations during training, as each mini-batch’s statistics vary slightly. This randomness makes the model robust to small variations, leading to improved generalization. It has been empirically observed that BatchNorm often leads to better test performance and a reduction in overfitting compared to networks that do not include it.</p>
 </section>
 </section>

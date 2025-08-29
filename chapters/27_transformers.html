@@ -467,7 +467,7 @@ document.write(`
 \text{Attention}(\mathbf{q}, \mathcal{D}) = \sum_{i=1}^m \alpha(\mathbf{q}, \mathbf{k}_i)\,\mathbf{v}_i ,
 \]</div>
 <p>where each weight <span class="math notranslate nohighlight">\(\alpha(\mathbf{q}, \mathbf{k}_i)\)</span> measures how strongly key <span class="math notranslate nohighlight">\(\mathbf{k}_i\)</span> matches the query <span class="math notranslate nohighlight">\(\mathbf{q}\)</span>. Normalizing the weights with a softmax ensures they are nonnegative and sum to 1, turning them into a probability distribution that can be interpreted (cautiously) as “relative importance.” This allows attention to cover several useful cases: exact matching (one weight = 1), averaging (all weights equal), or soft combinations of relevant elements. The key strengths of attention are that it is differentiable, scalable to large inputs, and parameter-efficient, making it possible for a model to “focus” flexibly without compressing everything into a fixed-length bottleneck.</p>
-<p><img alt="QKV" src="../_images/image.png" /></p>
+<p><img alt="QKV" src="../_images/attention.png" /></p>
 <section id="the-scoring-function">
 <h3>The Scoring Function<a class="headerlink" href="#the-scoring-function" title="Link to this heading">#</a></h3>
 <p>A common strategy for ensuring that the weights sum up to 1 is to normalize them via</p>
@@ -735,7 +735,7 @@ p_{i,2j+1} = \cos\!\left(\frac{i}{10000^{2j/d}}\right),
 <section id="the-transformer-architecture">
 <h2>The Transformer Architecture<a class="headerlink" href="#the-transformer-architecture" title="Link to this heading">#</a></h2>
 <p>Self-attention enables both parallel computation and the shortest maximum path length compared to CNNs and RNNs. This makes it attractive as the foundation of deep architectures. The Transformer  (Vaswani et al., 2017) is the first model built entirely on attention, without recurrence or convolution. Initially proposed for sequence-to-sequence learning in NLP, it is now widely used in language, vision, speech, and reinforcement learning.</p>
-<p><img alt="transformer" src="chapters/attachment:image.png" /></p>
+<p><img alt="transformer" src="../_images/transformer.png" /></p>
 <section id="model-overview">
 <h3>Model Overview<a class="headerlink" href="#model-overview" title="Link to this heading">#</a></h3>
 <p>The Transformer follows the encoder–decoder structure. Both source and target token embeddings are combined with positional encodings before being passed to stacked layers of self-attention and feed-forward networks.</p>

@@ -425,7 +425,7 @@ document.write(`
 <h1>Physics-Based Deep Learning<a class="headerlink" href="#physics-based-deep-learning" title="Link to this heading">#</a></h1>
 <p>Physics-Based Deep Learning (PBDL) is an interdisciplinary field that synergizes physical modeling with deep learning techniques to enhance the accuracy and efficiency of simulations and predictions in engineering and scientific research. By embedding physical laws into machine learning models, PBDL addresses the limitations of purely data-driven approaches, leading to models that are both data-efficient and physically consistent.</p>
 <p>Traditional machine learning models excel in pattern recognition and predictive tasks when ample data is available. However, in many engineering applications, data may be scarce, noisy, or expensive to obtain. Moreover, purely data-driven models often fail to generalize beyond the training data, especially when they lack an understanding of the underlying physical principles governing the system. PBDL mitigates these challenges by integrating known physical laws, typically expressed as partial differential equations (PDEs), into the learning process.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="overview" src="../_images/overview.png" /></p>
 <section id="categories-of-physics-based-deep-learning-approaches">
 <h2>Categories of Physics-Based Deep Learning Approaches<a class="headerlink" href="#categories-of-physics-based-deep-learning-approaches" title="Link to this heading">#</a></h2>
 <p>PBDL methodologies can be broadly categorized based on the degree of integration between physical models and learning algorithms:</p>
@@ -490,7 +490,7 @@ document.write(`
 <p>Physics-informed neural networks (PINNs) have emerged as a promising approach in enhancing 4D-flow magnetic resonance imaging (MRI) for cardiovascular assessments. Traditional MRI, while non-invasive and rich in structural and physiological data, often suffers from coarse spatial resolution and noise interference, complicating the reconstruction of vascular structures and flow dynamics.</p>
 <p>By integrating the Navier–Stokes equations into deep neural networks, PINNs enable the denoising of MRI data and the reconstruction of velocity and pressure fields that adhere to mass and momentum conservation laws. This integration facilitates high-resolution analyses, allowing for the identification of no-slip flow regions and the precise mapping of arterial wall geometry and motion. Consequently, critical biomarkers such as wall shear stress, kinetic energy, and energy dissipation can be accurately estimated, enhancing diagnostic capabilities.</p>
 <p>However, challenges persist, particularly in scenarios with high noise levels or complex flow patterns, such as boundary layers, high-vorticity regions, and turbulent flows through stenotic vessels. Despite these challenges, in physiological conditions where blood flow is predominantly laminar, PINNs have demonstrated robust performance, offering significant advancements in MRI-based cardiovascular diagnostics.</p>
-<p><img alt="4d_flow" src="chapters/attachment:image.png" /></p>
+<p><img alt="4d_flow" src="../_images/4dflow.png" /></p>
 </section>
 </section>
 <section id="other-examples">
@@ -502,7 +502,8 @@ document.write(`
 <p>In realistic systems, the transfer function varies laterally and axially across the field of view due to aberrations or design. Shift-varying deconvolution models can be used, but they are often slow and computationally intensive.</p>
 <p>MultiWienerNet uses multiple differentiable Wiener filters paired with a convolutional neural network to incorporate spatial variance allows for fast 2D and 3D reconstructions.
 Although, it does not conform to the traditional framework of PINNs, which explicitly integrate physical laws into the learning process, this method  effectively incorporates system-specific information about spatially varying PSFs outperforming existing data-driven deep-learning-based methods.</p>
-<img src="images/Lesson_09_deconv.jpg" width="1200"><p><strong>a</strong> | Snapshot of in-vivo 4D-flow MRI measurements. <strong>b–d</strong> | A PINN reconstruction of the velocity field (panel b), pressure (panel c), arterial wall surface geometry and wall shear stresses (panel d).</p>
+<p><img alt="deconv" src="../_images/deconv.png" /></p>
+<p><strong>a</strong> | Snapshot of in-vivo 4D-flow MRI measurements. <strong>b–d</strong> | A PINN reconstruction of the velocity field (panel b), pressure (panel c), arterial wall surface geometry and wall shear stresses (panel d).</p>
 </section>
 <section id="interpretable-biologically-informed-deep-learning">
 <h3>Interpretable biologically informed deep learning<a class="headerlink" href="#interpretable-biologically-informed-deep-learning" title="Link to this heading">#</a></h3>
@@ -511,9 +512,9 @@ Although, it does not conform to the traditional framework of PINNs, which expli
 <p>The application of BINNs extends to various domains within precision medicine, including biomarker discovery and pathway analysis. By incorporating proteomic data and associated pathways into the neural network, BINNs can identify critical proteins and biological processes that differentiate between disease subphenotypes. For instance, in the study of septic acute kidney injury and COVID-19, BINNs have been employed to distinguish between subphenotypes based on plasma proteome profiles, leading to a deeper understanding of the molecular mechanisms underlying these conditions.</p>
 <p>Moreover, the interpretability of BINNs is further enhanced through feature attribution methods, which allow for the introspection of the network to identify which proteins and pathways are pivotal in distinguishing between subphenotypes. This capability is instrumental in developing targeted treatments and personalized therapeutic strategies, as it provides a clear map of the biological factors influencing disease outcomes.</p>
 <p>In summary, the development of Biologically Informed Neural Networks represents a significant stride toward integrating domain-specific knowledge into deep learning models. By embedding biological information into the network architecture, BINNs offer a pathway to more interpretable and effective models in precision medicine, ultimately contributing to improved patient care and personalized treatment approaches.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="bio" src="../_images/bio.png" /></p>
 <p>Visualization of the inner layers shows the estimated relative importance of different nodes in each layer for prostate cancer discovery.</p>
-<p><img alt="image.png" src="chapters/attachment:image.png" /></p>
+<p><img alt="bio2" src="../_images/bio2.png" /></p>
 </section>
 </section>
 <section id="challenges-and-future-directions">
