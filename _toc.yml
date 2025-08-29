@@ -24,9 +24,11 @@ parts:
   numbered: false
   chapters:
   - file: chapters/21_neural networks
-  - file: chapters/23_NN_as_UA
-  - file: chapters/24_Loss_Metrics_and_Optimizers
-  - file: chapters/25_Image_Classification
-  - file: chapters/26_convolutions
-  - file: chapters/27_resnet2
-  - file: chapters/28_PBDL
+  - file: chapters/22_NN_as_UA
+  - file: chapters/23_Loss_Metrics_and_Optimizers
+  - file: chapters/24_MLP
+  - file: chapters/25_convolutions
+  - file: chapters/26_resnet2
+  - file: chapters/27_transformes
+  - file: chapters/28_probabilistic
+  - file: chapters/29_PBDL
